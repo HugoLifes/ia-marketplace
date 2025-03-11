@@ -197,7 +197,7 @@ export function Model(props: any) {
           opacity: 0,
           duration: 0.3,
         },
-        timelinePoint: 4.2,
+        timelinePoint: 4,
       },
       // Html div
       {
@@ -206,16 +206,16 @@ export function Model(props: any) {
           opacity: 1,
           duration: 0.8,
         },
-        timelinePoint: 4.6,
+        timelinePoint: 4.2,
       },
       {
         objectToAnimate: controls.current.target,
-        properties: {x: 0,y: -0.994,z: 0.5, duration: 0.5 },
+        properties: {x: -0.7,y: -0.994,z: 1, duration: 0.5 },
         timelinePoint: 4,
       },
       {
         objectToAnimate: camera.position,
-        properties: { x: -0.1, y: 3.23, z: 0.5, duration: 0.5 },
+        properties: { x: -0.1, y: 3.23, z: 1, duration: 0.5 },
         timelinePoint: 4,
       },
       {
