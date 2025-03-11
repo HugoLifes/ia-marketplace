@@ -7,7 +7,7 @@ import { useGLTF, OrbitControls, useScroll} from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { BufferGeometry, Material, Mesh, NormalBufferAttributes, Object3DEventMap } from 'three'
-
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 
@@ -18,7 +18,7 @@ export function Model(props: any) {
   const { nodes, materials } = useGLTF('../model/nebula.glb') as any
   // estado de la camara
   const camera = useThree(state => state.camera )
-
+  gsap.registerPlugin(ScrollTrigger)
   
   // animations control
   const  scrollControl = useScroll()
@@ -46,7 +46,14 @@ export function Model(props: any) {
   })
 
   useLayoutEffect(() => {
-    timeline.current = gsap.timeline()
+    timeline.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.pages_wrapper',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1,
+      }
+    })
     let AnimationsData: any[] = []
     const WelcomeViewAnimation = [
       {
@@ -64,19 +71,19 @@ export function Model(props: any) {
         objectToAnimate: page2.current,
         properties: {
           opacity: 1,
-          duration: 0.8,
+          duration: 0.3,
         },
-        timelinePoint: 1.3,
+        timelinePoint: 1,
       },
       {
         objectToAnimate: controls.current.target,
         properties: {x: -0.4,y: -0.0789,z: 0.2, duration: 0.8},
-        timelinePoint: 0.8,
+        timelinePoint: 1.2,
       },
       {
         objectToAnimate: camera.position,
         properties: {  x: 0, y: 3.6, z: 0.3, duration: 0.8 },
-        timelinePoint: 1,
+        timelinePoint: 0.5,
       },
       {
         objectToAnimate: camera,
@@ -99,7 +106,7 @@ export function Model(props: any) {
           opacity: 0,
           duration: 0.3,
         },
-        timelinePoint: 1.9,
+        timelinePoint: 1.7,
       },
 
       //html div
@@ -107,9 +114,9 @@ export function Model(props: any) {
         objectToAnimate: page3.current,
         properties: {
           opacity: 1,
-          duration: 0.3,
+          duration: 0.5,
         },
-        timelinePoint: 2.1,
+        timelinePoint: 2,
       },
       {
         objectToAnimate: controls.current.target,
@@ -118,7 +125,7 @@ export function Model(props: any) {
       },
       {
         objectToAnimate: camera.position,
-        properties: { x: -0.5, y: 1.6, z: 0.3, duration: 0.9 },
+        properties: { x: 0, y: 3.6, z: 0.3, duration: 0.9 },
         timelinePoint: 2,
       },
       {
@@ -188,7 +195,7 @@ export function Model(props: any) {
         objectToAnimate: page4.current,
         properties: {
           opacity: 0,
-          duration: 0.8,
+          duration: 0.3,
         },
         timelinePoint: 4.2,
       },

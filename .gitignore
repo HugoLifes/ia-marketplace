@@ -1,0 +1,42 @@
+# Dependencias de Node.js
+node_modules/
+
+# Salida de compilación y distribución
+dist/
+dist-ssr/
+
+# Archivos de entorno local
+*.local
+.env
+.env.local
+.env.*.local
+
+# Archivos de registro
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Cachés y datos de ejecución
+.vite/
+*.pid
+*.seed
+*.pid.lock
+
+# Directorios y archivos de editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración específicos
+.eslintcache

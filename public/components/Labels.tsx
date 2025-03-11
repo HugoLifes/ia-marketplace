@@ -22,8 +22,8 @@ const Labels: React.FC = () => {
         <div
           id='page-3'
           className='page page--headband page--hidden'>
-          <h1 className='message'>MarketPlace</h1>
-          <p className='message--sub'>
+          <h1 className='subscribe--text'>MarketPlace</h1>
+          <p className='subscribe--sub'>
             Lorem ipsum dolor, sit amet consectetur
             adipisicing elit. Aspernatur quae architecto
             molestiae laudantium consequuntur.
@@ -41,7 +41,7 @@ const Labels: React.FC = () => {
         </div>
         <div
           id='page-5'
-          className='page page--sounds page--hidden'>
+          className='page page--subscribe page--hidden'>
           <h1 className='message'>Subscribete</h1>
           <p className='message--sub'>
             Lorem ipsum dolor, sit amet consectetur
