@@ -18,6 +18,9 @@ const Labels: React.FC = () => {
             adipisicing elit. Aspernatur quae architecto
             molestiae laudantium consequuntur.
           </p>
+          <button className="primary-button"> 
+          <span>Empezemos!</span>
+        </button>
         </div>
         <div
           id='page-3'
@@ -48,6 +51,9 @@ const Labels: React.FC = () => {
             adipisicing elit. Aspernatur quae architecto
             molestiae laudantium consequuntur.
           </p>
+          <button className="primary-button"> 
+          <span>Subscribete!</span>
+        </button>
         </div>
         
       
