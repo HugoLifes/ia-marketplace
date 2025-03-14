@@ -7,10 +7,10 @@ varying float vDisplacement;
 
 void main() {
   float distort = 2.0 * vDisplacement * u_intensity;
-
+ 
    // Calcula una base a partir de vUv y el efecto distort
-  vec3 baseColor = vec3(abs(vUv - 0.5) * 2.0 * (1.0 - distort), 1.0);
-  
+  //vec3 baseColor = vec3(abs(vUv - 0.5) * 2.0 * (1.0 - distort), 1.0);
+  vec3 baseColor = vec3(0.094, 0.42-distort, 0.565);
   // Combina la base con el color definido en el uniform
  // vec3 finalColor = mix(baseColor, u_color, vZ * 2.0 + 0.5);
   

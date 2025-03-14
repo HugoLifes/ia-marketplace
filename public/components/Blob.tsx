@@ -8,7 +8,18 @@ const Blob = () => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
   const hover = useRef(false);
+  const {viewport} = useThree();
 
+  // Definir la escala en función del ancho del viewport
+  // Por ejemplo, para móviles (<480px), tabletas (<768px) y desktop:
+  let scaleFactor: number
+  if (viewport.width < 480) {
+    scaleFactor = 0.3
+  } else if (viewport.width < 768) {
+    scaleFactor = 0.7
+  } else {
+    scaleFactor = 1
+  }
   const uniforms = useMemo(
     () => ({
       u_intensity: {
@@ -43,7 +54,7 @@ const Blob = () => {
     <mesh
       ref={mesh}
       position={[0, 0, 0]}
-      scale={0.8}
+      scale={scaleFactor}
       onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = false)}
     >

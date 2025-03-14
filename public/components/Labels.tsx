@@ -7,7 +7,7 @@ const Labels: React.FC = () => {
         <div
           id='page-1'
           className='page page--welcome page--intro'>
-          <h1 className='message'>Welcome</h1>
+          <h1 className='message'>Bienvenido</h1>
         </div>
         <div
           id='page-2'
@@ -18,15 +18,15 @@ const Labels: React.FC = () => {
             adipisicing elit. Aspernatur quae architecto
             molestiae laudantium consequuntur.
           </p>
-          <button className="primary-button"> 
+          <button className="primary-button" onClick={() => console.log('ALPHA!')}> 
           <span>Empezemos!</span>
         </button>
         </div>
         <div
           id='page-3'
-          className='page page--headband page--hidden'>
-          <h1 className='subscribe--text'>MarketPlace</h1>
-          <p className='subscribe--sub'>
+          className='page page--subscribe page--hidden'>
+          <h1 className='message'>MarketPlace</h1>
+          <p className='message--sub'>
             Lorem ipsum dolor, sit amet consectetur
             adipisicing elit. Aspernatur quae architecto
             molestiae laudantium consequuntur.
@@ -51,7 +51,7 @@ const Labels: React.FC = () => {
             adipisicing elit. Aspernatur quae architecto
             molestiae laudantium consequuntur.
           </p>
-          <button className="primary-button"> 
+          <button className="primary-button" onClick={() => console.log('Subscribete!')} > 
           <span>Subscribete!</span>
         </button>
         </div>

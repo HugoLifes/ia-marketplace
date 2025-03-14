@@ -7,12 +7,9 @@ import Labels from '../public/components/Labels'
 
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ 
   <React.StrictMode>
-    <div className="scene_container"> 
-    <Labels />
-      <Suspense fallback={null}>
-        <App />
-      </Suspense>
-    </div>
-  </React.StrictMode>,
+  <App />
+</React.StrictMode>
+ 
 );
