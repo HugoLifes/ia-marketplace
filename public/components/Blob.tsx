@@ -18,7 +18,7 @@ const Blob = () => {
   } else if (viewport.width < 768) {
     scaleFactor = 0.7
   } else {
-    scaleFactor = 1
+    scaleFactor = 0.5
   }
   const uniforms = useMemo(
     () => ({
