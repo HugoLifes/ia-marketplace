@@ -17,7 +17,7 @@ const AdjustCamera: React.FC = () => {
         camera.position.set(1, 4, 2)
       } else {
         // Desktop
-        camera.position.set(1,2, 3)
+        camera.position.set(3,1, 0.999)
       }
     }
 

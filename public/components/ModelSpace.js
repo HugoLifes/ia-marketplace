@@ -33,19 +33,14 @@ var drei_1 = require("@react-three/drei");
 var fiber_1 = require("@react-three/fiber");
 var gsap_1 = __importDefault(require("gsap"));
 var ScrollTrigger_1 = require("gsap/ScrollTrigger");
-var ScrollSmoother_1 = __importDefault(require("gsap-trial/dist/ScrollSmoother"));
 function Model(props) {
     // acceso a uso de los controles de la camara
     var controls = (0, react_1.useRef)(null);
-    var container = (0, react_1.useRef)(null); // Referencia al contenedor de páginas
-    var _a = (0, react_1.useState)(0), scrollY = _a[0], setScrollY = _a[1]; // Estado del scroll manual
-    var startY = (0, react_1.useRef)(0); // Para capturar el punto inicial del touch
-    var lastScroll = (0, react_1.useRef)(0); // Última posición de scroll
     //carga de modelo y variables
-    var _b = (0, drei_1.useGLTF)('../model/nebula.glb'), nodes = _b.nodes, materials = _b.materials;
+    var _a = (0, drei_1.useGLTF)('../model/nebula.glb'), nodes = _a.nodes, materials = _a.materials;
     // estado de la camara
     var camera = (0, fiber_1.useThree)(function (state) { return state.camera; });
-    gsap_1["default"].registerPlugin(ScrollTrigger_1.ScrollTrigger, ScrollSmoother_1["default"]);
+    gsap_1["default"].registerPlugin(ScrollTrigger_1.ScrollTrigger);
     // animations control
     var scrollControl = (0, drei_1.useScroll)();
     var timeline = (0, react_1.useRef)(null);
@@ -69,14 +64,12 @@ function Model(props) {
         page5.current = document.getElementById('page-5');
     });
     (0, react_1.useLayoutEffect)(function () {
-        var _a, _b, _c;
         timeline.current = gsap_1["default"].timeline({
             scrollTrigger: {
-                snap: 1,
                 trigger: '.pages_wrapper',
-                scroller: ".pages_wrapper",
                 start: 'top top',
-                end: 'bottom bottom'
+                end: 'bottom bottom',
+                scrub: 1
             }
         });
         var AnimationsData = [];
@@ -249,41 +242,10 @@ function Model(props) {
             },
         ];
         AnimationsData = __spreadArray(__spreadArray([], AnimationsData, true), SpecialModelsAnimation, true);
-        AnimationsData.forEach(function (_a) {
-            var _b;
-            var objectToAnimate = _a.objectToAnimate, properties = _a.properties, timelinePoint = _a.timelinePoint;
-            if (objectToAnimate) {
-                (_b = timeline.current) === null || _b === void 0 ? void 0 : _b.to(objectToAnimate, properties, timelinePoint);
-            }
-        });
-        // 🎯 Capturar eventos táctiles para simular scroll
-        var handleTouchStart = function (e) {
-            startY.current = e.touches[0].clientY; // Captura el inicio del touch
-        };
-        var handleTouchMove = function (e) {
+        AnimationsData.map(function (animationData) {
             var _a;
-            var deltaY = startY.current - e.touches[0].clientY; // Diferencia del movimiento
-            var newScrollY = lastScroll.current + deltaY;
-            // Limitar el scroll
-            var maxScroll = window.innerHeight * (AnimationsData.length - 1);
-            newScrollY = Math.max(0, Math.min(newScrollY, maxScroll));
-            setScrollY(newScrollY);
-            (_a = timeline.current) === null || _a === void 0 ? void 0 : _a.progress(newScrollY / maxScroll);
-        };
-        var handleTouchEnd = function () {
-            lastScroll.current = scrollY; // Guardar última posición de scroll
-        };
-        // Agregar eventos táctiles
-        (_a = container.current) === null || _a === void 0 ? void 0 : _a.addEventListener("touchstart", handleTouchStart);
-        (_b = container.current) === null || _b === void 0 ? void 0 : _b.addEventListener("touchmove", handleTouchMove);
-        (_c = container.current) === null || _c === void 0 ? void 0 : _c.addEventListener("touchend", handleTouchEnd);
-        return function () {
-            var _a, _b, _c;
-            // Remover eventos al desmontar
-            (_a = container.current) === null || _a === void 0 ? void 0 : _a.removeEventListener("touchstart", handleTouchStart);
-            (_b = container.current) === null || _b === void 0 ? void 0 : _b.removeEventListener("touchmove", handleTouchMove);
-            (_c = container.current) === null || _c === void 0 ? void 0 : _c.removeEventListener("touchend", handleTouchEnd);
-        };
+            (_a = timeline.current) === null || _a === void 0 ? void 0 : _a.to(animationData.objectToAnimate, __assign({}, animationData.properties), animationData.timelinePoint);
+        });
         //timeline.current.to(generalGroupRef.current!.rotation, { y: Math.PI * 2, duration: 2 }, 5.5) 
     }, []);
     (0, fiber_1.useFrame)(function () {

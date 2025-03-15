@@ -35,7 +35,7 @@ var Blob = function () {
         scaleFactor = 0.7;
     }
     else {
-        scaleFactor = 1;
+        scaleFactor = 0.5;
     }
     var uniforms = (0, react_1.useMemo)(function () { return ({
         u_intensity: {

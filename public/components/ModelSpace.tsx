@@ -8,22 +8,18 @@ import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { BufferGeometry, Material, Mesh, NormalBufferAttributes, Object3DEventMap } from 'three'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ScrollSmoother from 'gsap-trial/dist/ScrollSmoother'
+
 
 
 
 export function Model(props: any) {
   // acceso a uso de los controles de la camara
   const controls = useRef<any>(null)
-  const container = useRef<HTMLDivElement | null>(null); // Referencia al contenedor de páginas
-  const [scrollY, setScrollY] = useState(0); // Estado del scroll manual
-  const startY = useRef(0); // Para capturar el punto inicial del touch
-  const lastScroll = useRef(0); // Última posición de scroll
   //carga de modelo y variables
   const { nodes, materials } = useGLTF('../model/nebula.glb') as any
   // estado de la camara
   const camera = useThree(state => state.camera )
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
+  gsap.registerPlugin(ScrollTrigger)
   
   
   // animations control
@@ -56,13 +52,10 @@ export function Model(props: any) {
   useLayoutEffect(() => {
         timeline.current = gsap.timeline({
           scrollTrigger: {
-            snap: 1,
             trigger: '.pages_wrapper',
-            scroller: ".pages_wrapper",
             start: 'top top',
             end: 'bottom bottom',
-           
-            
+            scrub:1
           }
           
         })
@@ -245,45 +238,11 @@ export function Model(props: any) {
         AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
     
     
-        AnimationsData.forEach(({ objectToAnimate, properties, timelinePoint }) => {
-          if (objectToAnimate) {
-              timeline.current?.to(objectToAnimate, properties, timelinePoint);
-          }
-      });
-        // 🎯 Capturar eventos táctiles para simular scroll
-    const handleTouchStart = (e: TouchEvent) => {
-      startY.current = e.touches[0].clientY; // Captura el inicio del touch
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const deltaY = startY.current - e.touches[0].clientY; // Diferencia del movimiento
-      let newScrollY = lastScroll.current + deltaY;
-
-      // Limitar el scroll
-      const maxScroll = window.innerHeight * (AnimationsData.length - 1);
-      newScrollY = Math.max(0, Math.min(newScrollY, maxScroll));
-
-      setScrollY(newScrollY);
-      timeline.current?.progress(newScrollY / maxScroll);
-    };
-
-    const handleTouchEnd = () => {
-      lastScroll.current = scrollY; // Guardar última posición de scroll
-    };
-
-    // Agregar eventos táctiles
-    container.current?.addEventListener("touchstart", handleTouchStart);
-    container.current?.addEventListener("touchmove", handleTouchMove);
-    container.current?.addEventListener("touchend", handleTouchEnd);
-
-    return () => {
-      // Remover eventos al desmontar
-      container.current?.removeEventListener("touchstart", handleTouchStart);
-      container.current?.removeEventListener("touchmove", handleTouchMove);
-      container.current?.removeEventListener("touchend", handleTouchEnd);
-    };
-      
-        
+        AnimationsData.map((animationData) => {
+          timeline.current?.to(animationData.objectToAnimate,{...animationData.properties}, animationData.timelinePoint)
+        })
+    
+    
         //timeline.current.to(generalGroupRef.current!.rotation, { y: Math.PI * 2, duration: 2 }, 5.5) 
       },
       []);
