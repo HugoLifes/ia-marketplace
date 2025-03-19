@@ -8,6 +8,16 @@ const Labels: React.FC = () => {
           id='page-1'
           className='page page--welcome page--intro'>
           <h1 className='message'>Bienvenido</h1>
+          <p className='message--sub'>
+            Lorem ipsum dolor, sit amet consectetur
+            adipisicing elit. Aspernatur quae architecto
+            molestiae laudantium consequuntur.
+          </p>
+          <div className='button-container'>
+          <button className='primary-button' onClick={() => console.log('Prueba Alpha!')}>
+            🚀 <span>Prueba Alpha</span>
+          </button>
+        </div>
         </div>
         <div
           id='page-2'

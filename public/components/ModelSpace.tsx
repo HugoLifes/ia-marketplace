@@ -10292,12 +10292,12 @@ export function Model(props: any) {
       </group>
     </group>
       <OrbitControls 
-          enableZoom={true} // Habilita el zoom (por defecto está activo)
+          enableZoom={false} // Habilita el zoom (por defecto está activo)
           zoomSpeed={0.6}         // Ajusta la velocidad del zoom
           ref={controls}        // Referencia a los controles de órbita
           maxDistance={10}
-          enableRotate ={true}
-          enablePan={true}
+          enableRotate ={false}
+          enablePan={false}
 
       />
       

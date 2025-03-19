@@ -4,6 +4,8 @@ import { MathUtils } from 'three'
 import React , { useRef, useState, useMemo }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three';
+
+
 const Blob = () => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
