@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import { Model } from './ModelSpace'
 import  Blob  from './Blob'
 import AdjustCamera from './adjustCamera'
+import { Person } from './Futurista'
 
 const Scene: React.FC = () => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
@@ -14,15 +15,19 @@ const Scene: React.FC = () => {
     
     <div  >
       <div >
-          <Canvas shadows  camera={{  fov: 50 }}  >
+          <Canvas shadows  camera={{   fov: 50 }}  >
           <color attach="background" args={['black']} />
-          {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) */}
-          <AdjustCamera />
+          {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) <color attach="background" args={['black']} />     */}
+          
+          <ambientLight intensity={1.6} />
           <ScrollControls pages={3} damping={0.25}  > 
           
-            <Blob />
+            
             {/* Add your scrollable content here */}
             <Model />
+            <Person />
+            <CameraInfo />
+            
             
            
           </ScrollControls>

@@ -87,7 +87,7 @@ export function Model(props: any) {
           },
           {
             objectToAnimate: camera.position,
-            properties: {  x: 0, y: 3, z: 0.3, duration: 0.8 },
+            properties: {  x: 1, y: 3, z: 0.3, duration: 0.8 },
             timelinePoint: 0.5,
           },
           {
@@ -10292,12 +10292,12 @@ export function Model(props: any) {
       </group>
     </group>
       <OrbitControls 
-          enableZoom={false} // Habilita el zoom (por defecto está activo)
+          enableZoom={true} // Habilita el zoom (por defecto está activo)
           zoomSpeed={0.6}         // Ajusta la velocidad del zoom
           ref={controls}        // Referencia a los controles de órbita
           maxDistance={10}
-          enableRotate ={false}
-          enablePan={false}
+          enableRotate ={true}
+          enablePan={true}
 
       />
       
