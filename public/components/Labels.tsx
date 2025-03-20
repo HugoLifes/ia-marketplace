@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ScrollAd from './ScrollAd';
 const Labels: React.FC = () => {
   return (
     <div className="pages">
@@ -13,6 +13,11 @@ const Labels: React.FC = () => {
               className="imageLogo2"
             />
           </center>
+         <img
+              src="../Images/mouse-cursorWhite.png"
+              alt="Desliza!"
+              className="scrollLogo"
+            />
         </div>
         <div id="page-2" className="page page--headband page--hidden">
           <h1 className="message">UnderConstruction</h1>

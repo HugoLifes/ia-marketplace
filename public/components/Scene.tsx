@@ -7,12 +7,17 @@ import * as THREE from 'three';
 import { Model } from './ModelSpace'
 import  Blob  from './Blob'
 import AdjustCamera from './adjustCamera'
+import { useInView } from 'react-intersection-observer';
 
 const Scene: React.FC = () => {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+  });
   return (
     
     <div  >
+      
       <div >
           <Canvas shadows  camera={{  fov: 50 }}  >
           <color attach="background" args={['black']} />

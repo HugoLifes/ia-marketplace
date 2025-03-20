@@ -19,7 +19,14 @@ body {
   max-width: 70%;
   height: auto;
   border-radius: 10px;
+
+}
+.scrollLogo{
  
+  max-width: 3%;
+  height: auto;
+  border-radius: 10px;
+  
   
 }
 .imageLogo2{

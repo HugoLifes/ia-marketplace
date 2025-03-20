@@ -125,7 +125,7 @@ export function Model(props: any) {
           },
           {
             objectToAnimate: controls.current.target,
-            properties: {x: -0.4,y: -0.0789,z: 0.2, duration: 0.9},
+            properties: {x: 0,y: 0,z: 0, duration: 0.9},
             timelinePoint: 2,
           },
           {
