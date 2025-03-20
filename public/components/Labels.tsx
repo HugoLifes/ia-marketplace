@@ -19,7 +19,7 @@ const Labels: React.FC = () => {
           <p className="message--sub"></p>
         </div>
         <div id="page-3" className="page page--headband page--hidden">
-          <h1 className="message">Proximamente</h1>
+          <h1 className="message"></h1>
           <p className="message--sub"></p>
           <div className="card">
             <h2 className="card-title">Únete a nuestra lista de espera</h2>

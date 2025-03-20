@@ -89,6 +89,7 @@ body {
 
 /* Tarjeta (card) */
 .card {
+  top: 20%;
   background: #fff;
   padding: 20px;
   border-radius: 12px;
@@ -212,7 +213,7 @@ body {
 
 .message {
   color: #02FFC4;
-  font-family: "Space Grotesk";
+  font-family: "ZCOOL KuaiLe";
   font-size: 150px;
   line-height: 200px;
   z-index: 99999;
