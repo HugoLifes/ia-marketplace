@@ -15,7 +15,8 @@ const Scene: React.FC = () => {
     <div  >
       <div >
           <Canvas shadows  camera={{  fov: 50 }}  >
-          <color attach="background" args={['black']} />
+          <color attach="background" args={['#374151']} />
+          
           {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) */}
           <AdjustCamera />
           <ScrollControls pages={3} damping={0.25}  > 

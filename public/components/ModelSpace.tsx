@@ -45,8 +45,8 @@ export function Model(props: any) {
     page1.current = document.getElementById('page-1')
     page2.current = document.getElementById('page-2')
     page3.current = document.getElementById('page-3')
-    page4.current = document.getElementById('page-4') 
-    page5.current = document.getElementById('page-5') 
+   // page4.current = document.getElementById('page-4') 
+   // page5.current = document.getElementById('page-5') 
   })
 
   useLayoutEffect(() => {
@@ -82,12 +82,12 @@ export function Model(props: any) {
           },
           {
             objectToAnimate: controls.current.target,
-            properties: {x: 0, y: 3, z: 0.3, duration: 0.8},
+            properties: {x: 5, y: 1, z: 0.3, duration: 0.8},
             timelinePoint: 1.2,
           },
           {
             objectToAnimate: camera.position,
-            properties: {  x: 0, y: 3, z: 0.3, duration: 0.8 },
+            properties: {  x: 5, y: 1, z: 0.3, duration: 0.8 },
             timelinePoint: 0.5,
           },
           {
@@ -160,7 +160,7 @@ export function Model(props: any) {
           },
     
           //html div
-          {
+          { 
             objectToAnimate: page4.current,
             properties: {
               opacity: 1,
@@ -191,7 +191,7 @@ export function Model(props: any) {
             timelinePoint: 3,
           },
         ]
-        AnimationsData = [...AnimationsData, ...MarketPlaceAnimation]
+       // AnimationsData = [...AnimationsData, ...MarketPlaceAnimation]
         
         // Modelos especializados camera animation view
         const SpecialModelsAnimation = [
@@ -235,7 +235,7 @@ export function Model(props: any) {
             timelinePoint: 4,
           },
         ]
-        AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
+       // AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
     
     
         AnimationsData.map((animationData) => {
