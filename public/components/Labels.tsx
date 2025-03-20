@@ -14,22 +14,22 @@ const Labels: React.FC = () => {
             />
           </center>
          <img
-              src="../Images/mouse-cursorWhite.png"
+              src="../Images/mouse-cursorGreen.png"
               alt="Desliza!"
               className="scrollLogo"
             />
         </div>
         <div id="page-2" className="page page--headband page--hidden">
-          <h1 className="message">UnderConstruction</h1>
+          <h1 className="message">En Construcción...</h1>
           <p className="message--sub"></p>
         </div>
         <div id="page-3" className="page page--headband page--hidden">
           <h1 className="message"></h1>
           <p className="message--sub"></p>
           <div className="card">
-            <h2 className="card-title">Únete a nuestra lista de espera</h2>
+            <h2 className="card-title">La evolución comienza aquí. Vive la inteligencia artificial como nunca antes.</h2>
             <p className="card-text">
-              Déjanos tu correo y te avisaremos cuando lancemos.
+            Deja tu correo y recibe acceso anticipado.
             </p>
 
             <form className="form">
@@ -40,7 +40,7 @@ const Labels: React.FC = () => {
                 required
               />
               <button className="submit-button" type="submit" onClick={() => console.log('Enviado!')}>
-                🚀 Notificarme
+              ¡Quiero ser parte!🚀
               </button>
             </form>
           </div>

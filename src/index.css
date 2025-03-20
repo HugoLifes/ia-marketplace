@@ -226,6 +226,14 @@ body {
   z-index: 99999;
 }
 
+.message {
+  color: #02FFC4;
+  font-family: "ZCOOL KuaiLe";
+  font-size: 120px;
+  line-height: 200px;
+  z-index: 99999;
+}
+
 .message--sub {
   font-family: "ZCOOL KuaiLe";
   color: #8c8c8c;
