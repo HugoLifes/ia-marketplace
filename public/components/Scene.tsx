@@ -7,26 +7,36 @@ import * as THREE from 'three';
 import { Model } from './ModelSpace'
 import  Blob  from './Blob'
 import AdjustCamera from './adjustCamera'
-import { useInView } from 'react-intersection-observer';
+import { useScroll } from '@react-three/drei'
+import gsap from 'gsap'
 
+const BlobRow = () => {
+  const { viewport } = useThree()
+  const sectionWidth = viewport.width * 1.5 // espacio entre blobs, puedes ajustar el factor
+  console.log('section',sectionWidth)
+
+  return (
+    <>
+      {[...Array(5)].map((_, i) => (
+        <Blob key={i} position={[i * sectionWidth, 0, 0]} />
+      ))}
+    </>
+  )
+}
 const Scene: React.FC = () => {
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-  });
+  
   return (
     
     <div  >
       
       <div >
-          <Canvas shadows  camera={{  fov: 50 }}  >
-          <color attach="background" args={['black']} />
+          <Canvas id='canvas' shadows  camera={{  fov: 50 }}  >
           
           {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) */}
           <AdjustCamera />
-          <ScrollControls pages={3} damping={0.25}  > 
+          <ScrollControls pages={3} horizontal damping={0.25}  > 
           
-            <Blob />
+            <BlobRow />
             {/* Add your scrollable content here */}
             <Model />
             

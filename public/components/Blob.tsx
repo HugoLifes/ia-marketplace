@@ -4,22 +4,30 @@ import { MathUtils } from 'three'
 import React , { useRef, useState, useMemo }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three';
-const Blob = () => {
+import {OrbitControls} from '@react-three/drei'
+
+type BlobProps = {
+  position?: [number, number, number]
+  scale?: number
+}
+
+const Blob: React.FC<BlobProps> = ({  
+  position = [0, 0, 0],
+  scale: customScale,
+  }) => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
   const hover = useRef(false);
-  const {viewport} = useThree();
+  const {viewport, gl} = useThree();
 
   // Definir la escala en función del ancho del viewport
   // Por ejemplo, para móviles (<480px), tabletas (<768px) y desktop:
-  let scaleFactor: number
-  if (viewport.width < 480) {
-    scaleFactor = 0.3
-  } else if (viewport.width < 768) {
-    scaleFactor = 0.7
-  } else {
-    scaleFactor = 0.5
-  }
+   // Escalado responsivo si no se pasa explícitamente
+   const scaleFactor =
+   customScale ??
+   (viewport.width < 480 ? 0.3 : viewport.width < 768 ? 0.7 : 0.5)
+
+
   const uniforms = useMemo(
     () => ({
       u_intensity: {
@@ -51,12 +59,13 @@ const Blob = () => {
   });
 
   return (
+    <>
     <mesh
       ref={mesh}
-      position={[0, 0, 0]}
+      position={position}
       scale={scaleFactor}
-      onPointerOver={() => (hover.current = true)}
-      onPointerOut={() => (hover.current = false)}
+      onPointerOver={() => (hover.current = false)}
+      onPointerOut={() => (hover.current = true)}
     >
       <icosahedronGeometry args={[2, 20]} />
       <shaderMaterial
@@ -66,6 +75,7 @@ const Blob = () => {
         wireframe={false}
       />
     </mesh>
+    </>
   );
 };
 

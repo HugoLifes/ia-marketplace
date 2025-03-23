@@ -8,7 +8,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import gsap from 'gsap'
 import { BufferGeometry, Material, Mesh, NormalBufferAttributes, Object3DEventMap } from 'three'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import * as THREE from 'three';
 
 
 
@@ -19,9 +19,11 @@ export function Model(props: any) {
   const { nodes, materials } = useGLTF('../model/nebula.glb') as any
   // estado de la camara
   const camera = useThree(state => state.camera )
+  const { gl } = useThree()
   gsap.registerPlugin(ScrollTrigger)
   
-  
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color( 0x000000);
   // animations control
   const  scrollControl = useScroll()
   const timeline = useRef<gsap.core.Timeline | null>(null)
@@ -39,14 +41,18 @@ export function Model(props: any) {
   const page3 = useRef<HTMLElement | null>(null)
   const page4 = useRef<HTMLElement | null>(null)
   const page5 = useRef<HTMLElement | null>(null)
+  const body = useRef<HTMLElement | null>(null)
 
   
   useLayoutEffect(() => {
+    
     page1.current = document.getElementById('page-1')
     page2.current = document.getElementById('page-2')
     page3.current = document.getElementById('page-3')
    // page4.current = document.getElementById('page-4') 
    // page5.current = document.getElementById('page-5') 
+    body.current = document.getElementById('canvas')
+    
   })
 
   useLayoutEffect(() => {
@@ -68,8 +74,9 @@ export function Model(props: any) {
             properties: {
               opacity: 0,
               duration: 0.3,
+              
             },
-            timelinePoint: 0.5,
+            timelinePoint: 0.0,
           },
           // html div
           {
@@ -78,17 +85,17 @@ export function Model(props: any) {
               opacity: 1,
               duration: 0.9,
             },
-            timelinePoint: 1,
+            timelinePoint: 0.2,
           },
           {
             objectToAnimate: controls.current.target,
-            properties: {x: 5, y: 1, z: 0.3, duration: 0.8},
-            timelinePoint: 1.2,
+            properties: {x: 14, y: 0, z: 0, duration: 0.8},
+            timelinePoint: 0.2,
           },
           {
             objectToAnimate: camera.position,
-            properties: {  x: 5, y: 1, z: 0.3, duration: 0.8 },
-            timelinePoint: 0.5,
+            properties: {  x: 15, y: 0, z: 2.5, duration: 0.8 },
+            timelinePoint: 0.2,
           },
           {
             objectToAnimate: camera,
@@ -99,8 +106,17 @@ export function Model(props: any) {
                 camera.updateProjectionMatrix()
               }
             },
-            timelinePoint: 1,
+            timelinePoint: 0.2,
           },
+          {
+            objectToAnimate: body.current,
+            properties:{
+              duration: 1,
+              backgroundColor: "#151514"
+            },
+            timelinePoint: 0.0
+          }
+          
         ]
         AnimationsData = [...AnimationsData, ...WelcomeViewAnimation]
     
@@ -111,7 +127,7 @@ export function Model(props: any) {
               opacity: 0,
               duration: 0.3,
             },
-            timelinePoint: 1.7,
+            timelinePoint: 0.9,
           },
     
           //html div
@@ -119,19 +135,19 @@ export function Model(props: any) {
             objectToAnimate: page3.current,
             properties: {
               opacity: 1,
-              duration: 0.5,
+              duration: 0.6,
             },
-            timelinePoint: 2,
+            timelinePoint: 1,
           },
           {
             objectToAnimate: controls.current.target,
-            properties: {x: 0,y: 0,z: 0, duration: 0.9},
-            timelinePoint: 2,
+            properties: {x: 29,y: 0,z: 0, duration: 0.8},
+            timelinePoint: 1,
           },
           {
             objectToAnimate: camera.position,
-            properties: { x: 0, y: 3.6, z: 0.3, duration: 0.9 },
-            timelinePoint: 2,
+            properties: { x: 30, y: 0, z: 2.5, duration: 0.8 },
+            timelinePoint: 1,
           },
           {
             objectToAnimate: camera,
@@ -142,8 +158,19 @@ export function Model(props: any) {
                 camera.updateProjectionMatrix()
               }
             },
-            timelinePoint: 2,
+            timelinePoint: 1,
           },
+
+          {
+            objectToAnimate: body.current,
+            properties:{
+              duration: 1,
+              backgroundColor: "#d3ddda"
+            },
+            timelinePoint: 1
+          }
+        
+          
         ]
         AnimationsData = [...AnimationsData, ...AlphaPlaceAnimation]
     
@@ -236,6 +263,8 @@ export function Model(props: any) {
           },
         ]
        // AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
+
+       
     
     
         AnimationsData.map((animationData) => {
@@ -246,9 +275,6 @@ export function Model(props: any) {
         //timeline.current.to(generalGroupRef.current!.rotation, { y: Math.PI * 2, duration: 2 }, 5.5) 
       },
       []);
-   
-    
-  
   
 
   useFrame(() => {
@@ -282,7 +308,7 @@ export function Model(props: any) {
         scale={0.128}
       />
       */}
-      <group name="Cube001" scale={4}>
+      <group name="Cube001" scale={100}>
         <mesh
           name="Icosphere_1"
           castShadow
@@ -10295,7 +10321,7 @@ export function Model(props: any) {
           enableZoom={false} // Habilita el zoom (por defecto está activo)
           zoomSpeed={0.6}         // Ajusta la velocidad del zoom
           ref={controls}        // Referencia a los controles de órbita
-          maxDistance={10}
+          
           enableRotate ={false}
           enablePan={false}
 

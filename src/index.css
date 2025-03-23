@@ -1,9 +1,36 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=ZCOOL+KuaiLe&display=swap');
-*{
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=ZCOOL+KuaiLe&display=swap");
+
+/* Al principio del archivo, después de los imports */
+html,
+body {
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.app-container::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  width: 0 !important;
+  display: none !important;
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
 }
 
 html,
@@ -11,36 +38,242 @@ body,
 #root {
   width: 100%;
   height: 100%;
+  overflow-x: hidden;
 }
+
 body {
-  
+  overscroll-behavior: none; /* Previene el efecto rebote en algunos navegadores */
+  scrollbar-width: none; /* Para Firefox */
+  -ms-overflow-style: none; /* Para Internet Explorer y Edge */
 }
-.imageLogo{
+
+body::-webkit-scrollbar {
+  display: none; /* Para Chrome, Safari y Opera */
+}
+
+/* Asegurarse de que el contenedor principal también oculte las barras de desplazamiento */
+.app-container,
+#root {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y: auto;
+}
+
+/* Estilos para el indicador de scroll minimalista - Ajustados para mayor visibilidad */
+.scroll-progress-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px; /* Ligeramente más grueso */
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 9999; /* Z-index muy alto para asegurar que esté por encima de todo */
+  pointer-events: none; /* Para que no interfiera con los clics */
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background-color: #02ffc4; /* Color verde característico */
+  width: 0;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 8px rgba(2, 255, 196, 0.7); /* Añadir un ligero brillo */
+}
+
+/* Contenedor principal de la aplicación */
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Contenedor del canvas para Three.js */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background-color: rgba(70, 70, 70, 0.7);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.navbar-logo a {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-logo a:hover {
+  color: #02ffc4;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.nav-link:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #02ffc4;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #02ffc4;
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+.navbar-about a {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.navbar-about a:hover {
+  color: #02ffc4;
+}
+
+/* Mobile navbar */
+@media (max-width: 768px) {
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .navbar-links {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-container {
+    justify-content: space-between;
+  }
+}
+
+/* Logo styling */
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.imageLogo {
   max-width: 70%;
   height: auto;
   border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(2, 255, 196, 0.3);
+  transition: transform 0.3s ease;
+}
 
+.imageLogo:hover {
+  transform: scale(1.02);
 }
-.scrollLogo{
- 
-  max-width: 3%;
+
+.imageLogo2 {
+  max-width: 30%;
   height: auto;
   border-radius: 10px;
-  
-  
+  box-shadow: 0 4px 20px rgba(2, 255, 196, 0.3);
+  animation: pulse 2s infinite ease-in-out;
 }
-.imageLogo2{
-  max-width: 50%;
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  animation: bounce 2s infinite;
+}
+
+.scrollLogo {
+  max-width: 30px;
   height: auto;
-  border-radius: 10px;
- 
-  
 }
+
+.scroll-text {
+  color: #02ffc4;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 14px;
+  margin-top: 0.5rem;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* Page container styling */
 .scene_container {
   width: 100%;
   height: 100vh;
- 
-  
 }
 
 .pages {
@@ -49,10 +282,9 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  /* evita el bloqueo de la página */
   z-index: 3;
   overflow: hidden;
-  pointer-events:none;
+  pointer-events: none;
 }
 
 .pages_wrapper {
@@ -61,7 +293,6 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  
 }
 
 .page {
@@ -71,8 +302,7 @@ body {
   gap: 12px;
   align-items: center;
   flex-direction: column;
-  text-align: left;
-  
+  text-align: center;
 }
 
 .page--hidden {
@@ -94,47 +324,60 @@ body {
   transform: translateX(-50%);
 }
 
-/* Tarjeta (card) */
+/* Card styling */
 .card {
-  top: 50%;
-  background: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(2, 255, 196, 0.2);
   margin-top: 20px;
   pointer-events: auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(2, 255, 196, 0.3);
 }
 
 .card-title {
-  font-size: 20px;
+  font-size: 24px;
   color: #1a237e;
-  margin-bottom: 10px;
-  font-family: "Space Grotesk";
+  margin-bottom: 16px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
 }
 
 .card-text {
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
-  margin-bottom: 15px;
-  font-family: "ZCOOL KuaiLe";
-  
+  margin-bottom: 20px;
+  font-family: "ZCOOL KuaiLe", sans-serif;
 }
 
-/* Formulario */
+/* Form styling */
 .form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   z-index: 9999;
 }
 
 .input-field {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 16px;
   width: 100%;
   z-index: 9999;
+  transition: border-color 0.3s ease;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.input-field:focus {
+  border-color: #02ffc4;
+  outline: none;
 }
 
 .submit-button {
@@ -143,215 +386,174 @@ body {
   font-size: 18px;
   font-weight: bold;
   border: none;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 14px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
   z-index: 9999;
+  font-family: "Space Grotesk", sans-serif;
+  pointer-events: auto;
 }
 
 .submit-button:hover {
   background: #00c5a1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 230, 195, 0.4);
 }
 
-.page--sounds,
-.page--brandlogo {
-  position: absolute;
-  top: 50%;
-  left: 36%;
-  width: auto;
-  
-  max-width: 600px;
-  transform: translate(-50%, -50%);
-}
-
-
+/* Primary button styling */
 .primary-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(101deg, #483ACC 20.57%, #186B90 97.65%);
-    border-radius: 20px;
-    padding: 0 50px;
-    height: 60px;
-    margin-top: 40px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: box-shadow 0.3s ease;
-    pointer-events: auto;
-    z-index: 9999;
-  }
-  
-  
-
-.primary-button:hover{
-  /* Intensifica la sombra al hacer hover*/
-  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(101deg, #483acc 20.57%, #186b90 97.65%);
+  border-radius: 20px;
+  padding: 0 50px;
+  height: 60px;
+  margin-top: 40px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  z-index: 9999;
+  font-family: "Space Grotesk", sans-serif;
 }
 
-
-
-.page--subscribe {
-  position: absolute;
-  top: 50%;
-  left: 35%;
-  width: auto;
-  max-width: none;
-  transform: translate(-50%, -50%);
+.primary-button:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
 }
 
-.page--battery {
-  position: absolute;
-  top: 40%;
-  left: 75%;
-  width: fit-content;
-  transform: translate(-50%, -50%);
-}
-
-.page--construction {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-}
-
+/* Text styling */
 .message {
-  color: #02FFC4;
-  font-family: "ZCOOL KuaiLe";
-  font-size: 150px;
-  line-height: 200px;
-  z-index: 99999;
-}
-
-.message {
-  color: #02FFC4;
-  font-family: "ZCOOL KuaiLe";
+  color: #02ffc4;
+  font-family: "ZCOOL KuaiLe", sans-serif;
   font-size: 120px;
-  line-height: 200px;
+  line-height: 1.2;
   z-index: 99999;
+  text-shadow: 0 0 15px rgba(2, 255, 196, 0.5);
 }
 
 .message--sub {
-  font-family: "ZCOOL KuaiLe";
+  font-family: "ZCOOL KuaiLe", sans-serif;
   color: #8c8c8c;
   font-size: 24px;
+  margin-top: 10px;
 }
 
-.subscribe--text {
-  color: #fff;
-  font-family: "Space Grotesk";
-  font-size: 192px;
-  line-height: 200px;
-  z-index: 99999;
-  
-}
-
-.subscribe--sub{
-  font-family: "ZCOOL KuaiLe";
-  color: #8c8c8c;
-  font-size: 24px;
-}
-
-@media (max-width: 1269px){
-
+/* Media Queries */
+@media (max-width: 1269px) {
   .page--headband {
     top: 30%;
     max-width: 90%;
   }
 
-  .page--sounds,
-  .page--brandlogo,
-  .page--battery {
-    left: 50%;
-    width: 90%;
-    max-width: none;
-  }
   .message {
-    font-size: 120px;
-    line-height: 110px;
+    font-size: 100px;
   }
 
   .message--sub {
-    font-size: 28px;
+    font-size: 22px;
   }
-  .page--subscribe{
-    left: 50%;
-    top: 40%;
-    max-width: none;
-    width: auto;
-  }
-
 }
 
-/* Media Queries para dispositivos medianos */
-@media (max-width: 768px) and (max-width: 1024px) {
+@media (max-width: 768px) {
   .page--headband {
-    top: 30%;
+    top: 25%;
     max-width: 90%;
   }
 
-  .page--sounds,
-  .page--brandlogo,
-  .page--battery {
-    left: 50%;
-    width: 90%;
-    max-width: none;
-  }
   .message {
-    font-size: 96px;
-    line-height: 110px;
+    font-size: 80px;
   }
 
   .message--sub {
     font-size: 18px;
   }
-  .page--subscribe{
-    left: 50%;
-    top: 50%;
-    max-width: none;
-    width: auto;
+
+  .card {
+    padding: 25px;
   }
 
-  
+  .card-title {
+    font-size: 20px;
+  }
+
+  .card-text {
+    font-size: 16px;
+  }
+
+  .imageLogo2 {
+    max-width: 50%;
+  }
+
+  .primary-button {
+    padding: 0 30px;
+    height: 50px;
+    font-size: 14px;
+  }
 }
 
-/* Media Queries para móviles */
 @media (max-width: 480px) {
-
   .page--welcome {
     top: 40%;
-    
   }
 
   .page--headband {
-    top: 25%;
+    top: 20%;
   }
 
-  .page--sounds,
-  .page--brandlogo,
-  .page--battery {
-    width: 95%;
-    left: 50%;
-  }
-  
-  
   .message {
     font-size: 48px;
-    line-height: 60px;
-    text-align: center;
-  }
-  .page--subscribe{
-    left: 50%;
-    top: 40%;
-    max-width: none;
-    width: auto;
+    line-height: 1.2;
   }
 
   .message--sub {
     font-size: 14px;
-    text-align: center;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-text {
+    font-size: 14px;
+  }
+
+  .input-field,
+  .submit-button {
+    padding: 12px;
+  }
+
+  .imageLogo2 {
+    max-width: 70%;
+  }
+
+  .primary-button {
+    padding: 0 20px;
+    height: 45px;
+    font-size: 14px;
+    margin-top: 20px;
   }
 }
+
+/* Añadir esta clase para aplicarla a cualquier elemento que pueda tener scroll */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y: auto;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
