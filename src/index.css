@@ -17,6 +17,7 @@ body {
   margin: 0;
   padding: 0;
   overscroll-behavior-y: none; /* Específicamente para el eje Y */
+  overscroll-behavior-x: none;
 }
 
 /* Al principio del archivo, después de los imports */

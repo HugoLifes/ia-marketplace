@@ -41,7 +41,7 @@ function App() {
 
 
   return (
-    <div className="app-container no-scrollbar" ref={appRef} >
+    
       <div className='scene_container' >
       
         <Suspense fallback={null}>
@@ -50,11 +50,11 @@ function App() {
         </Suspense>
         <Labels />
         <Navbar scrollToSection={scrollToSection} />
-      <ScrollIndicator />
+        <ScrollIndicator />
  
       </div>
       
-    </div>
+    
   );
 }
 
