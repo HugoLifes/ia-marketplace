@@ -13,14 +13,33 @@ import gsap from 'gsap'
 const BlobRow = () => {
   const { viewport } = useThree()
   const sectionWidth = viewport.width * 1.5 // espacio entre blobs, puedes ajustar el factor
-  console.log('section',sectionWidth)
+  //console.log('section',sectionWidth)
+  
 
   return (
     <>
-      {[...Array(5)].map((_, i) => (
-        <Blob key={i} position={[i * sectionWidth, 0, 0]} />
-      ))}
-    </>
+    {[...Array(5)].map((_, i) => {
+      const colors = [
+        [0.094, 0.42, 0.565],  
+        [0.62, ,0.4, 0.871],   
+        [0, 0, 1],   // azul
+        [1, 1, 0],   // amarillo
+        [1, 0, 1],   // magenta
+      ]
+  
+      const [r, g, b] = colors[i]
+  
+      return (
+        <Blob
+          key={i}
+          position={[i * sectionWidth, 0, 0]}
+          r={r}
+          g={g}
+          b={b}
+        />
+      )
+    })}
+  </>
   )
 }
 const Scene: React.FC = () => {

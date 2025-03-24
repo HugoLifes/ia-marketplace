@@ -127,7 +127,7 @@ export function Model(props: any) {
               opacity: 0,
               duration: 0.3,
             },
-            timelinePoint: 0.9,
+            timelinePoint: 1,
           },
     
           //html div
@@ -137,17 +137,17 @@ export function Model(props: any) {
               opacity: 1,
               duration: 0.6,
             },
-            timelinePoint: 1,
+            timelinePoint: 1.5,
           },
           {
             objectToAnimate: controls.current.target,
             properties: {x: 29,y: 0,z: 0, duration: 0.8},
-            timelinePoint: 1,
+            timelinePoint: 1.3,
           },
           {
             objectToAnimate: camera.position,
             properties: { x: 30, y: 0, z: 2.5, duration: 0.8 },
-            timelinePoint: 1,
+            timelinePoint: 1.3,
           },
           {
             objectToAnimate: camera,
@@ -165,9 +165,9 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#d3ddda"
+              backgroundColor: "#3b82f6"
             },
-            timelinePoint: 1
+            timelinePoint: 1.2
           }
         
           

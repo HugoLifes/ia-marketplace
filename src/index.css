@@ -13,7 +13,7 @@ body {
   position: relative; /* Asegura que los elementos absolutos se posicionen correctamente */
   min-height: 100vh; /* Asegura que el cuerpo ocupe al menos toda la altura de la ventana */
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
   margin: 0;
   padding: 0;
   overscroll-behavior-y: none; /* Específicamente para el eje Y */
@@ -22,7 +22,8 @@ body {
 /* Al principio del archivo, después de los imports */
 html,
 body {
-  overflow-y: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
 }
@@ -98,10 +99,10 @@ body::-webkit-scrollbar {
 
 .scroll-progress-bar {
   height: 100%;
-  background-color: #02ffc4; /* Color verde característico */
+  background-color: black; /* Color verde característico */
   width: 0;
   transition: width 0.1s ease-out;
-  box-shadow: 0 0 8px rgba(2, 255, 196, 0.7); /* Añadir un ligero brillo */
+  
 }
 
 /* Contenedor principal de la aplicación */
@@ -251,6 +252,7 @@ body::-webkit-scrollbar {
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(2, 255, 196, 0.3);
   transition: transform 0.3s ease;
+  z-index: 50;
 }
 
 .imageLogo:hover {

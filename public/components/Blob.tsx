@@ -9,11 +9,17 @@ import {OrbitControls} from '@react-three/drei'
 type BlobProps = {
   position?: [number, number, number]
   scale?: number
+  r?:  number
+  g?: number
+  b?: number
 }
 
 const Blob: React.FC<BlobProps> = ({  
   position = [0, 0, 0],
   scale: customScale,
+  r = 1.0,
+  g = 0.0,
+  b = 0.0,
   }) => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
@@ -36,11 +42,14 @@ const Blob: React.FC<BlobProps> = ({
       u_time: {
         value: 0.0,
       },
+      r: { value: r },
+      g: { value: g },
+      b: { value: b }
       //u_color: { value: new THREE.Color('#ff0000') } 
       
       
     }),
-    []
+    [r,g,b]
   );
 
   useFrame((state) => {
@@ -64,7 +73,7 @@ const Blob: React.FC<BlobProps> = ({
       ref={mesh}
       position={position}
       scale={scaleFactor}
-      onPointerOver={() => (hover.current = false)}
+      onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = true)}
     >
       <icosahedronGeometry args={[2, 20]} />
