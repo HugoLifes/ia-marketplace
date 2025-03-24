@@ -49,6 +49,7 @@ function App() {
           <Scene />
         </Suspense>
         <Labels />
+        <Navbar scrollToSection={scrollToSection} />
       <ScrollIndicator />
  
       </div>

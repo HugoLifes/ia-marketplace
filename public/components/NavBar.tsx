@@ -1,12 +1,31 @@
 import type React from "react"
+import { useEffect, useState } from "react"
 
 interface NavbarProps {
   scrollToSection: (sectionId: string) => void
 }
 
 const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
+  // Estado para controlar la opacidad del navbar en scroll
+  const [scrolled, setScrolled] = useState(false)
+
+  // Efecto para detectar el scroll y ajustar la apariencia
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [scrolled])
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         <div className="navbar-logo">
           <a
@@ -16,40 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               scrollToSection("page-1")
             }}
           >
-            IAMarket
-          </a>
-        </div>
-
-        <div className="navbar-links">
-          <a
-            href="#"
-            className="nav-link"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("page-1")
-            }}
-          >
-            Home
-          </a>
-          <a
-            href="#"
-            className="nav-link"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("page-3")
-            }}
-          >
-            Marketplace
-          </a>
-          <a
-            href="#"
-            className="nav-link"
-            onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("page-5")
-            }}
-          >
-            Alpha
+            <img src="/Images/logo.png" alt="IAMarket" className="navbar-logo-image" />
           </a>
         </div>
 
@@ -70,4 +56,3 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
 }
 
 export default Navbar
-
