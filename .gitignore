@@ -2,8 +2,6 @@
 node_modules/
 
 # Salida de compilación y distribución
-dist/
-dist-ssr/
 
 # Archivos de entorno local
 *.local
