@@ -12,7 +12,7 @@ const Labels: React.FC = () => {
       <div className="pages_wrapper">
         {/* Page 1: Welcome/Intro */}
         <div id="page-1" className="page page--welcome page--intro">
-          <h2 className="message"></h2>
+          <h2 id='twister1' className="message"></h2>
           <div className="logo-container">
             
           </div>

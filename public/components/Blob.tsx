@@ -12,6 +12,7 @@ type BlobProps = {
   r?:  number
   g?: number
   b?: number
+  distortion?: number
 }
 
 const Blob: React.FC<BlobProps> = ({  
@@ -20,6 +21,7 @@ const Blob: React.FC<BlobProps> = ({
   r = 1.0,
   g = 0.0,
   b = 0.0,
+  distortion = 0.4
   }) => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
@@ -37,19 +39,20 @@ const Blob: React.FC<BlobProps> = ({
   const uniforms = useMemo(
     () => ({
       u_intensity: {
-        value: 0.3,
+        value: distortion,
       },
       u_time: {
         value: 0.0,
       },
       r: { value: r },
       g: { value: g },
-      b: { value: b }
+      b: { value: b },
+      
       //u_color: { value: new THREE.Color('#ff0000') } 
       
       
     }),
-    [r,g,b]
+    [r,g,b,distortion]
   );
 
   useFrame((state) => {

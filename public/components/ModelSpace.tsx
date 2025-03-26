@@ -115,6 +115,30 @@ export function Model(props: any) {
               backgroundColor: "#151514"
             },
             timelinePoint: 0.0
+          },
+          {
+            objectToAnimate: page2.current?.querySelector('.alpha-title'),
+            properties: {
+              opacity: 1,
+              rotationX: 0,
+              y: 0,
+              duration: 0.4, // más rápido
+              ease: 'power4.out',
+              transformPerspective: 800,
+            },
+            timelinePoint: 0.18, // ← se adelanta
+          },
+          {
+            objectToAnimate: page2.current?.querySelector('.alpha-title'),
+            properties: {
+              opacity: 1,
+              rotationX: 360,
+              y: 0,
+              duration: 0.9,
+              ease: 'power4.out',
+              transformPerspective: 800,
+            },
+            timelinePoint: 0.4,
           }
           
         ]
@@ -168,7 +192,33 @@ export function Model(props: any) {
               backgroundColor: "#3b82f6"
             },
             timelinePoint: 1.2
-          }
+          },
+          {
+            objectToAnimate: page2.current?.querySelector('.alpha-title'),
+            properties: {
+              opacity: 0,
+              rotationX: 90,
+              y: 50,
+              duration: 0.5,
+              ease: 'power4.in',
+              transformPerspective: 800,
+            },
+            timelinePoint: 0.36,
+          },
+          {
+            objectToAnimate: page1.current?.querySelector('.twister1'),
+            properties: {
+              opacity: 0,
+              rotationX: 90,
+              y: 50,
+              duration: 0.5,
+              ease: 'power4.in',
+              transformPerspective: 800,
+            },
+            timelinePoint: 0.36,
+          },
+          
+          
         
           
         ]

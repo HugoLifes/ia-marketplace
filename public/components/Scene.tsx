@@ -34,6 +34,10 @@ const BlobRow = () => {
         [50, 1, -2],
         [70, -1, 1],
       ]
+
+      const distortion: [number][] = [
+        
+      ]
   
       const [r, g, b] = colors[i]
       const position = positions[i]
@@ -45,6 +49,7 @@ const BlobRow = () => {
           r={r}
           g={g}
           b={b}
+          distortion={0.7}
         />
       )
     })}

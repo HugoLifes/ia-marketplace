@@ -37,7 +37,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
             className="navbar-logo-hover-container"
           >
             <div className="navbar-logo-hover-effect">
-              <img src="/Images/logo.png" alt="IAMarket" className="navbar-logo-image" />
+              <img src="/Images/logoWhite.png" alt="IAMarket" className="navbar-logo-image" />
               <div className="navbar-logo-tooltip">Inicio</div>
             </div>
           </a>
