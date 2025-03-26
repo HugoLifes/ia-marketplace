@@ -34,8 +34,12 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               e.preventDefault()
               scrollToSection("page-1")
             }}
+            className="navbar-logo-hover-container"
           >
-            <img src="/Images/logo.png" alt="IAMarket" className="navbar-logo-image" />
+            <div className="navbar-logo-hover-effect">
+              <img src="/Images/logo.png" alt="IAMarket" className="navbar-logo-image" />
+              <div className="navbar-logo-tooltip">Inicio</div>
+            </div>
           </a>
         </div>
 
@@ -47,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               scrollToSection("page-4")
             }}
           >
-            About
+            MARKETPLACE
           </a>
         </div>
       </div>

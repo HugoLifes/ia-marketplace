@@ -89,7 +89,7 @@ export function Model(props: any) {
           },
           {
             objectToAnimate: controls.current.target,
-            properties: {x: 14, y: 0, z: 0, duration: 0.8},
+            properties: {x: 15, y: 0, z: 0, duration: 0.8},
             timelinePoint: 0.2,
           },
           {
@@ -141,7 +141,7 @@ export function Model(props: any) {
           },
           {
             objectToAnimate: controls.current.target,
-            properties: {x: 29,y: 0,z: 0, duration: 0.8},
+            properties: {x: 30,y: 0,z: 0, duration: 0.8},
             timelinePoint: 1.3,
           },
           {

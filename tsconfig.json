@@ -12,6 +12,6 @@
         ],
         "jsx": "react-jsx",
         "types": ["vite-plugin-glsl/ext"],
-        "outDir": "./dist"
+        "outDir": "./dist",
     }
 }

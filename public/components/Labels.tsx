@@ -14,7 +14,7 @@ const Labels: React.FC = () => {
         <div id="page-1" className="page page--welcome page--intro">
           <h2 className="message"></h2>
           <div className="logo-container">
-            <img src="/Images/logo.png" alt="Logo" className="imageLogo2" />
+            
           </div>
           <div className="scroll-indicator">
             <img src="/Images/scroll-bar.png" alt="Desliza!" className="scrollLogo" />
@@ -23,27 +23,40 @@ const Labels: React.FC = () => {
         </div>
 
         {/* Page 2: Under Construction */}
-        <div id="page-2" className="page page--headband page--hidden">
-          <h1 className="message">ALPHA</h1>
-          <p className="message--sub">Nuevo modelo by IAM</p>
-          <button className="primary-button">Probar 🚀</button>
+        <div id="page-2" className="page page--alpha page--hidden">
+        <div className="alpha-content">
+            <h1 className="alpha-title">ALPHA</h1>
+            
+
+
+            <div className="alpha-button-container">
+              <button className="primary-button">
+                Probar  🚀
+              </button>
+            </div>
+
+            <div className="alpha-subtitle-container">
+              <p className="alpha-subtitle">Nuevo modelo by IAM</p>
+            </div>
+
+          </div>
         </div>
 
         {/* Page 3: Email Signup */}
         <div id="page-3" className="page page--headband page--hidden">
-          <h1 className="message">Subscibete!</h1>
+          <h1 className="message">Subscribete</h1>
           <p className="message--sub"></p>
-          <div className="card">
-            <h2 className="card-title">
-              La evolución comienza aquí. Vive la inteligencia artificial como nunca antes.
-            </h2>
-            <p className="card-text">Deja tu correo y recibe acceso anticipado.</p>
+          <div className="email-form-container">
+            
+            <p className="email-form-text">Deja tu correo y recibe acceso anticipado.</p>
 
             <form className="form">
-              <input type="email" className="input-field" placeholder="Ingresa tu correo" required />
-              <button className="submit-button" type="submit">
-                ¡Quiero ser parte! 🚀
-              </button>
+              <div className="form-row">
+                <input type="email" className="input-field" placeholder="Ingresa tu correo" required />
+                <button className="submit-button" type="submit">
+                   🚀
+                </button>
+              </div>
             </form>
           </div>
         </div>

@@ -21,18 +21,27 @@ const BlobRow = () => {
     {[...Array(5)].map((_, i) => {
       const colors = [
         [0.094, 0.42, 0.565],  
-        [0.62, ,0.4, 0.871],   
+        [0.62, 0.4, 0.871],   
         [0, 0, 1],   // azul
         [1, 1, 0],   // amarillo
         [1, 0, 1],   // magenta
       ]
+
+      const positions: [number, number, number][] = [
+        [0, 0, 0],
+        [15, 0, 0],
+        [30, 0, 0],
+        [50, 1, -2],
+        [70, -1, 1],
+      ]
   
       const [r, g, b] = colors[i]
-  
+      const position = positions[i]
       return (
         <Blob
           key={i}
-          position={[i * sectionWidth, 0, 0]}
+          position={position}
+          scale={0.4}
           r={r}
           g={g}
           b={b}
@@ -53,7 +62,7 @@ const Scene: React.FC = () => {
           
           {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) */}
           <AdjustCamera />
-          <ScrollControls pages={3} horizontal damping={0.25}  > 
+          <ScrollControls pages={4} horizontal damping={0.25}  > 
           
             <BlobRow />
             {/* Add your scrollable content here */}

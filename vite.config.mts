@@ -7,6 +7,10 @@ import glsl from 'vite-plugin-glsl'
       plugins: [glsl(),react(), ],
       build: {
         outDir: 'dist', // esto debería ser 'dist' o cualquier otra carpeta donde quieras que se genere el build
+      },
+      base: './',
+      server: {
+        allowedHosts: ['.ngrok-free.app']
       }
   });
   
