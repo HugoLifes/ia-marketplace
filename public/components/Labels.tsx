@@ -44,7 +44,7 @@ const Labels: React.FC = () => {
 
         {/* Page 3: Email Signup */}
         <div id="page-3" className="page page--headband page--hidden">
-          <h1 className="message">Subscribete</h1>
+          <h1 id="twister2" className="message">Subscribete</h1>
           <p className="message--sub"></p>
           <div className="email-form-container">
             

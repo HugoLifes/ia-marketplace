@@ -116,29 +116,18 @@ export function Model(props: any) {
             },
             timelinePoint: 0.0
           },
-          {
-            objectToAnimate: page2.current?.querySelector('.alpha-title'),
-            properties: {
-              opacity: 1,
-              rotationX: 0,
-              y: 0,
-              duration: 0.4, // más rápido
-              ease: 'power4.out',
-              transformPerspective: 800,
-            },
-            timelinePoint: 0.18, // ← se adelanta
-          },
+          
           {
             objectToAnimate: page2.current?.querySelector('.alpha-title'),
             properties: {
               opacity: 1,
               rotationX: 360,
-              y: 0,
-              duration: 0.9,
+              y: 50,
+              duration: 0.5,
               ease: 'power4.out',
               transformPerspective: 800,
             },
-            timelinePoint: 0.4,
+            timelinePoint: 0.20,
           }
           
         ]
@@ -151,7 +140,7 @@ export function Model(props: any) {
               opacity: 0,
               duration: 0.3,
             },
-            timelinePoint: 1,
+            timelinePoint: 1.3,
           },
     
           //html div
@@ -161,7 +150,7 @@ export function Model(props: any) {
               opacity: 1,
               duration: 0.6,
             },
-            timelinePoint: 1.5,
+            timelinePoint: 1.5
           },
           {
             objectToAnimate: controls.current.target,
@@ -193,30 +182,33 @@ export function Model(props: any) {
             },
             timelinePoint: 1.2
           },
+
           {
             objectToAnimate: page2.current?.querySelector('.alpha-title'),
             properties: {
               opacity: 0,
-              rotationX: 90,
+              rotationX: 360,
               y: 50,
               duration: 0.5,
-              ease: 'power4.in',
+              ease: 'power4.out',
               transformPerspective: 800,
             },
-            timelinePoint: 0.36,
+            timelinePoint: 1.48,
           },
+
           {
-            objectToAnimate: page1.current?.querySelector('.twister1'),
+            objectToAnimate: page3.current?.querySelector('.message'),
             properties: {
-              opacity: 0,
-              rotationX: 90,
+              opacity: 1,
+              rotationX: 360,
               y: 50,
               duration: 0.5,
-              ease: 'power4.in',
+              ease: 'power4.out',
               transformPerspective: 800,
             },
-            timelinePoint: 0.36,
-          },
+            timelinePoint: 1.48,
+          }
+          
           
           
         
