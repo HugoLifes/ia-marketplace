@@ -1765,7 +1765,7 @@
     "@react-spring/shared" "~9.7.5"
     "@react-spring/types" "~9.7.5"
 
-"@react-three/drei@9.96.4":
+"@react-three/drei@^9.0.0":
   version "9.96.4"
   resolved "https://registry.npmjs.org/@react-three/drei/-/drei-9.96.4.tgz"
   integrity sha512-Zmy5felOamD7DkD5EeLfijNkohDxHNtXomGAf3C/0G6ml/ocf1+VrJ6mLDQRE+DhRnF1RDHV+WC6nuvpPPkx1w==
@@ -1793,7 +1793,7 @@
     uuid "^9.0.1"
     zustand "^3.7.1"
 
-"@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0", "@react-three/fiber@>=8.9.0", "@react-three/fiber@8.15.15":
+"@react-three/fiber@^8.0.0", "@react-three/fiber@>=6.0", "@react-three/fiber@>=8.0", "@react-three/fiber@>=8.9.0":
   version "8.15.15"
   resolved "https://registry.npmjs.org/@react-three/fiber/-/fiber-8.15.15.tgz"
   integrity sha512-Z5POnzgpYxrgnYuiCv+8t7lpynEcGcn0/323kV1NtE7Cwq16aMqEuC6nF2Y/tK+crJpKNEqsRtvng/eJy0xxOA==
