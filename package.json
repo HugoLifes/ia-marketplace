@@ -46,6 +46,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "overrides": {
+    "@types/scheduler": "< 0.23.0"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
