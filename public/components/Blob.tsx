@@ -13,6 +13,21 @@ type BlobProps = {
   g?: number
   b?: number
   distortion?: number
+  blobDistort?: number
+  blobFreq?: number
+  speed?: number
+  phase?: number
+
+  // Blob Surface Noise
+  surfaceDistort?: number
+  surfaceFreq?: number
+  waves?: number
+
+  // Blob Geometry
+  size?: number
+  segments?: number
+  
+
 }
 
 const Blob: React.FC<BlobProps> = ({  
@@ -21,7 +36,17 @@ const Blob: React.FC<BlobProps> = ({
   r = 1.0,
   g = 0.0,
   b = 0.0,
-  distortion = 0.4
+  distortion = 0.4,
+  speed = 1.0,    // 👈 default 1x
+  phase = 0.0,     // 👈 default sin desfaseblobDistort?: number
+  // Deformación avanzada (forma + superficie)
+  blobDistort = 0.15,
+  blobFreq = 2.0,
+  surfaceDistort = 0.6,
+  surfaceFreq = 2.5,
+  waves = 3.0,
+ 
+ 
   }) => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
@@ -35,7 +60,7 @@ const Blob: React.FC<BlobProps> = ({
    customScale ??
    (viewport.width < 480 ? 0.3 : viewport.width < 768 ? 0.7 : 0.5)
 
-
+   
   const uniforms = useMemo(
     () => ({
       u_intensity: {
@@ -47,10 +72,13 @@ const Blob: React.FC<BlobProps> = ({
       r: { value: r },
       g: { value: g },
       b: { value: b },
-      
-      //u_color: { value: new THREE.Color('#ff0000') } 
-      
-      
+      u_blobDistort: { value: blobDistort ?? 0.0 },
+      u_blobFreq: { value: blobFreq ?? 0.0 },
+      u_surfaceDistort: { value: surfaceDistort ?? 0.0 },
+      u_surfaceFreq: { value: surfaceFreq ?? 0.0 },
+      u_waves: { value: waves ?? 0.0 },
+     
+
     }),
     [r,g,b,distortion]
   );
@@ -58,15 +86,13 @@ const Blob: React.FC<BlobProps> = ({
   useFrame((state) => {
     const { clock } = state;
     if (mesh.current) {
-      (mesh.current.material as THREE.ShaderMaterial).uniforms.u_time.value = 0.4 * clock.getElapsedTime();
-    }
-
-    if (mesh.current) {
-      (mesh.current.material as THREE.ShaderMaterial).uniforms.u_intensity.value = MathUtils.lerp(
-        (mesh.current.material as THREE.ShaderMaterial).uniforms.u_intensity.value,
-        hover.current ? 0.85 : 0.15,
-        0.02
-      );
+      const shader = mesh.current.material as THREE.ShaderMaterial;
+      
+      // Movimiento animado único por blob
+      shader.uniforms.u_time.value = clock.getElapsedTime() * speed + phase;
+  
+      // Mantener u_intensity constante o animarla si quieres pulsos
+      shader.uniforms.u_intensity.value = distortion;
     }
   });
 

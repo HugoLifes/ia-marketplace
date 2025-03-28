@@ -12,9 +12,12 @@ const Labels: React.FC = () => {
       <div className="pages_wrapper">
         {/* Page 1: Welcome/Intro */}
         <div id="page-1" className="page page--welcome page--intro">
-          <h2 id='twister1' className="message"></h2>
-          <div className="logo-container">
-            
+          <h2  className="message"></h2>
+          <div  className="twister1">
+            <div  className="logo-container">
+              
+                <img src="/Images/logo.png"  className="imageLogo2" />
+            </div>
           </div>
           <div className="scroll-indicator">
             <img src="/Images/scroll-bar.png" alt="Desliza!" className="scrollLogo" />

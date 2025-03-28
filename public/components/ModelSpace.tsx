@@ -76,7 +76,7 @@ export function Model(props: any) {
               duration: 0.3,
               
             },
-            timelinePoint: 0.0,
+            timelinePoint: 0.3,
           },
           // html div
           {
@@ -85,7 +85,7 @@ export function Model(props: any) {
               opacity: 1,
               duration: 0.9,
             },
-            timelinePoint: 0.2,
+            timelinePoint: 0.5,
           },
           {
             objectToAnimate: controls.current.target,
@@ -116,6 +116,18 @@ export function Model(props: any) {
             },
             timelinePoint: 0.0
           },
+          {
+            objectToAnimate: page1.current?.querySelector('.twister1'),
+            properties: {
+              opacity: 0,
+              rotationX: 180,
+              y: 50,
+              duration: 0.5,
+              ease: 'power4.in',
+              transformPerspective: 500,
+            },
+            timelinePoint: 0.41,
+          },
           
           {
             objectToAnimate: page2.current?.querySelector('.alpha-title'),
@@ -127,7 +139,7 @@ export function Model(props: any) {
               ease: 'power4.out',
               transformPerspective: 800,
             },
-            timelinePoint: 0.20,
+            timelinePoint: 0.45,
           }
           
         ]
