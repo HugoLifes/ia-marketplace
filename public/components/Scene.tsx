@@ -9,6 +9,7 @@ import  Blob  from './Blob'
 import AdjustCamera from './adjustCamera'
 import { useScroll } from '@react-three/drei'
 import gsap from 'gsap'
+import { Scale } from 'lucide-react'
 const blobPersonalities = {
   alien: {
     distortion: 1,       // fuerte intensidad de distorsión
@@ -17,7 +18,7 @@ const blobPersonalities = {
     r: 0.3,                // verde eléctrico
     g: 1.0,
     b: 0.7,                // mezcla alienígena
-  
+    scale: 0.5 ,
     blobDistort: 5.0,      // forma base muy deformada
     blobFreq: 1.0,         // mucha frecuencia
     surfaceDistort: 0.5,   // superficie muy viva
@@ -35,7 +36,8 @@ const blobPersonalities = {
     blobFreq: 0.5,
     surfaceDistort: 1.5,
     surfaceFreq: 0.5,
-    waves: 0.4
+    waves: 0.4,
+    scale: 0.4
   },
  
   chaotic: {
@@ -50,6 +52,7 @@ const blobPersonalities = {
     surfaceDistort: 2.5,
     surfaceFreq: 5.0,
     waves: 8.0,
+    scale: 0.4
   },
   
   jelly: {
@@ -112,18 +115,26 @@ const BlobRow = () => {
         'chill',
       ];
 
+      const scales = [
+        0.5,
+        0.4,
+        0.35,
+        0.4
+      ]
+
      // const [r, g, b] = colors[i]
      // const position = positions[i]
      // const personality = personalities[i];
       const personalityKey = personalities[i];
       const config = blobPersonalities[personalityKey];
       const position = positions[i];
+      const scale = scales[i];
 
       return (
         <Blob
           key={i}
           position={position}
-          scale={0.4}
+          scale={scale}
           r={config.r}
           g={config.g}
           b={config.b}

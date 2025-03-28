@@ -28,9 +28,7 @@ const Labels: React.FC = () => {
         {/* Page 2: Under Construction */}
         <div id="page-2" className="page page--alpha page--hidden">
         <div className="alpha-content">
-            <h1 className="alpha-title">ALPHA</h1>
-            
-
+            <h1 className="alpha-title">Alpha</h1>
 
             <div className="alpha-button-container">
               <button className="primary-button">

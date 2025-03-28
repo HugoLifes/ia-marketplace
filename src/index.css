@@ -275,7 +275,7 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  top: 130px;
   position: relative;
   z-index: 4;
   width: auto; /* Ajustar al contenido en lugar de ocupar todo el ancho */

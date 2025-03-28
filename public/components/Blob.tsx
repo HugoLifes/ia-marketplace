@@ -26,7 +26,6 @@ type BlobProps = {
   // Blob Geometry
   size?: number
   segments?: number
-  
 
 }
 
