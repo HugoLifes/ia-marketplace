@@ -20,8 +20,8 @@ const Labels: React.FC = () => {
             </div>
           </div>
           <div className="scroll-indicator">
-            <img src="/Images/scroll-bar.png" alt="Desliza!" className="scrollLogo" />
-            <span className="scroll-text">Desliza horizontal</span>
+            <img src="/Images/mouse-cursor.png" alt="Desliza!" className="scrollLogo" />
+            <span className="scroll-text">Scroll para inmersion</span>
           </div>
         </div>
 
@@ -47,7 +47,7 @@ const Labels: React.FC = () => {
 
         {/* Page 3: Email Signup */}
         <div id="page-3" className="page page--headband page--hidden">
-          <h1 id="twister2" className="message">Subscribete</h1>
+          <h1 id="twister2" className="message">Suscribete</h1>
           <p className="message--sub"></p>
           <div className="email-form-container">
             

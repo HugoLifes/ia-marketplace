@@ -25,7 +25,7 @@ const blobPersonalities = {
     waves: 2.0             // muchas olas pequeñas
   },
   glow: {
-    distortion: 0.9,
+    distortion: 0.6,
     speed: 0.6,
     phase: 5.0,
     r: 0.62,
@@ -40,13 +40,13 @@ const blobPersonalities = {
  
   chaotic: {
     distortion: 1.0,
-    speed: 3.0,
+    speed: 2.5,
     phase: 2.5,
     r: 1.0,
     g: 0.6,
     b: 0.2,
     blobDistort: 5.5,
-    blobFreq: 8.0,
+    blobFreq: 3.0,
     surfaceDistort: 2.5,
     surfaceFreq: 5.0,
     waves: 8.0,
