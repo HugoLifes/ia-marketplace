@@ -29,7 +29,7 @@ export function Model(props: any) {
   const timeline = useRef<gsap.core.Timeline | null>(null)
   
   // variables para que el modelo tome propiedades segun la animacion
-  const generalGroupRef = useRef<THREE.Group>()
+  const generalGroupRef = useRef<THREE.Group | null>(null)
   const welcomeView = useRef<Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>>(null);
   const marketPlaceView = useRef<Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>>(null);
   const specialModelsView = useRef<Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>>(null);

@@ -45,10 +45,9 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
 
         <div className="navbar-about">
           <a
-            href="#"
+            href="/marketplace"
             onClick={(e) => {
-              e.preventDefault()
-              scrollToSection("page-4")
+              
             }}
           >
             MARKETPLACE
