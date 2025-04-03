@@ -1,7 +1,8 @@
-import vertexShader from '../shaders/vertexShader.glsl'
-import fragmentShader from '../shaders/fragmentShader.glsl'
+
+import { blobPersonalities } from './blobLibrary'
+import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import { MathUtils } from 'three'
-import React , { useRef, useState, useMemo }from 'react'
+import React , { useRef, useState, useMemo, useEffect }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three';
 import {OrbitControls} from '@react-three/drei'
@@ -27,6 +28,19 @@ type BlobProps = {
   size?: number
   segments?: number
 
+  color1?: string
+  color2?: string
+  color3?: string
+  pulseSpeed?: number
+  glowStrength?: number
+
+  vertexShader?: string
+  fragmentShader?: string
+  iTime?: number
+  geometry1?: number
+  geometry2?: number
+  geometry3?: number
+
 }
 
 const Blob: React.FC<BlobProps> = ({  
@@ -44,56 +58,108 @@ const Blob: React.FC<BlobProps> = ({
   surfaceDistort = 0.6,
   surfaceFreq = 2.5,
   waves = 3.0,
- 
+  vertexShader = '',
+  fragmentShader = '',
+  color1 = "",
+  color2  = "",
+  color3 = "",
+  pulseSpeed = { value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
+  glowStrength = { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
+  iTime = 0,
+  geometry1 = 2,
+  geometry2 = 20,
+  geometry3 = 1
  
   }) => {
   // This reference will give us direct access to the mesh
   const mesh = useRef<THREE.Mesh>(null);
+  const materialRef = useRef(null);
   const hover = useRef(false);
   const {viewport, gl} = useThree();
+  
 
   // Definir la escala en función del ancho del viewport
   // Por ejemplo, para móviles (<480px), tabletas (<768px) y desktop:
    // Escalado responsivo si no se pasa explícitamente
    const scaleFactor =
    customScale ??
-   (viewport.width < 480 ? 0.3 : viewport.width < 768 ? 0.7 : 0.5)
+   (viewport.width < 480 ? 5 : viewport.width < 768 ? 0.2 : 0.3)
 
-   
-  const uniforms = useMemo(
-    () => ({
-      u_intensity: {
-        value: distortion,
-      },
-      u_time: {
-        value: 0.0,
-      },
-      r: { value: r },
-      g: { value: g },
-      b: { value: b },
-      u_blobDistort: { value: blobDistort ?? 0.0 },
-      u_blobFreq: { value: blobFreq ?? 0.0 },
-      u_surfaceDistort: { value: surfaceDistort ?? 0.0 },
-      u_surfaceFreq: { value: surfaceFreq ?? 0.0 },
-      u_waves: { value: waves ?? 0.0 },
-     
 
-    }),
-    [r,g,b,distortion]
-  );
 
-  useFrame((state) => {
-    const { clock } = state;
-    if (mesh.current) {
-      const shader = mesh.current.material as THREE.ShaderMaterial;
-      
-      // Movimiento animado único por blob
-      shader.uniforms.u_time.value = clock.getElapsedTime() * speed + phase;
+    const uniforms = useMemo(
+      () => ({
+        u_intensity: {
+          value: distortion,
+        },
+        u_time: {
+          value: 0,
+        },
+        iTime: { value: iTime },
+        r: { value: r },
+        g: { value: g },
+        b: { value: b },
+        u_blobDistort: { value: blobDistort ?? 0.0 },
+        u_blobFreq: { value: blobFreq ?? 0.0 },
+        u_surfaceDistort: { value: surfaceDistort ?? 0.0 },
+        u_surfaceFreq: { value: surfaceFreq ?? 0.0 },
+        u_waves: { value: waves ?? 0.0 },
+
+        // lava esfera
+        color1: { value: new THREE.Color(color1) },
+        color2: { value: new THREE.Color(color2) },
+        color3: { value: new THREE.Color(color3) },
+        pulseSpeed: { value: pulseSpeed },
+        glowStrength: { value: glowStrength },
+        mouse: { value: new THREE.Vector2() },
+      }),
+      [r,g,b,distortion]
+    );
+
   
-      // Mantener u_intensity constante o animarla si quieres pulsos
-      shader.uniforms.u_intensity.value = distortion;
-    }
-  });
+    useFrame((state) => {
+      const { clock } = state;
+      if (mesh.current) {
+        const shader = mesh.current.material as THREE.ShaderMaterial;
+        
+        // Movimiento animado único por blob
+        shader.uniforms.u_time.value = clock.getElapsedTime() * speed + phase;
+    
+        // Mantener u_intensity constante o animarla si quieres pulsos
+        shader.uniforms.u_intensity.value = distortion;
+
+        shader.uniforms.u_time.value = clock.getElapsedTime();
+  
+       
+      }
+    });
+
+
+    useFrame(({ clock }) => {
+    
+        uniforms.iTime.value = clock.getElapsedTime();
+  
+      // Actualizar valores dinámicos
+        uniforms.color1.value.set(color1);
+        uniforms.color2.value.set(color2);
+        uniforms.color3.value.set(color3);
+        uniforms.pulseSpeed.value = pulseSpeed;
+        uniforms.glowStrength.value = glowStrength;
+      
+    });
+
+    useEffect(() => {
+      const animate = () => {
+        requestAnimationFrame(animate);
+        if (materialRef.current) {
+          const material = materialRef.current as THREE.ShaderMaterial;
+          if (material.uniforms) {
+            material.uniforms.iTime.value += 0.02;
+          }
+        }
+      };
+      animate();
+    }, []);
 
   return (
     <>
@@ -104,7 +170,7 @@ const Blob: React.FC<BlobProps> = ({
       onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = true)}
     >
-      <icosahedronGeometry args={[2, 20]} />
+      <icosahedronGeometry args={[geometry1, geometry2]} />
       <shaderMaterial
         fragmentShader={fragmentShader}
         vertexShader={vertexShader}
@@ -112,6 +178,7 @@ const Blob: React.FC<BlobProps> = ({
         wireframe={false}
       />
     </mesh>
+
     </>
   );
 };

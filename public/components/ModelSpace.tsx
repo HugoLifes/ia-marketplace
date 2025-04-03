@@ -9,7 +9,7 @@ import gsap from 'gsap'
 import { BufferGeometry, Material, Mesh, NormalBufferAttributes, Object3DEventMap } from 'three'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from 'three';
-
+//import SplitText from "gsap/SplitText"
 
 
 export function Model(props: any) {
@@ -54,6 +54,12 @@ export function Model(props: any) {
     body.current = document.getElementById('canvas')
     
   })
+
+  //const el = document.getElementById('alphaT')
+  //if (!el) return
+
+  //const split = new SplitText(el, { type: "chars" })
+  //const chars = split.chars
 
   useLayoutEffect(() => {
         timeline.current = gsap.timeline({
@@ -112,7 +118,7 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#151514"
+              backgroundColor: "#180075"
             },
             timelinePoint: 0.0
           },
@@ -190,7 +196,7 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#3b82f6"
+              backgroundColor: "#536c9b"
             },
             timelinePoint: 1.2
           },
