@@ -321,7 +321,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 18rem;
+  margin-top: 21rem;
   animation: bounce 2s infinite;
 }
 
@@ -388,10 +388,14 @@ body::-webkit-scrollbar {
 }
 
 .page--welcome {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
+  
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 3;
 }
 
 .page--headband {
@@ -442,8 +446,8 @@ body::-webkit-scrollbar {
   
   pointer-events: all;
   padding-top: 150px;
-  z-index: 9999
-  ;
+ 
+
   
 }
 
@@ -528,8 +532,8 @@ body::-webkit-scrollbar {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  pointer-events: auto;
-  z-index: 9999;
+  pointer-events: all ;
+  z-index: 0;
   font-family: "Space Grotesk", sans-serif;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 15px rgba(41, 98, 255, 0.25);
@@ -574,6 +578,16 @@ body::-webkit-scrollbar {
   text-shadow: 0 0 15px rgba(2, 255, 196, 0.5);
 }
 
+.message1 {
+  color: #f9ff02cf;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 110px;
+  line-height: 1.2;
+  z-index: 99999;
+  text-shadow: 0 0 15px rgba(2, 255, 196, 0.5);
+}
+
+
 .message--sub {
   font-family: "ZCOOL KuaiLe", sans-serif;
   color: #8c8c8c;
@@ -592,6 +606,10 @@ body::-webkit-scrollbar {
     font-size: 100px;
   }
 
+  .message1 {
+    font-size: 100px;
+  }
+
   .message--sub {
     font-size: 22px;
   }
@@ -604,6 +622,10 @@ body::-webkit-scrollbar {
   }
 
   .message {
+    font-size: 80px;
+  }
+
+  .message1 {
     font-size: 80px;
   }
 
@@ -648,6 +670,10 @@ body::-webkit-scrollbar {
     bottom: 20%; /* Ajustar posición en tablets */
   }
 
+  .welcome-button-container{
+    bottom: 20%;
+  }
+
   .alpha-subtitle-container {
     bottom: 5%;
     left: 5%;
@@ -659,15 +685,18 @@ body::-webkit-scrollbar {
 }
 
 @media (max-width: 480px) {
-  .page--welcome {
-    top: 40%;
-  }
+ 
 
   .page--headband {
     top: 20%;
   }
 
   .message {
+    font-size: 48px;
+    line-height: 1.2;
+  }
+
+  .message1 {
     font-size: 48px;
     line-height: 1.2;
   }
@@ -713,6 +742,10 @@ body::-webkit-scrollbar {
 
   .alpha-button-container {
     bottom: 25%; /* Ajustar posición en móviles */
+  }
+
+  .welcome-button-container{
+    bottom: 25%;
   }
 
   .alpha-subtitle-container {
@@ -900,10 +933,10 @@ body::-webkit-scrollbar {
 }
 
 .page--alpha {
-  position: relative;
+ 
   height: 100vh;
   width: 100vw;
-  display: flex;
+  
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -917,7 +950,7 @@ body::-webkit-scrollbar {
   align-items: center; /* Centrar horizontalmente */
   height: 100%;
   width: 100%;
-  position: relative;
+  
   z-index: 5;
   padding-top: 10vh; /* Mantener el padding superior */
   text-align: center; /* Asegurar que todo el contenido esté centrado */
@@ -929,7 +962,7 @@ body::-webkit-scrollbar {
   bottom: 5%;
   text-align: left;
   z-index: 10;
-  pointer-events: auto;
+ 
 }
 
 /* Contenedor específico para el botón Alpha que lo posiciona en la parte inferior */
@@ -941,6 +974,17 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   z-index: 10;
+}
+
+.welcome-button-container {
+  position: absolute;
+  bottom: 26%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  
 }
 
 /* Estilo para el texto "Nuevo modelo by IAM" */
@@ -965,12 +1009,12 @@ body::-webkit-scrollbar {
 /* Ajustar el estilo del título ALPHA */
 .alpha-title {
   font-family: "Space Grotesk", sans-serif;
-  font-size: 8rem;
+  font-size: 9rem;
   color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.7);
+  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
   margin-bottom: 0;
   letter-spacing: 5px;
-  position: relative; /* Para que esté por encima del canvas */
+  position: fixed; /* Para que esté por encima del canvas */
   z-index: 5;
   top: 160px;
 }
@@ -997,11 +1041,12 @@ body::-webkit-scrollbar {
 }
 
 .email-form-text {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #ccc;
   margin-bottom: 1rem;
   font-family: "Space Grotesk", sans-serif;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
 }
 
 /* Estilo para poner el input y botón en la misma línea */

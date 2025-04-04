@@ -1,16 +1,16 @@
 import React , { useRef, useState, useMemo }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { Environment, ScrollControls, Scroll} from '@react-three/drei'
-import CameraInfo from './cameraInfo'
-import '../styles/landingPage.css'
+import CameraInfo from './utils/cameraInfo'
+
 import * as THREE from 'three';
-import { Model } from './ModelSpace'
-import  Blob  from './Blob'
-import AdjustCamera from './adjustCamera'
+import { Model } from './Scrolling/ModelSpace'
+import  Blob  from './Blob/Blob'
+import AdjustCamera from './utils/adjustCamera'
 import { useScroll } from '@react-three/drei'
 import gsap from 'gsap'
 import { Scale } from 'lucide-react'
-import { blobPersonalities} from './blobLibrary'
+import { blobPersonalities} from './Blob/blobLibrary'
 
 
 const BlobRow = () => {

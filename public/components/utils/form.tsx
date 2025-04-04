@@ -4,7 +4,7 @@ import type React from "react"
 import { useState, useRef } from "react"
 import { ImageIcon, SlidersHorizontal, ArrowUp } from "lucide-react"
 import styles from "../styles/form.module.css"
-import Modal from "./Modal"
+import Modal from "./modal"
 
 // Puedes adaptar esta interfaz según tus necesidades
 interface FormProps {

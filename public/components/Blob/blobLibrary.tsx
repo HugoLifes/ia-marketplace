@@ -1,13 +1,13 @@
 // blobLibrary.tsx
 
-import alienVertex from '../shaders/f1/vertexShader.glsl'
-import alienFragment from '../shaders/f1/fragmentShader.glsl'
+import alienVertex from '../../shaders/f1/vertexShader.glsl'
+import alienFragment from '../../shaders/f1/fragmentShader.glsl'
 
-import metallicVertex from '../shaders/f3/vertexShaderM.glsl'
-import metallicFragment from '../shaders/f3/fragmentShaderM.glsl'
+import metallicVertex from '../../shaders/f3/vertexShaderM.glsl'
+import metallicFragment from '../../shaders/f3/fragmentShaderM.glsl'
 
-import lavaVertex from '../shaders/f4/vertexShaderL.glsl'
-import lavaFragment from '../shaders/f4/fragmentShaderL.glsl'
+import lavaVertex from '../../shaders/f4/vertexShaderL.glsl'
+import lavaFragment from '../../shaders/f4/fragmentShaderL.glsl'
 
 export const blobPersonalities = {
   alien: {
@@ -35,9 +35,9 @@ export const blobPersonalities = {
     b: 0.9,
     vertex: lavaVertex,
     fragment: lavaFragment,
-    color1: "#ff0000",
-    color2: "#0090ff",
-    color3: "#5c12aa",
+    color1: "#ffffff",
+    color2: "#ab00ff",
+    color3: "#5900b8",
     pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
     glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
     iTime: 0

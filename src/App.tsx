@@ -2,13 +2,13 @@ import { Suspense, useRef } from "react";
 import "../src/index.css";
 import Labels from "../public/components/Labels";
 import Scene from "../public/components/Scene";
-import Navbar from "../public/components/NavBar";
-import ScrollIndicator from "../public/components/ScrollIndicator";
-
+import Navbar from "../public/components/utils/NavBar";
+import ScrollIndicator from "../public/components/utils/ScrollIndicator";
+import { SplitText } from "../public/components/hooks/SplitText";
 
 
 function App() {
-
+  SplitText()
   const appRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<gsap.core.Timeline | null>(null)
 
@@ -47,9 +47,9 @@ function App() {
         <Suspense fallback={null}>
        
           <Scene />
-        </Suspense>
-        <Labels />
-        <Navbar scrollToSection={scrollToSection} />
+          </Suspense>
+          <Labels />
+          <Navbar scrollToSection={scrollToSection} />
         <ScrollIndicator />
  
       </div>

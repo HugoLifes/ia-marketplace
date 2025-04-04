@@ -9,6 +9,10 @@ import gsap from 'gsap'
 import { BufferGeometry, Material, Mesh, NormalBufferAttributes, Object3DEventMap } from 'three'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from 'three';
+import { timelinePoints } from './animationspoint'
+import {useMorphSVG} from "../hooks/useMorphSVG"
+import { getSplitText } from '../utils/getSplitText'
+
 //import SplitText from "gsap/SplitText"
 
 
@@ -52,7 +56,8 @@ export function Model(props: any) {
    // page4.current = document.getElementById('page-4') 
    // page5.current = document.getElementById('page-5') 
     body.current = document.getElementById('canvas')
-    
+    const elementAlpha = document.querySelector('.alpha-title')
+    const elementMarket = document.querySelector('.market-title')
   })
 
   //const el = document.getElementById('alphaT')
@@ -61,13 +66,35 @@ export function Model(props: any) {
   //const split = new SplitText(el, { type: "chars" })
   //const chars = split.chars
 
+  useMorphSVG()
+  
+  const SplitText = getSplitText()
+
+
+  console.log("here",SplitText)
+  
+  const shapeRef = useRef<SVGPathElement>(null)
+  const textRef = useRef<HTMLHeadingElement>()
+
+  const elementAlpha = document.querySelector('.alpha-title')
+  const elementMarket = document.querySelector('.message1')
+
+  const alpha = new SplitText(elementAlpha, { type: 'chars' })
+  const market = new SplitText(elementMarket, { type: 'chars' })
+
+  
+  
+  console.log("alpha", alpha.chars)
+  console.log("market", market.chars)
+
   useLayoutEffect(() => {
+        
         timeline.current = gsap.timeline({
           scrollTrigger: {
             trigger: '.pages_wrapper',
             start: 'top top',
             end: 'bottom bottom',
-            scrub:1
+            scrub:true
           }
           
         })
@@ -82,7 +109,7 @@ export function Model(props: any) {
               duration: 0.3,
               
             },
-            timelinePoint: 0.3,
+            timelinePoint: 0.2,
           },
           // html div
           {
@@ -91,7 +118,7 @@ export function Model(props: any) {
               opacity: 1,
               duration: 0.9,
             },
-            timelinePoint: 0.5,
+            timelinePoint: 0.4,
           },
           {
             objectToAnimate: controls.current.target,
@@ -118,35 +145,25 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#180075"
+              backgroundColor: "#371b53"
             },
             timelinePoint: 0.0
           },
           {
-            objectToAnimate: page1.current?.querySelector('.twister1'),
-            properties: {
-              opacity: 0,
-              rotationX: 180,
-              y: 50,
-              duration: 0.5,
-              ease: 'power4.in',
-              transformPerspective: 500,
-            },
-            timelinePoint: 0.41,
-          },
-          
-          {
-            objectToAnimate: page2.current?.querySelector('.alpha-title'),
+            objectToAnimate: alpha.chars,
+            splitType: 'chars',
             properties: {
               opacity: 1,
               rotationX: 360,
-              y: 50,
-              duration: 0.5,
-              ease: 'power4.out',
+              y: 20,
+              duration: 0.6,
+              ease: 'power2.out',
               transformPerspective: 800,
+              stagger: 0.06 ,
             },
-            timelinePoint: 0.45,
-          }
+            timelinePoint: 0.2,
+          },
+         
           
         ]
         AnimationsData = [...AnimationsData, ...WelcomeViewAnimation]
@@ -202,35 +219,35 @@ export function Model(props: any) {
           },
 
           {
-            objectToAnimate: page2.current?.querySelector('.alpha-title'),
+            objectToAnimate: alpha.chars,
             properties: {
               opacity: 0,
-              rotationX: 360,
-              y: 50,
-              duration: 0.5,
-              ease: 'power4.out',
-              transformPerspective: 800,
+              y: -40,
+              rotationX: 180,
+              duration: 0.6,
+              ease: 'power2.inOut',
+              stagger: 0.04,
             },
-            timelinePoint: 1.48,
+            timelinePoint: 1.15,
           },
 
           {
-            objectToAnimate: page3.current?.querySelector('.message'),
+            objectToAnimate: market.chars,
+            splitType: 'chars',
             properties: {
               opacity: 1,
               rotationX: 360,
-              y: 50,
-              duration: 0.5,
-              ease: 'power4.out',
+              y: 20,
+              duration: 0.7,
+              ease: 'power2.out',
               transformPerspective: 800,
+              stagger: 0.04,
             },
-            timelinePoint: 1.48,
-          }
+            timelinePoint: 1.2,
+          },
+
           
-          
-          
-        
-          
+
         ]
         AnimationsData = [...AnimationsData, ...AlphaPlaceAnimation]
     

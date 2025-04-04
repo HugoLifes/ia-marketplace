@@ -1,11 +1,13 @@
 import type React from "react"
 import { useState } from "react"
+import Form from "./utils/form"
 
-import Form from "./form"
+// Note: Add SplitText script to your HTML file or load it dynamically
+
 
 const Labels: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
+  
   const [isLoading, setIsLoading] = useState(false);
   
   // Función que se ejecuta al enviar el formulario
@@ -39,12 +41,14 @@ const Labels: React.FC = () => {
   
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
+
+  
   return (
     <div className="pages">
       <div className="pages_wrapper">
         {/* Page 1: Welcome/Intro */}
         <div id="page-1" className="page page--welcome page--intro">
-          <h2 className="message"></h2>
+        
           <div className="twister1">
             <div className="logo-container">
               <img src="/Images/logo.png" alt="logo" className="imageLogo2" />
@@ -52,7 +56,7 @@ const Labels: React.FC = () => {
           </div>
 
 
-          <div className="alpha-button-container">
+          <div className="welcome-button-container">
               <button className="primary-button">
                   Descubre nuestra plataforma
               </button>
@@ -91,14 +95,12 @@ const Labels: React.FC = () => {
 
         {/* Page 3: Email Signup */}
         <div id="page-3" className="page page--headband page--hidden">
-          <h1 id="twister2" className="message">
+          <h1 id="twister2" className="message1">
             Suscribete
           </h1>
           <p className="message--sub"></p>
           <div className="email-form-container">
-            <p className="email-form-text">
-              Recibe lo mas novedoso en AI.
-            </p>
+           
 
             <form className="form">
               <div className="form-row">
@@ -107,12 +109,15 @@ const Labels: React.FC = () => {
                   className="input-field"
                   placeholder="Ingresa tu correo"
                   required
-                />
-                <button className="submit-button" type="submit">
-                  Enviar
-                </button>
+                  />
+                  <button className="submit-button" type="submit">
+                    Enviar
+                  </button>
               </div>
             </form>
+            <p className="email-form-text">
+              Recibe lo mas novedoso en AI.
+            </p>
           </div>
         </div>
 
