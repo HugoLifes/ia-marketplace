@@ -58,7 +58,7 @@ const Labels: React.FC = () => {
 
           <div className="welcome-button-container">
               <button className="primary-button">
-                  Descubre nuestra plataforma
+                  Empieza tu viaje
               </button>
           </div>
 
@@ -70,11 +70,11 @@ const Labels: React.FC = () => {
               alt="Desliza!"
               className="scrollLogo"
             />
-            <span className="scroll-text">Scroll para inmersion</span>
+            <span className="scroll-text">Scroll inmersivo</span>
           </div>
         </div>
 
-        {/* Page 2: Under Construction */}
+        {/* Page 2: ALPHA */}
         <div id="page-2" className="page page--alpha page--hidden">
           <div className="alpha-content">
             <h1 id="alphaT" className="alpha-title">
