@@ -88,6 +88,7 @@ const Scene: React.FC = () => {
           <Canvas id='canvas' shadows  camera={{  fov: 50 }}  >
           <ambientLight intensity={1.6} />
           <pointLight position={[-1 ,-0.11 , -10]} intensity={1999} />
+          <pointLight position={[2 ,-0.11 , 5.5]} intensity={500} />
           {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) */}
           <AdjustCamera />
           <ScrollControls pages={4} horizontal damping={0.24}  > 

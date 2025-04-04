@@ -275,12 +275,13 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 130px;
+  
   position: relative;
   z-index: 4;
   width: auto; /* Ajustar al contenido en lugar de ocupar todo el ancho */
   margin-left: auto;
   margin-right: auto;
+  bottom: 55px;
 }
 
 .imageLogo {
@@ -321,8 +322,27 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 21rem;
+  position: absolute;
+  bottom: 30px; /* Posicionarlo en la parte inferior */
+  right: 30px; /* Posicionarlo a la derecha */
+  left: auto; /* Eliminar el posicionamiento izquierdo */
+  transform: none; /* Eliminar la transformación que lo centraba */
   animation: bounce 2s infinite;
+  /* Asegurar que esté por encima del fondo pero por debajo de otros elementos importantes */
+}
+
+@media (max-width: 768px) {
+  .scroll-indicator {
+    bottom: 20px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-indicator {
+    bottom: 15px;
+    right: 15px;
+  }
 }
 
 .scrollLogo {
@@ -671,7 +691,7 @@ body::-webkit-scrollbar {
   }
 
   .welcome-button-container{
-    bottom: 20%;
+    bottom: 45px;
   }
 
   .alpha-subtitle-container {
@@ -978,12 +998,13 @@ body::-webkit-scrollbar {
 
 .welcome-button-container {
   position: absolute;
-  bottom: 26%;
+  
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 3;
+  padding-top: 40%;
   
 }
 

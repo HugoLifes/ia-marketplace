@@ -9,6 +9,9 @@ import metallicFragment from '../../shaders/f3/fragmentShaderM.glsl'
 import lavaVertex from '../../shaders/f4/vertexShaderL.glsl'
 import lavaFragment from '../../shaders/f4/fragmentShaderL.glsl'
 
+import sphereVertex from '../../shaders/f5/vertexShaderC.glsl'
+import sphereFragment from '../../shaders/f5/fragmentShaderC.glsl'
+
 export const blobPersonalities = {
   alien: {
       distortion: 0.8,
@@ -42,7 +45,24 @@ export const blobPersonalities = {
     glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
     iTime: 0
 },
-  metallic: {
+
+sphere:{
+  distortion: 0.3,
+      speed: 0.4,
+      phase: 0.8,
+      r: 0.7,
+      g: 0.8,
+      b: 1.0,
+      vertex: sphereVertex,
+      fragment:sphereFragment,
+      color1: "#ffffff",
+      color2: "#ab00ff",
+      color3: "#5900b8",
+      pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
+      glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
+      iTime: 0
+},
+metallic: {
       distortion: 0.3,
       speed: 0.4,
       phase: 0.8,

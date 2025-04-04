@@ -116,7 +116,7 @@ const Labels: React.FC = () => {
               </div>
             </form>
             <p className="email-form-text">
-              Recibe lo mas novedoso en AI.
+              Recibe actualizaciones sobre iAM y nuestro trabajo.
             </p>
           </div>
         </div>
