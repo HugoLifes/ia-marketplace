@@ -2,7 +2,6 @@ import React , { useRef, useState, useMemo }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { Environment, ScrollControls, Scroll} from '@react-three/drei'
 import CameraInfo from './utils/cameraInfo'
-import { Silverman } from './Humanoid/humanoid' 
 import * as THREE from 'three';
 import { Model } from './Scrolling/ModelSpace'
 import  Blob  from './Blob/Blob'
@@ -11,6 +10,7 @@ import { useScroll } from '@react-three/drei'
 import gsap from 'gsap'
 import { Scale } from 'lucide-react'
 import { blobPersonalities} from './Blob/blobLibrary'
+import { Particles } from './Particles/particles'
 
 
 const BlobRow = () => {
@@ -89,14 +89,15 @@ const Scene: React.FC = () => {
           <ambientLight intensity={1.6} />
           <pointLight position={[-1 ,-0.11 , -10]} intensity={1999} />
           <pointLight position={[2 ,-0.11 , 5.5]} intensity={500} />
-          {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) */}
+          {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) <Particles /> */}
+          <Particles />
           <AdjustCamera />
           <ScrollControls pages={4} horizontal damping={0.24}  > 
-
+            
             <BlobRow />
             {/* Add your scrollable content here */}
             <Model />
-            <Silverman />
+            
             {/*<primitive object={new THREE.AxesHelper(2)} /> */}
           </ScrollControls>
           
