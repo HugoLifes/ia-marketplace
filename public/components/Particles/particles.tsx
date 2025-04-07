@@ -50,7 +50,9 @@ export const Particles = () => {
     }
   })
 
-  return <points ref={pointsRef} geometry={geometry} material={material} />
+  return <points ref={pointsRef} geometry={geometry} material={material} position={[0.5 ,-0.22 , 1.70]}
+  rotation={[0, 305, 0]}
+  scale={0.9} />
 }
 
 // Extrae la primera geometría encontrada en el modelo
