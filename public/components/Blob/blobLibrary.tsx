@@ -27,7 +27,7 @@ export const blobPersonalities = {
       color3: "",
       pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
       glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
-      iTime: 0
+      iTime: 0,
   },
   lava: {
     distortion: 0.6,
@@ -43,9 +43,8 @@ export const blobPersonalities = {
     color3: "#5900b8",
     pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
     glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
-    iTime: 0
+    iTime: 0,
 },
-
 sphere:{
   distortion: 0.3,
       speed: 0.4,
@@ -60,7 +59,7 @@ sphere:{
       color3: "#5900b8",
       pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
       glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
-      iTime: 0
+      iTime: 0,
 },
 metallic: {
       distortion: 0.3,
@@ -76,8 +75,42 @@ metallic: {
       color3: "",
       pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
       glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
-      iTime: 0.03
+      iTime: 0.03,
+      
   },
+shine: {
+    distortion: 0.1,
+    speed: 0.5,
+    phase: 0.2,
+    r: 0.22,
+    g: 0.565,
+    b:  0.847,
+    vertex: alienVertex,
+    fragment: alienFragment,
+    color1: "",
+    color2: "",
+    color3: "",
+    pulseSpeed:{ value: 1.0, min: 0.1, max: 5.0, step: 0.1 },
+    glowStrength: { value: 1.0, min: 0.0, max: 3.0, step: 0.1 },
+    iTime: 0,
+},
+waves: {
+  distortion: 0.6,
+  speed: 1.8,
+  phase: 1.2,
+  r: 0.3,
+  g: 1.0,
+  b: 0.9,
+  vertex: lavaVertex,
+  fragment: lavaFragment,
+  color1: "#cdeafb",
+  color2: "#cdea80",
+  color3: "#36a7c3",
+  pulseSpeed:{ value: 1.5, min: 0.1, max: 5.0, step: 0.1 },
+  glowStrength: { value: 2.0, min: 0.0, max: 3.0, step: 0.1 },
+  iTime: 0,
+},
+
   
  
 }

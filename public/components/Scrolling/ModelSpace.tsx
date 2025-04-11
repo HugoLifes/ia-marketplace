@@ -53,39 +53,34 @@ export function Model(props: any) {
     page1.current = document.getElementById('page-1')
     page2.current = document.getElementById('page-2')
     page3.current = document.getElementById('page-3')
-   // page4.current = document.getElementById('page-4') 
-   // page5.current = document.getElementById('page-5') 
+    page4.current = document.getElementById('page-4') 
+    page5.current = document.getElementById('page-5') 
     body.current = document.getElementById('canvas')
-    const elementAlpha = document.querySelector('.alpha-title')
-    const elementMarket = document.querySelector('.market-title')
+   
   })
 
-  //const el = document.getElementById('alphaT')
-  //if (!el) return
-
-  //const split = new SplitText(el, { type: "chars" })
-  //const chars = split.chars
 
   useMorphSVG()
   
   const SplitText = getSplitText()
 
 
-  console.log("here",SplitText)
   
-  const shapeRef = useRef<SVGPathElement>(null)
-  const textRef = useRef<HTMLHeadingElement>()
 
   const elementAlpha = document.querySelector('.alpha-title')
-  const elementMarket = document.querySelector('.message1')
+  const elementMarket = document.querySelector('.marketplace-title')
+
+  const elementWtitle = document.querySelector('.welcome-text-title')
+  const elementWSubtitle = document.querySelector('.welcome-text-subTitle')
 
   const alpha = new SplitText(elementAlpha, { type: 'chars' })
   const market = new SplitText(elementMarket, { type: 'chars' })
 
+  const wtitle = new SplitText( elementWtitle, { type: 'words' })
+  const wsubtitle = new SplitText(elementWSubtitle, { type: 'words' })
   
-  
-  console.log("alpha", alpha.chars)
-  console.log("market", market.chars)
+  console.log("wtitle", wtitle.words)
+  console.log("wsubtitle", wsubtitle.words)
 
   useLayoutEffect(() => {
         
@@ -106,7 +101,7 @@ export function Model(props: any) {
             objectToAnimate: page1.current,
             properties: {
               opacity: 0,
-              duration: 0.3,
+              duration: 0.5,
               
             },
             timelinePoint: 0.2,
@@ -116,7 +111,7 @@ export function Model(props: any) {
             objectToAnimate: page2.current,
             properties: {
               opacity: 1,
-              duration: 0.9,
+              duration: 0.5,
             },
             timelinePoint: 0.4,
           },
@@ -145,7 +140,7 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#371b53"
+              backgroundColor: "#114d69"
             },
             timelinePoint: 0.0
           },
@@ -156,13 +151,43 @@ export function Model(props: any) {
               opacity: 1,
               rotationX: 360,
               y: 20,
-              duration: 0.6,
+              duration: 0.5,
               ease: 'power2.out',
               transformPerspective: 800,
-              stagger: 0.06 ,
+              stagger: 0.07 ,
+            },
+            timelinePoint: 0.4,
+          },
+          {
+            objectToAnimate: wtitle.words,
+            splitType: 'words',
+            properties: {
+              opacity: 0,
+              
+              y: 20,
+              duration: 1,
+              ease: 'back',
+              transformPerspective: 800,
+              stagger: 0.07 ,
             },
             timelinePoint: 0.2,
           },
+          {
+            objectToAnimate: wsubtitle.words,
+            splitType: 'words',
+            properties: {
+              opacity: 0,
+              
+              y: 20,
+              duration: 0.7,
+              ease: 'back',
+              transformPerspective: 800,
+              stagger: 0.07 ,
+            },
+            timelinePoint: 0.2,
+          },
+
+          
          
           
         ]
@@ -184,6 +209,7 @@ export function Model(props: any) {
             properties: {
               opacity: 1,
               duration: 0.6,
+              
             },
             timelinePoint: 1.5
           },
@@ -248,6 +274,8 @@ export function Model(props: any) {
 
           
 
+          
+
         ]
         AnimationsData = [...AnimationsData, ...AlphaPlaceAnimation]
     
@@ -258,9 +286,9 @@ export function Model(props: any) {
             objectToAnimate: page3.current,
             properties: {
               opacity: 0,
-              duration: 0.3,
+              duration: 0.4,
             },
-            timelinePoint: 3.2,
+            timelinePoint: 2.2,
           },
     
           //html div
@@ -268,20 +296,75 @@ export function Model(props: any) {
             objectToAnimate: page4.current,
             properties: {
               opacity: 1,
-              duration: 0.3,
+              duration: 0.5,
+              position: "absolute",
             },
-            timelinePoint: 3.3,
+            timelinePoint:2.5,
           }
           ,
           {
             objectToAnimate: controls.current.target,
-            properties: {x: -0.994,y: 1.0,z: 1, duration: 0.8},
-            timelinePoint: 3.6,
+            properties: {x: 50,y: 0,z: 0, duration: 0.8},
+            timelinePoint: 2.3,
           },
           {
             objectToAnimate: camera.position,
-            properties: { x: 0, y: 6.6097, z: 0.3, duration: 0.8},
-            timelinePoint: 3,
+            properties: { x: 50,y: 0,z: 2.5, duration: 0.8},
+            timelinePoint:2.3,
+          },
+          {
+            objectToAnimate: camera,
+            properties:{
+              zoom:2.5,
+              duration: 0.8,
+              onUpdate: () => {
+                camera.updateProjectionMatrix()
+              }
+            },
+            timelinePoint: 2,
+          },
+          {
+            objectToAnimate: body.current,
+            properties:{
+              duration: 1,
+              backgroundColor: "#100c5c"
+            },
+            timelinePoint: 2.1
+          },
+        ]
+        AnimationsData = [...AnimationsData, ...MarketPlaceAnimation]
+        
+        // Modelos especializados camera animation view
+        const SpecialModelsAnimation = [
+         
+          {
+            objectToAnimate: page4.current,
+            properties: {
+              opacity: 0,
+              duration: 0.3,
+              position: "relative",
+            },
+            timelinePoint: 3.2,
+          },
+          // Html div
+          {
+            objectToAnimate: page5.current,
+            properties: {
+              opacity: 1,
+              duration: 0.8,
+              position: "absolute",
+            },
+            timelinePoint: 3.5,
+          },
+          {
+            objectToAnimate: controls.current.target,
+            properties: {x: 70,y: 0,z: 0, duration: 0.8 },
+            timelinePoint: 3.3,
+          },
+          {
+            objectToAnimate: camera.position,
+            properties: { x: 70, y: 0, z: 2.5, duration: 0.8 },
+            timelinePoint: 3.3,
           },
           {
             objectToAnimate: camera,
@@ -294,52 +377,16 @@ export function Model(props: any) {
             },
             timelinePoint: 3,
           },
-        ]
-       // AnimationsData = [...AnimationsData, ...MarketPlaceAnimation]
-        
-        // Modelos especializados camera animation view
-        const SpecialModelsAnimation = [
-         
           {
-            objectToAnimate: page4.current,
-            properties: {
-              opacity: 0,
-              duration: 0.3,
-            },
-            timelinePoint: 4,
-          },
-          // Html div
-          {
-            objectToAnimate: page5.current,
-            properties: {
-              opacity: 1,
-              duration: 0.8,
-            },
-            timelinePoint: 4.2,
-          },
-          {
-            objectToAnimate: controls.current.target,
-            properties: {x: -0.7,y: -0.994,z: 1, duration: 0.8 },
-            timelinePoint: 4,
-          },
-          {
-            objectToAnimate: camera.position,
-            properties: { x: 2, y: -0.23, z: 4, duration: 0.8 },
-            timelinePoint: 4,
-          },
-          {
-            objectToAnimate: camera,
+            objectToAnimate: body.current,
             properties:{
-              zoom:4.5,
-              duration: 0.8,
-              onUpdate: () => {
-                camera.updateProjectionMatrix()
-              }
+              duration: 1,
+              backgroundColor: "#20a4d8"
             },
-            timelinePoint: 4,
+            timelinePoint: 3.1
           },
         ]
-       // AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
+       AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
 
        
     

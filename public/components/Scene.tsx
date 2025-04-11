@@ -1,4 +1,4 @@
-import React , { useRef, useState, useMemo }from 'react'
+import React , { useRef, useState, useMemo, Suspense }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import { Environment, ScrollControls, Scroll} from '@react-three/drei'
 import CameraInfo from './utils/cameraInfo'
@@ -11,6 +11,8 @@ import gsap from 'gsap'
 import { Scale } from 'lucide-react'
 import { blobPersonalities} from './Blob/blobLibrary'
 import { Particles } from './Particles/particles'
+import { ParticlesMorph } from './Particles/particles2'
+import { Stats } from '@react-three/drei'
 
 
 const BlobRow = () => {
@@ -19,13 +21,14 @@ const BlobRow = () => {
   //console.log('section',sectionWidth)
   return (
     <>
-    {[...Array(3)].map((_, i) => {
+    {[...Array(5)].map((_, i) => {
 
       const positions: [number, number, number][] = [
         [0, 0, 0],
         [15, 0, 0],
         [30, 0, 0],
-        //[50, 1, -2],
+        [50, 0, 0],
+        [70, 0, 0],
       
       ]
 
@@ -33,14 +36,18 @@ const BlobRow = () => {
         'alien',
         'lava',
         'metallic',
+        'shine',
+        'waves',
        
       ];
       
 
       const scales = [
-        0.5,
         0.4,
-        0.4,
+        0.3,
+        0.3,
+        0.3,
+        0.3
        
       ]
 
@@ -71,6 +78,7 @@ const BlobRow = () => {
           glowStrength={config.glowStrength.value}
           pulseSpeed={config.pulseSpeed.value}
           iTime={config.iTime}
+          
 
         />
       )
@@ -85,13 +93,17 @@ const Scene: React.FC = () => {
     <div  >
       
       <div >
-          <Canvas id='canvas' shadows  camera={{  fov: 50 }}  >
+          <Canvas id='canvas' shadows  camera={{  fov: 50 }} dpr={[1, 2]}  >
           <ambientLight intensity={1.6} />
           <pointLight position={[-1 ,-0.11 , -10]} intensity={1999} />
           <pointLight position={[2 ,-0.11 , 5.5]} intensity={500} />
-          {/* Carga tu modelo .glb en la ruta que tengas (ej. /models/myModel.glb) <Particles /> */}
-          <Particles />
+          {/* Carga tu modelo .glb en la ruta que tengas <Stats />   <Particles />  */}
+         
+          <Suspense fallback={null}>
+          <ParticlesMorph />
+          </Suspense>
           <AdjustCamera />
+          
           <ScrollControls pages={4} horizontal damping={0.24}  > 
             
             <BlobRow />

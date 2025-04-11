@@ -1,12 +1,11 @@
 
-import { blobPersonalities } from './blobLibrary'
+
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
-import { MathUtils } from 'three'
 import React , { useRef, useState, useMemo, useEffect }from 'react'
 import { Canvas, useThree, useFrame } from '@react-three/fiber'
 import * as THREE from 'three';
-import {OrbitControls} from '@react-three/drei'
-
+import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils';
+import { IcosahedronGeometry } from 'three';
 type BlobProps = {
   position?: [number, number, number]
   scale?: number
@@ -41,6 +40,8 @@ type BlobProps = {
   geometry2?: number
   geometry3?: number
 
+  
+
 }
 
 const Blob: React.FC<BlobProps> = ({  
@@ -68,7 +69,9 @@ const Blob: React.FC<BlobProps> = ({
   iTime = 0,
   geometry1 = 2,
   geometry2 = 20,
-  geometry3 = 1
+
+
+
  
   }) => {
   // This reference will give us direct access to the mesh
@@ -85,7 +88,7 @@ const Blob: React.FC<BlobProps> = ({
    customScale ??
    (viewport.width < 480 ? 5 : viewport.width < 768 ? 0.2 : 0.3)
 
-
+   
 
     const uniforms = useMemo(
       () => ({
@@ -112,6 +115,7 @@ const Blob: React.FC<BlobProps> = ({
         pulseSpeed: { value: pulseSpeed },
         glowStrength: { value: glowStrength },
         mouse: { value: new THREE.Vector2() },
+        
       }),
       [r,g,b,distortion]
     );

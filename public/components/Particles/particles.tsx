@@ -18,7 +18,7 @@ export const Particles = () => {
     tempGeo.center() // centra el modelo
     const sampler = new MeshSurfaceSampler(new THREE.Mesh(tempGeo)).build()
 
-    const numParticles = 10000
+    const numParticles = 6000
     const positionArray = new Float32Array(numParticles * 3)
     const tempPosition = new THREE.Vector3()
 
@@ -52,7 +52,7 @@ export const Particles = () => {
 
   return <points ref={pointsRef} geometry={geometry} material={material} position={[0.5 ,-0.22 , 1.70]}
   rotation={[0, 305, 0]}
-  scale={0.9} />
+  scale={0.7} />
 }
 
 // Extrae la primera geometría encontrada en el modelo
