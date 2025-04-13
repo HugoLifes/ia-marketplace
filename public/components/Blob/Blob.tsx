@@ -86,7 +86,7 @@ const Blob: React.FC<BlobProps> = ({
    // Escalado responsivo si no se pasa explícitamente
    const scaleFactor =
    customScale ??
-   (viewport.width < 480 ? 5 : viewport.width < 768 ? 0.2 : 0.3)
+   (viewport.width < 480 ? 0.2 : viewport.width < 768 ? 0.2 : 0.2)
 
    
 
