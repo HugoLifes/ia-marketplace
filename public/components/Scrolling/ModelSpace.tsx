@@ -73,14 +73,27 @@ export function Model(props: any) {
   const elementWtitle = document.querySelector('.welcome-text-title')
   const elementWSubtitle = document.querySelector('.welcome-text-subTitle')
 
+  const elementComparisionTitle = document.querySelector('.comparison-title')
+  const elementComparisionSubtitle = document.querySelector('.comparison-subtitle')
+
+  const elementSubcriptionTitle = document.querySelector('.subscription-title')
+  const elementSubcriptionSubtitle = document.querySelector('.subscription-subtitle')
+
   const alpha = new SplitText(elementAlpha, { type: 'chars' })
   const market = new SplitText(elementMarket, { type: 'chars' })
+
+  const comparisionTitle = new SplitText(elementComparisionTitle, { type: 'words' })
+  const comparisionSubtitle = new SplitText(elementComparisionSubtitle, { type: 'words' })
+
+
+  const subcriptionTitle = new SplitText(elementSubcriptionTitle, { type: 'chars' })
+  const subcriptionSubtitle = new SplitText(elementSubcriptionSubtitle, { type: 'words' })
 
   const wtitle = new SplitText( elementWtitle, { type: 'words' })
   const wsubtitle = new SplitText(elementWSubtitle, { type: 'words' })
   
-  console.log("wtitle", wtitle.words)
-  console.log("wsubtitle", wsubtitle.words)
+ 
+  
 
   useLayoutEffect(() => {
         
@@ -331,6 +344,48 @@ export function Model(props: any) {
             },
             timelinePoint: 2.1
           },
+          {
+          
+            objectToAnimate: market.chars,
+            properties: {
+              opacity: 0,
+              y: -40,
+              rotationX: 180,
+              duration: 0.6,
+              ease: 'power2.inOut',
+              stagger: 0.04,
+            },
+            timelinePoint: 2.2,
+          },
+          {
+            objectToAnimate: comparisionTitle.words,
+            splitType: 'chars',
+            properties: {
+              opacity: 1,
+              rotationX: 360,
+              y: 20,
+              duration: 0.7,
+              ease: 'power2.out',
+              transformPerspective: 800,
+              stagger: 0.04,
+            },
+            timelinePoint: 2.5,
+          },
+          {
+            objectToAnimate: comparisionSubtitle.words,
+            splitType: 'chars',
+            properties: {
+              opacity: 1,
+              rotationX: 360,
+              y: 20,
+              duration: 0.7,
+              ease: 'power2.out',
+              transformPerspective: 800,
+              stagger: 0.04,
+            },
+            timelinePoint: 2.5,
+          },
+
         ]
         AnimationsData = [...AnimationsData, ...MarketPlaceAnimation]
         
@@ -342,7 +397,7 @@ export function Model(props: any) {
             properties: {
               opacity: 0,
               duration: 0.3,
-              position: "relative",
+              //position: "relative",
             },
             timelinePoint: 3.2,
           },
@@ -385,6 +440,61 @@ export function Model(props: any) {
             },
             timelinePoint: 3.1
           },
+          {
+          
+            objectToAnimate: comparisionTitle.words,
+            properties: {
+              opacity: 0,
+              y: -40,
+              rotationX: 180,
+              duration: 0.6,
+              ease: 'power2.inOut',
+              stagger: 0.04,
+            },
+            timelinePoint: 3.2,
+          },
+          {
+          
+            objectToAnimate: comparisionSubtitle.words,
+            properties: {
+              opacity: 0,
+              y: -40,
+              rotationX: 180,
+              duration: 0.6,
+              ease: 'power2.inOut',
+              stagger: 0.04,
+            },
+            timelinePoint: 3.2,
+          },
+          {
+            objectToAnimate: subcriptionTitle.chars,
+            splitType: 'chars',
+            properties: {
+              opacity: 1,
+              rotationX: 360,
+              y: 20,
+              duration: 0.7,
+              ease: 'power2.out',
+              transformPerspective: 800,
+              stagger: 0.04,
+            },
+            timelinePoint: 3.5,
+          },
+          {
+            objectToAnimate: subcriptionSubtitle.words,
+            splitType: 'chars',
+            properties: {
+              opacity: 1,
+              rotationX: 360,
+              y: 20,
+              duration: 0.7,
+              ease: 'power2.out',
+              transformPerspective: 800,
+              stagger: 0.04,
+            },
+            timelinePoint: 3.5,
+          },
+
         ]
        AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]
 

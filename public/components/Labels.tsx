@@ -263,7 +263,7 @@ const Labels: React.FC = () => {
         {/* Page 3: MarketPlace */}
         <div id="page-3" className="page page--marketplace page--hidden">
           <div className="marketplace-content">
-            <h1 className="marketplace-title">MARKETPLACE</h1>
+            <h1 className="marketplace-title">MarketPlace</h1>
             <p className="marketplace-subtitle">
               Descubre el ecosistema de agentes inteligentes
             </p>
@@ -295,7 +295,7 @@ const Labels: React.FC = () => {
             <div className="marketplace-cta">
               <button
                 className="primary-button"
-                onClick={() => window.open("/marketplace", "_blank")}
+                onClick={() => window.open("https://iamex.io/marketplace", "_blank")}
               >
                 Visitar el Marketplace
               </button>
@@ -306,7 +306,6 @@ const Labels: React.FC = () => {
         </div>
 
         {/* Page 4: Comparativa */}
-        {/* Page 3: Comparativa de Tecnologías */}
         <div
           id="page-4"
           className="page page--comparison page--hidden"

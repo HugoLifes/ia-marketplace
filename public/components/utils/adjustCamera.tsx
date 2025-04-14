@@ -7,7 +7,7 @@ const AdjustCamera: React.FC = () => {
   useEffect(() => {
     const updateCamera = () => {
       const width = window.innerWidth
-
+      console.log('width', width)
       // Ajusta la posición de la cámara según el ancho de la pantalla
       if (width < 480) {
         // Móviles

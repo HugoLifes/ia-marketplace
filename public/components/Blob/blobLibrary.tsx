@@ -166,7 +166,7 @@ lightning: {
   b: 1.0,
   vertex: lightningVertex,
   fragment: lightningFragment,
-  color1: "#00ffff",
+  color1: "#2d58e1",
   color2: "#ffffff",
   color3: "#8000ff",
   pulseSpeed: { value: 2.5, min: 0.1, max: 5.0, step: 0.1 },
