@@ -1013,27 +1013,63 @@ body,
   transform: translateX(-50%);
 }
 
+/* Estilos para la página de Marketplace similar a Alpha */
 .marketplace-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 100vh;
   width: 100%;
-  height: 100%;
   padding: 2rem;
+  text-align: center;
   position: relative;
-  z-index: 5;
 }
 
-.marketplace-title {
-  font-family: var(--font-primary);
-  font-size: clamp(3.5rem, 10vw, 7rem);
-  color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
-  margin-bottom: clamp(10px, 2vh, 20px);
-  letter-spacing: 3px;
-  text-align: center;
-  animation: pulseText 3s infinite ease-in-out;
+
+
+.marketplace-button-container {
+  
+  position: relative;
+  z-index: 2;
+}
+
+.marketplace-subtitle-container {
+  margin-top: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.marketplace-subtitle.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: #fff;
+}
+
+.marketplace-subtitle.clickable:hover {
+  color: #02ffc4;
+  text-shadow: 0 0 10px rgba(2, 255, 196, 0.6);
+  transform: translateY(-2px);
+}
+
+.marketplace-subtitle.clickable::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(2, 255, 196, 0.7), transparent);
+  transition: width 0.3s ease;
+}
+
+.marketplace-subtitle.clickable:hover::after {
+  width: 100%;
 }
 
 .marketplace-subtitle {
@@ -2798,4 +2834,392 @@ body,
   padding-bottom: 40px;
 }
 
+/* Estilos para el modal con video */
+.video-modal-content {
+  max-width: 90%;
+  width: 900px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(41, 98, 255, 0.3));
+  border: 1px solid rgba(2, 255, 196, 0.2);
+}
+
+.video-container {
+  position: relative;
+  width: 90%;
+  max-width: 700px; /* Reducir el ancho máximo */
+  margin: 20px auto; /* Centrar el video con margen automático */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(2, 255, 196, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: all;
+}
+
+.modal-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 60vh;
+  background: #000;
+}
+
+/* Estilos para controles de video personalizados */
+.modal-video::-webkit-media-controls {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-video::-webkit-media-controls-panel {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-video::-webkit-media-controls-play-button {
+  background-color: rgba(2, 255, 196, 0.7);
+  border-radius: 50%;
+}
+
+.modal-video::-webkit-media-controls-timeline {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  height: 4px;
+}
+
+.modal-video::-webkit-media-controls-current-time-display,
+.modal-video::-webkit-media-controls-time-remaining-display {
+  color: white;
+}
+
+/* Estilos responsivos para el modal de video */
+@media (max-width: 768px) {
+  .video-modal-content {
+    width: 95%;
+  }
+  .video-container {
+    max-width: 90%;
+  }
+
+  .modal-video {
+    max-height: 50vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-container {
+    margin: 15px auto;
+  }
+}
+
+.video-modal-content .modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+/* Añadir estos estilos para hacer el texto "Nuevo modelo by IAM" clickeable */
+.alpha-subtitle.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.alpha-subtitle.clickable:hover {
+  color: #02ffc4;
+  text-shadow: 0 0 10px rgba(2, 255, 196, 0.6);
+  transform: translateY(-2px);
+}
+
+.click-indicator {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  font-size: 1.1em;
+  margin-left: 5px;
+}
+
+.alpha-subtitle.clickable:hover .click-indicator {
+  transform: translateX(5px);
+}
+
+/* Añadir un efecto de brillo al pasar el cursor */
+.alpha-subtitle.clickable::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(2, 255, 196, 0.7), transparent);
+  transition: width 0.3s ease;
+}
+
+.alpha-subtitle.clickable:hover::after {
+  width: 100%;
+}
+
+/* Añadir estos estilos para la página de Marketplace */
+.marketplace-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+}
+
+.marketplace-title {
+  font-family: var(--font-primary);
+  font-size: clamp(3rem, 7vw, 5rem);
+  color: #00ffc4;
+  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
+  margin-bottom: clamp(20px, 3vh, 40px);
+  text-align: center;
+  letter-spacing: 2px;
+  padding-bottom: 290px;
+}
+
+.marketplace-button-container {
+ 
+}
+
+.marketplace-subtitle-container {
+  margin-top: 30px;
+}
+
+.marketplace-subtitle.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: #fff;
+  pointer-events: all;
+}
+
+.marketplace-subtitle.clickable:hover {
+  color: #02ffc4;
+  text-shadow: 0 0 10px rgba(2, 255, 196, 0.6);
+  transform: translateY(-2px);
+}
+
+.marketplace-subtitle.clickable::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(2, 255, 196, 0.7), transparent);
+  transition: width 0.3s ease;
+}
+
+.marketplace-subtitle.clickable:hover::after {
+  width: 100%;
+}
+
+/* Estilos para el modal de Marketplace */
+.marketplace-modal-content {
+  max-width: 90%;
+  width: 900px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(41, 98, 255, 0.3));
+  border: 1px solid rgba(2, 255, 196, 0.2);
+}
+
+.marketplace-modal-content .modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+}
+
+.marketplace-modal-content h2 {
+  color: #f9ff02cf;
+  text-shadow: 0 0 20px rgba(249, 255, 2, 0.5);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.marketplace-description {
+  color: #fff;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+  line-height: 1.6;
+  margin: 30px 0;
+  max-width: 800px;
+  text-align: center;
+}
+
+.marketplace-cta-button {
+  background: linear-gradient(135deg, rgba(2, 255, 196, 0.3), rgba(41, 98, 255, 0.3));
+  color: white;
+  border: 1px solid rgba(2, 255, 196, 0.4);
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 5px 15px rgba(2, 255, 196, 0.3);
+}
+
+.marketplace-cta-button:hover {
+  background: linear-gradient(135deg, rgba(2, 255, 196, 0.4), rgba(41, 98, 255, 0.4));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(2, 255, 196, 0.4);
+}
+
+/* Ajustar los estilos de las tarjetas para el modal */
+.marketplace-modal-content .marketplace-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}
+
+.marketplace-modal-content .marketplace-feature {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 25px 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.marketplace-modal-content .marketplace-feature:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(2, 255, 196, 0.3);
+  box-shadow: 0 10px 25px rgba(2, 255, 196, 0.2);
+}
+
+.marketplace-modal-content .feature-icon {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(2, 255, 196, 0.3);
+}
+
+.marketplace-modal-content .marketplace-feature h3 {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.marketplace-modal-content .marketplace-feature p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+/* Estilos para los elementos flotantes en el modal */
+.marketplace-modal-content .marketplace-floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.marketplace-modal-content .floating-element {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(2, 255, 196, 0.3);
+  animation: float 10s infinite ease-in-out;
+}
+
+.marketplace-modal-content .element-1 {
+  top: 15%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.marketplace-modal-content .element-2 {
+  top: 25%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.marketplace-modal-content .element-3 {
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 1s;
+}
+
+.marketplace-modal-content .element-4 {
+  bottom: 30%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+.marketplace-modal-content .element-5 {
+  top: 50%;
+  left: 5%;
+  animation-delay: 2.5s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.05);
+  }
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .marketplace-modal-content .marketplace-features {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .marketplace-modal-content .marketplace-feature {
+    min-height: 180px;
+    padding: 20px 15px;
+  }
+
+  .marketplace-modal-content .feature-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .marketplace-modal-content .floating-element {
+    width: 40px;
+    height: 40px;
+  }
+}
 

@@ -34,6 +34,10 @@ const Labels: React.FC = () => {
   const [isKnowMoreModalOpen, setIsKnowMoreModalOpen] = useState(false)
   const [activeCase, setActiveCase] = useState<string | null>(null)
   const [isComparisonModalOpen, setIsComparisonModalOpen] = useState(false)
+  const [isMarketplaceModalOpen, setIsMarketplaceModalOpen] = useState(false)
+
+  // Primero, añadamos un nuevo estado para controlar el modal del nuevo modelo
+  const [isNewModelModalOpen, setIsNewModelModalOpen] = useState(false)
   // Función que se ejecuta al enviar el formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -113,6 +117,12 @@ const Labels: React.FC = () => {
   const openComparisonModal = () => setIsComparisonModalOpen(true)
   const closeComparisonModal = () => setIsComparisonModalOpen(false)
 
+  // Añadamos las funciones para abrir y cerrar el modal
+  const openNewModelModal = () => setIsNewModelModalOpen(true)
+  const closeNewModelModal = () => setIsNewModelModalOpen(false)
+
+  const openMarketplaceModal = () => setIsMarketplaceModalOpen(true) // Añadir esta línea
+  const closeMarketplaceModal = () => setIsMarketplaceModalOpen(false) // Añadir esta línea
 
   // Función para mostrar detalles de caso
   const showCaseDetails = (caseId: string) => {
@@ -238,12 +248,12 @@ const Labels: React.FC = () => {
         {/* Page 2: ALPHA */}
         <div id="page-2" className="page page--alpha page--hidden">
           <div className="alpha-content">
-
+            {/*
             <div className="alpha-guide">
               <span className="animated-hint">
                 Haz clic para activar a Alpha
               </span>
-            </div>
+            </div>*/}
             <h1 id="alphaT" className="alpha-title">
               Alpha
             </h1>
@@ -255,7 +265,9 @@ const Labels: React.FC = () => {
             </div>
 
             <div className="alpha-subtitle-container">
-              <p className="alpha-subtitle">Nuevo modelo by IAM</p>
+            <p className="alpha-subtitle clickable" onClick={openNewModelModal}>
+                Nuevo modelo by IAM <span className="click-indicator"></span>
+              </p>
             </div>
           </div>
         </div>
@@ -263,43 +275,21 @@ const Labels: React.FC = () => {
         {/* Page 3: MarketPlace */}
         <div id="page-3" className="page page--marketplace page--hidden">
           <div className="marketplace-content">
-            <h1 className="marketplace-title">MarketPlace</h1>
-            <p className="marketplace-subtitle">
-              Descubre el ecosistema de agentes inteligentes
-            </p>
+          <h1 id="marketplaceT" className="marketplace-title">
+              MARKETPLACE
+            </h1>
+           
 
-            <div className="marketplace-features">
-              <div className="marketplace-feature">
-                <div className="feature-icon">
-                  <Search size={28} className="marketplace-icon" />
-                </div>
-                <h3>Explora</h3>
-                <p>Encuentra agentes especializados para cada necesidad</p>
-              </div>
-              <div className="marketplace-feature">
-                <div className="feature-icon">
-                  <RefreshCw size={28} className="marketplace-icon" />
-                </div>
-                <h3>Integra</h3>
-                <p>Conecta múltiples agentes para crear flujos de trabajo</p>
-              </div>
-              <div className="marketplace-feature">
-                <div className="feature-icon">
-                  <Zap size={28} className="marketplace-icon" />
-                </div>
-                <h3>Potencia</h3>
-                <p>Amplifica tus capacidades con IA especializada</p>
-              </div>
-            </div>
-
-            <div className="marketplace-cta">
-              <button
-                className="primary-button"
-                onClick={() => window.open("https://iamex.io/marketplace", "_blank")}
-              >
+            <div className="marketplace-button-container">
+              <button className="primary-button" onClick={() => window.open("/marketplace", "_blank")}>
                 Visitar el Marketplace
               </button>
-              <div className="marketplace-button-glow"></div>
+            </div>
+
+            <div className="marketplace-subtitle-container">
+              <p className="marketplace-subtitle clickable" onClick={openMarketplaceModal}>
+                Descubre el ecosistema de agentes inteligentes <span className="click-indicator"></span>
+              </p>
             </div>
 
           </div>
@@ -349,11 +339,12 @@ const Labels: React.FC = () => {
               </button>
               <div className="modal-body">
                 <h2>I'AM está despertando...</h2>
-                <p>
-                  Bienvenido al futuro de la inteligencia artificial para tu
-                  negocio.
-                </p>
-                {/* Aquí puedes agregar más contenido para el modal */}
+                <div className="video-container video-modal-content">
+                  <video className="modal-video" autoPlay controls loop playsInline controlsList="nodownload">
+                    <source src="/videos/descubre.mp4" type="video/mp4" />
+                    Tu navegador no soporta videos HTML5.
+                  </video>
+                </div>
               </div>
             </div>
           </div>
@@ -747,12 +738,7 @@ const Labels: React.FC = () => {
                   >
                     Pro
                   </button>
-                  <button
-                    className={`plan-selector-btn ${activePlan === "enterprise" ? "active" : ""}`}
-                    onClick={() => setActivePlan("enterprise")}
-                  >
-                    Enterprise
-                  </button>
+                  
                 </div>
 
                 <div className="plans-container">
@@ -760,58 +746,58 @@ const Labels: React.FC = () => {
                   <div className={`plan-card ${activePlan === "free" ? "active" : ""}`}>
                     <div className="plan-header">
                       <Globe className="plan-icon" size={32} />
-                      <h3 className="plan-name">Free</h3>
+                      <h3 className="plan-name">Plan Básico</h3>
                       <div className="plan-price">
-                        $0<span>/mes</span>
+                        $19 <span>/mes</span>
                       </div>
                     </div>
                     <div className="plan-features">
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Acceso a agentes básicos</span>
+                        <span>Respuestas automáticas básicas y precisas</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>5 consultas diarias</span>
+                        <span>Clasificación automática de documentos adjuntos (PDF, Word, Excel)</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Soporte comunitario</span>
+                        <span>Almacenamiento y listado básico en Google Drive</span>
                       </div>
-                      <div className="plan-feature disabled">
-                        <X size={18} className="feature-x" />
-                        <span>Personalización limitada</span>
+                      <div className="plan-feature">
+                        <Check size={18} className="feature-check" />
+                        <span>Soporte básico vía email</span>
                       </div>
                     </div>
-                    <button className="plan-cta">Comenzar gratis</button>
+                    <button className="plan-cta">Suscribete ahora</button>
                   </div>
 
-                  {/* Plan Alpha */}
+                  {/* Plan Pro */}
                   <div className={`plan-card ${activePlan === "alpha" ? "active" : ""}`}>
                     <div className="plan-badge">Recomendado</div>
                     <div className="plan-header">
-                      <Star className="plan-icon" size={32} />
-                      <h3 className="plan-name">Alpha</h3>
+                      <Star className="plan-icon" size={32} />  
+                      <h3 className="plan-name">Plan Pro</h3>
                       <div className="plan-price">
-                        $29<span>/mes</span>
+                        $49<span>/mes</span>
                       </div>
                     </div>
                     <div className="plan-features">
                       <div className="plan-feature highlight">
                         <Sparkles size={18} className="feature-sparkle" />
-                        <span>Acceso anticipado a nuevos agentes</span>
+                        <span>Gestión y automatización avanzada de correos</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Consultas ilimitadas</span>
+                        <span>Generación automática y personalizada de reportes y documentos</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Personalización básica</span>
+                        <span>Integración avanzada con Google Drive (guardar, listar, enviar y resumir documentos)</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Soporte prioritario</span>
+                        <span>Resúmenes inteligentes de contenidos y videos (YouTube)</span>
                       </div>
                     </div>
                     <button className="plan-cta highlight">Suscríbete ahora</button>
@@ -823,57 +809,43 @@ const Labels: React.FC = () => {
                       <Zap className="plan-icon" size={32} />
                       <h3 className="plan-name">Pro</h3>
                       <div className="plan-price">
-                        $79<span>/mes</span>
+                        $99<span>/mes</span>
                       </div>
                     </div>
                     <div className="plan-features">
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Todos los beneficios de Alpha</span>
+                        <span>
+                        Gestión estratégica completa de comunicaciones corporativas</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Personalización avanzada</span>
+                        <span>Automatización integral de atención vía WhatsApp (videollamadas, transcripciones y resúmenes automáticos)</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Integración con APIs</span>
+                        <span>Funcionalidades legales avanzadas (generación y revisión automática de contratos)</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Soporte técnico 24/7</span>
+                        <span>Acceso a dashboard avanzado para control y monitoreo en tiempo real</span>
+                      </div>
+                      <div className="plan-feature">
+                        <Check size={18} className="feature-check" />
+                        <span>
+                        Análisis de sentimientos avanzado y flujo optimizado de ventas</span>
+                      </div>
+                      <div className="plan-feature">
+                        <Check size={18} className="feature-check" />
+                        <span>
+                        Soporte personalizado y dedicado 24/7</span>
                       </div>
                     </div>
                     <button className="plan-cta">Suscríbete ahora</button>
                   </div>
 
                   {/* Plan Enterprise */}
-                  <div className={`plan-card ${activePlan === "enterprise" ? "active" : ""}`}>
-                    <div className="plan-header">
-                      <Building className="plan-icon" size={32} />
-                      <h3 className="plan-name">Enterprise</h3>
-                      <div className="plan-price">Personalizado</div>
-                    </div>
-                    <div className="plan-features">
-                      <div className="plan-feature">
-                        <Check size={18} className="feature-check" />
-                        <span>Todos los beneficios de Pro</span>
-                      </div>
-                      <div className="plan-feature">
-                        <Check size={18} className="feature-check" />
-                        <span>Agentes personalizados a medida</span>
-                      </div>
-                      <div className="plan-feature">
-                        <Check size={18} className="feature-check" />
-                        <span>Implementación on-premise</span>
-                      </div>
-                      <div className="plan-feature">
-                        <Check size={18} className="feature-check" />
-                        <span>Gerente de cuenta dedicado</span>
-                      </div>
-                    </div>
-                    <button className="plan-cta">Contactar ventas</button>
-                  </div>
+                  
                 </div>
 
                 <div className="subscription-form-container">
@@ -930,6 +902,105 @@ const Labels: React.FC = () => {
                     </div>
                   )}
                 </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal para Nuevo Modelo by IAM */}
+        {isNewModelModalOpen && (
+          <div className="fullscreen-modal">
+            <div className="modal-overlay" onClick={closeNewModelModal}></div>
+            <div className="modal-content video-modal-content">
+              <button className="modal-close-button" onClick={closeNewModelModal} title="Cerrar">
+                <X size={24} />
+              </button>
+              <div className="modal-body">
+                <h2>Modelo Alpha: La nueva generación de IA</h2>
+                <div className="video-container">
+                  <video
+                    className="modal-video"
+                    autoPlay
+                    controls
+                    loop
+                    playsInline
+                    controlsList="nodownload"
+                    disablePictureInPicture
+                  >
+                    <source src="/videos/Intro.Alpha.V.1.4.mp4" type="video/mp4" />
+                    Tu navegador no soporta videos HTML5.
+                  </video>
+                </div>
+                <p>
+                  Alpha representa el futuro de la inteligencia artificial, con capacidades cognitivas avanzadas y
+                  comprensión contextual sin precedentes.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal para Marketplace */}
+        {isMarketplaceModalOpen && (
+          <div className="fullscreen-modal">
+            <div className="modal-overlay" onClick={closeMarketplaceModal}></div>
+            <div className="modal-content marketplace-modal-content">
+              <button className="modal-close-button" onClick={closeMarketplaceModal} title="Cerrar">
+                <X size={24} />
+              </button>
+              <div className="modal-body">
+                <h2>Ecosistema de Agentes Inteligentes</h2>
+
+                <div className="marketplace-features">
+                  <div className="marketplace-feature">
+                    <div className="feature-icon">
+                      <Search size={28} className="marketplace-icon" />
+                    </div>
+                    <h3>Explora</h3>
+                    <p>Encuentra agentes especializados para cada necesidad</p>
+                  </div>
+                  <div className="marketplace-feature">
+                    <div className="feature-icon">
+                      <RefreshCw size={28} className="marketplace-icon" />
+                    </div>
+                    <h3>Integra</h3>
+                    <p>Conecta múltiples agentes para crear flujos de trabajo</p>
+                  </div>
+                  <div className="marketplace-feature">
+                    <div className="feature-icon">
+                      <Zap size={28} className="marketplace-icon" />
+                    </div>
+                    <h3>Potencia</h3>
+                    <p>Amplifica tus capacidades con IA especializada</p>
+                  </div>
+                </div>
+
+                <div className="marketplace-floating-elements">
+                  <div className="floating-element element-1">
+                    <Bot size={24} className="floating-icon" />
+                  </div>
+                  <div className="floating-element element-2">
+                    <BarChart2 size={24} className="floating-icon" />
+                  </div>
+                  <div className="floating-element element-3">
+                    <MessageCircle size={24} className="floating-icon" />
+                  </div>
+                  <div className="floating-element element-4">
+                    <TrendingUp size={24} className="floating-icon" />
+                  </div>
+                  <div className="floating-element element-5">
+                    <Settings size={24} className="floating-icon" />
+                  </div>
+                </div>
+
+                <p className="marketplace-description">
+                  Nuestro marketplace ofrece una amplia gama de agentes especializados que pueden integrarse
+                  perfectamente para potenciar tu negocio con inteligencia artificial avanzada.
+                </p>
+
+                <button className="primary-button" onClick={() => window.open("/marketplace", "_blank")}>
+                  Explorar el Marketplace
+                </button>
               </div>
             </div>
           </div>

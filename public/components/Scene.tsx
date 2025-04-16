@@ -35,10 +35,9 @@ const BlobRow = () => {
       const personalities: (keyof typeof blobPersonalities)[] = [
         'alien',
         'lava',
-        'metallic',
+        'lava2',
         'ghostFlame',
-        'lightning',
-       
+        'ice',
       ];
       
 
