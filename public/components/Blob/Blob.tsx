@@ -46,7 +46,7 @@ type BlobProps = {
 
 const Blob: React.FC<BlobProps> = ({  
   position = [0, 0, 0],
-  scale: customScale,
+  scale = 0.3,
   r = 1.0,
   g = 0.0,
   b = 0.0,
@@ -84,9 +84,7 @@ const Blob: React.FC<BlobProps> = ({
   // Definir la escala en función del ancho del viewport
   // Por ejemplo, para móviles (<480px), tabletas (<768px) y desktop:
    // Escalado responsivo si no se pasa explícitamente
-   const scaleFactor =
-   customScale ??
-   (viewport.width < 480 ? 0.2 : viewport.width < 768 ? 0.2 : 0.2)
+   
 
    
 
@@ -152,7 +150,7 @@ const Blob: React.FC<BlobProps> = ({
     <mesh
       ref={mesh}
       position={position}
-      scale={scaleFactor}
+      scale={scale}
       onPointerOver={() => (hover.current = true)}
       onPointerOut={() => (hover.current = true)}
     >

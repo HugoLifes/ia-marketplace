@@ -1,5 +1,8 @@
-import React, { useRef, useState, useEffect } from "react"
-import Form from "./utils/form"
+"use client"
+
+import type React from "react"
+import { useMobile } from "./hooks/isMobil"
+import { useRef, useState, useEffect } from "react"
 import {
   X,
   Clock,
@@ -11,7 +14,6 @@ import {
   Check,
   Star,
   Sparkles,
-  Building,
   Globe,
   Search,
   RefreshCw,
@@ -20,16 +22,17 @@ import {
   MessageCircle,
   TrendingUp,
   Settings,
+  Smartphone,
+  MousePointer,
 } from "lucide-react"
-
 
 // Note: Add SplitText script to your HTML file or load it dynamically
 
-
 const Labels: React.FC = () => {
+  const isMobile = useMobile()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isAlphaModalOpen, setIsAlphaModalOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false)
   const [isSubscriptionModalOpen, setIsSubscriptionModalOpen] = useState(false)
   const [isKnowMoreModalOpen, setIsKnowMoreModalOpen] = useState(false)
   const [activeCase, setActiveCase] = useState<string | null>(null)
@@ -62,7 +65,6 @@ const Labels: React.FC = () => {
     }
   }
 
-
   const [activePlan, setActivePlan] = useState<string>("alpha")
   const [formData, setFormData] = useState({
     email: "",
@@ -78,27 +80,27 @@ const Labels: React.FC = () => {
       [name]: value,
     }))
   }
-  
+
   // Función para abrir el panel de opciones
   const handleOpenOptions = () => {
-    console.log('Abriendo opciones');
+    console.log("Abriendo opciones")
     // Aquí puedes implementar la lógica para abrir un modal o panel de opciones
     // Por ejemplo: setShowOptions(true);
-  };
-  
+  }
+
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
 
-   // Referencias y estado para el drag-to-scroll
-   const comparisonContentRef = useRef<HTMLDivElement>(null)
-   const alphaModalContentRef = useRef<HTMLDivElement>(null)
-   const knowMoreModalContentRef = useRef<HTMLDivElement>(null)
-   const subscriptionModalContentRef = useRef<HTMLDivElement>(null)
+  // Referencias y estado para el drag-to-scroll
+  const comparisonContentRef = useRef<HTMLDivElement>(null)
+  const alphaModalContentRef = useRef<HTMLDivElement>(null)
+  const knowMoreModalContentRef = useRef<HTMLDivElement>(null)
+  const subscriptionModalContentRef = useRef<HTMLDivElement>(null)
+  const marketplaceModalContentRef = useRef<HTMLDivElement>(null)
 
-
-   const [isDragging, setIsDragging] = useState(false)
-   const [startY, setStartY] = useState(0)
-   const [scrollTop, setScrollTop] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startY, setStartY] = useState(0)
+  const [scrollTop, setScrollTop] = useState(0)
 
   // Funciones para el modal de Alpha Agents
   const openAlphaModal = () => setIsAlphaModalOpen(true)
@@ -108,7 +110,6 @@ const Labels: React.FC = () => {
   const openKnowMoreModal = () => setIsKnowMoreModalOpen(true)
   const closeKnowMoreModal = () => setIsKnowMoreModalOpen(false)
 
-  
   // Funciones para el modal de Suscripción
   const openSubscriptionModal = () => setIsSubscriptionModalOpen(true)
   const closeSubscriptionModal = () => setIsSubscriptionModalOpen(false)
@@ -133,13 +134,18 @@ const Labels: React.FC = () => {
   const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsDragging(true)
     setStartY(e.clientY)
-    if (comparisonContentRef.current) {
-      setScrollTop(comparisonContentRef.current.scrollTop)
-    }
-    // Cambiar el cursor a "grabbing"
-    if (comparisonContentRef.current) {
-      comparisonContentRef.current.style.cursor = "grabbing"
-      comparisonContentRef.current.style.userSelect = "none"
+
+    const currentRef =
+      comparisonContentRef.current ||
+      alphaModalContentRef.current ||
+      knowMoreModalContentRef.current ||
+      subscriptionModalContentRef.current ||
+      marketplaceModalContentRef.current
+
+    if (currentRef) {
+      setScrollTop(currentRef.scrollTop)
+      currentRef.style.cursor = "grabbing"
+      currentRef.style.userSelect = "none"
     }
   }
 
@@ -157,8 +163,15 @@ const Labels: React.FC = () => {
     const y = e.clientY
     const walk = (startY - y) * 2 // Multiplicador para ajustar la velocidad del scroll
 
-    if (comparisonContentRef.current) {
-      comparisonContentRef.current.scrollTop = scrollTop + walk
+    const currentRef =
+      comparisonContentRef.current ||
+      alphaModalContentRef.current ||
+      knowMoreModalContentRef.current ||
+      subscriptionModalContentRef.current ||
+      marketplaceModalContentRef.current
+
+    if (currentRef) {
+      currentRef.scrollTop = scrollTop + walk
     }
   }
 
@@ -168,17 +181,31 @@ const Labels: React.FC = () => {
     const y = e.touches[0].clientY
     const walk = (startY - y) * 2
 
-    if (comparisonContentRef.current) {
-      comparisonContentRef.current.scrollTop = scrollTop + walk
+    const currentRef =
+      comparisonContentRef.current ||
+      alphaModalContentRef.current ||
+      knowMoreModalContentRef.current ||
+      subscriptionModalContentRef.current ||
+      marketplaceModalContentRef.current
+
+    if (currentRef) {
+      currentRef.scrollTop = scrollTop + walk
     }
   }
 
   const handleMouseUpOrLeave = () => {
     setIsDragging(false)
     // Restaurar el cursor
-    if (comparisonContentRef.current) {
-      comparisonContentRef.current.style.cursor = "grab"
-      comparisonContentRef.current.style.userSelect = "auto"
+    const currentRef =
+      comparisonContentRef.current ||
+      alphaModalContentRef.current ||
+      knowMoreModalContentRef.current ||
+      subscriptionModalContentRef.current ||
+      marketplaceModalContentRef.current
+
+    if (currentRef) {
+      currentRef.style.cursor = "grab"
+      currentRef.style.userSelect = "auto"
     }
   }
 
@@ -202,7 +229,10 @@ const Labels: React.FC = () => {
       document.removeEventListener("touchend", handleGlobalMouseUp)
     }
   }, [isDragging])
-  
+
+  // Añadir un nuevo estado para controlar si se muestran precios mensuales o anuales
+  const [isPriceAnnual, setIsPriceAnnual] = useState<boolean>(false)
+
   return (
     <div className="pages">
       <div className="pages_wrapper">
@@ -219,8 +249,7 @@ const Labels: React.FC = () => {
           </div>
 
           <h1 id="wSubTitle" className="welcome-text-subTitle">
-            Creamos agentes inteligentes que entienden tu negocio, aprenden de
-            ti y actúan como tu digital
+            Creamos agentes inteligentes que entienden tu negocio, aprenden de ti y actúan como tu digital
           </h1>
 
           <div className="welcome-button-container">
@@ -230,12 +259,12 @@ const Labels: React.FC = () => {
           </div>
 
           <div className="scroll-indicator">
-            <img
-              src="/Images/mouse-cursor.png"
-              alt="Desliza!"
-              className="scrollLogo"
-            />
-            <span className="scroll-text">Scroll inmersivo</span>
+          {isMobile ? (
+              <img src="/Images/mobil2.png" alt="Desliza!" className="scrollLogo2" />
+            ) : (
+              <img src="/Images/mouse-cursor.png" alt="Desliza!" className="scrollLogo" />
+            )}
+            <span className="scroll-text">{isMobile ? "Desliza" : "Scroll inmersivo"}</span>
           </div>
 
           {/* Texto clickeable 'Explora a los Alpha Agents' con efecto hover */}
@@ -265,7 +294,7 @@ const Labels: React.FC = () => {
             </div>
 
             <div className="alpha-subtitle-container">
-            <p className="alpha-subtitle clickable" onClick={openNewModelModal}>
+              <p className="alpha-subtitle clickable" onClick={openNewModelModal}>
                 Nuevo modelo by IAM <span className="click-indicator"></span>
               </p>
             </div>
@@ -275,13 +304,12 @@ const Labels: React.FC = () => {
         {/* Page 3: MarketPlace */}
         <div id="page-3" className="page page--marketplace page--hidden">
           <div className="marketplace-content">
-          <h1 id="marketplaceT" className="marketplace-title">
-              MARKETPLACE
+            <h1 id="marketplaceT" className="marketplace-title">
+              MarketPlace
             </h1>
-           
 
             <div className="marketplace-button-container">
-              <button className="primary-button" onClick={() => window.open("/marketplace", "_blank")}>
+              <button className="primary-button" onClick={() => window.open("https://iamex.io/marketplace", "_blank")}>
                 Visitar el Marketplace
               </button>
             </div>
@@ -291,31 +319,25 @@ const Labels: React.FC = () => {
                 Descubre el ecosistema de agentes inteligentes <span className="click-indicator"></span>
               </p>
             </div>
-
           </div>
         </div>
 
         {/* Page 4: Comparativa */}
-        <div
-          id="page-4"
-          className="page page--comparison page--hidden"
-          style={{ overflow: "hidden", height: "100vh" }}
-        >
+        <div id="page-4" className="page page--comparison page--hidden" style={{ overflow: "hidden", height: "100vh" }}>
           <div className="comparison-page-content">
             <h1 className="comparison-title">Tecnologías de IA</h1>
             <p className="comparison-subtitle">Elige la solución perfecta para tu negocio</p>
-
-            <button className="primary-button" onClick={openComparisonModal}>
-              Comparar tecnologías
-            </button>
+            <div className="comparison-button-container">
+              <button className="primary-button" onClick={openComparisonModal}>
+                Comparar tecnologías
+              </button>
+            </div>
           </div>
         </div>
 
-      {/* Page 5: Suscripción */}
-      <div id="page-5" className="page page--subscription">
+        {/* Page 5: Suscripción */}
+        <div id="page-5" className="page page--subscription">
           <div className="subscription-page-content">
-            
-
             <h1 className="subscription-title">Planes y Beneficios</h1>
             <p className="subscription-subtitle">Elige el plan perfecto para potenciar tu negocio con IA</p>
 
@@ -330,11 +352,7 @@ const Labels: React.FC = () => {
           <div className="fullscreen-modal">
             <div className="modal-overlay" onClick={closeModal}></div>
             <div className="modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -352,14 +370,10 @@ const Labels: React.FC = () => {
 
         {/* Modal de Alpha Agents */}
         {isAlphaModalOpen && (
-          <div className="fullscreen-modal">
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
             <div className="modal-overlay" onClick={closeAlphaModal}></div>
             <div className="modal-content alpha-modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeAlphaModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeAlphaModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -369,44 +383,31 @@ const Labels: React.FC = () => {
                     <div className="alpha-agent-icon">🤖</div>
                     <h3>Asistente de Ventas</h3>
                     <p>
-                      Un agente inteligente que puede gestionar consultas de
-                      clientes y cerrar ventas automáticamente.
+                      Un agente inteligente que puede gestionar consultas de clientes y cerrar ventas automáticamente.
                     </p>
                   </div>
                   <div className="alpha-agent-card">
                     <div className="alpha-agent-icon">📊</div>
                     <h3>Analista de Datos</h3>
-                    <p>
-                      Procesa grandes volúmenes de datos y genera informes
-                      detallados con insights valiosos.
-                    </p>
+                    <p>Procesa grandes volúmenes de datos y genera informes detallados con insights valiosos.</p>
                   </div>
                   <div className="alpha-agent-card">
                     <div className="alpha-agent-icon">📅</div>
                     <h3>Gestor de Agenda</h3>
-                    <p>
-                      Organiza tu calendario, programa reuniones y envía
-                      recordatorios automáticos.
-                    </p>
+                    <p>Organiza tu calendario, programa reuniones y envía recordatorios automáticos.</p>
                   </div>
                   <div className="alpha-agent-card">
                     <div className="alpha-agent-icon">💬</div>
                     <h3>Soporte 24/7</h3>
-                    <p>
-                      Proporciona atención al cliente instantánea en cualquier
-                      momento del día.
-                    </p>
+                    <p>Proporciona atención al cliente instantánea en cualquier momento del día.</p>
                   </div>
                 </div>
                 <div className="alpha-modal-footer">
                   <p>
-                    Los Alpha Agents representan la próxima generación de
-                    asistentes virtuales, diseñados específicamente para tu
-                    negocio.
+                    Los Alpha Agents representan la próxima generación de asistentes virtuales, diseñados
+                    específicamente para tu negocio.
                   </p>
-                  <button className="primary-button">
-                    Solicitar acceso anticipado
-                  </button>
+                  <button className="primary-button">Solicitar acceso anticipado</button>
                 </div>
               </div>
             </div>
@@ -415,14 +416,10 @@ const Labels: React.FC = () => {
 
         {/* Modal de Conoce Más */}
         {isKnowMoreModalOpen && (
-          <div className="fullscreen-modal"  style={{ overflow: "hidden", pointerEvents: "auto" }}>
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
             <div className="modal-overlay" onClick={closeKnowMoreModal}></div>
             <div className="modal-content know-more-modal">
-              <button
-                className="modal-close-button"
-                onClick={closeKnowMoreModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeKnowMoreModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -431,11 +428,9 @@ const Labels: React.FC = () => {
                 <div className="know-more-section">
                   <h3>¿Qué es ALPHA?</h3>
                   <p>
-                    ALPHA es nuestra iniciativa más ambiciosa en el campo de la
-                    inteligencia artificial. Representa un salto evolutivo en la
-                    forma en que las máquinas comprenden y procesan la
-                    información, acercándonos a una IA con capacidades
-                    cognitivas similares a las humanas.
+                    ALPHA es nuestra iniciativa más ambiciosa en el campo de la inteligencia artificial. Representa un
+                    salto evolutivo en la forma en que las máquinas comprenden y procesan la información, acercándonos a
+                    una IA con capacidades cognitivas similares a las humanas.
                   </p>
                 </div>
 
@@ -443,24 +438,20 @@ const Labels: React.FC = () => {
                   <h3>Características principales</h3>
                   <ul className="know-more-list">
                     <li>
-                      <strong>Aprendizaje continuo:</strong> ALPHA mejora
-                      constantemente a través de cada interacción, adaptándose a
-                      nuevos contextos y desafíos.
+                      <strong>Aprendizaje continuo:</strong> ALPHA mejora constantemente a través de cada interacción,
+                      adaptándose a nuevos contextos y desafíos.
                     </li>
                     <li>
-                      <strong>Razonamiento abstracto:</strong> Capacidad para
-                      entender conceptos complejos y establecer conexiones entre
-                      ideas aparentemente no relacionadas.
+                      <strong>Razonamiento abstracto:</strong> Capacidad para entender conceptos complejos y establecer
+                      conexiones entre ideas aparentemente no relacionadas.
                     </li>
                     <li>
-                      <strong>Procesamiento multimodal:</strong> Integración
-                      perfecta de texto, imágenes, audio y datos estructurados
-                      en un único sistema de comprensión.
+                      <strong>Procesamiento multimodal:</strong> Integración perfecta de texto, imágenes, audio y datos
+                      estructurados en un único sistema de comprensión.
                     </li>
                     <li>
-                      <strong>Conciencia contextual:</strong> Entiende no solo
-                      el contenido de la información, sino también su contexto
-                      cultural, histórico y social.
+                      <strong>Conciencia contextual:</strong> Entiende no solo el contenido de la información, sino
+                      también su contexto cultural, histórico y social.
                     </li>
                   </ul>
                 </div>
@@ -470,42 +461,29 @@ const Labels: React.FC = () => {
                   <div className="applications-grid">
                     <div className="application-card">
                       <h4>Medicina</h4>
-                      <p>
-                        Diagnóstico avanzado y desarrollo de tratamientos
-                        personalizados.
-                      </p>
+                      <p>Diagnóstico avanzado y desarrollo de tratamientos personalizados.</p>
                     </div>
                     <div className="application-card">
                       <h4>Investigación científica</h4>
-                      <p>
-                        Aceleración de descubrimientos mediante análisis de
-                        datos complejos.
-                      </p>
+                      <p>Aceleración de descubrimientos mediante análisis de datos complejos.</p>
                     </div>
                     <div className="application-card">
                       <h4>Educación</h4>
-                      <p>
-                        Sistemas de aprendizaje adaptativo que se ajustan a cada
-                        estudiante.
-                      </p>
+                      <p>Sistemas de aprendizaje adaptativo que se ajustan a cada estudiante.</p>
                     </div>
                     <div className="application-card">
                       <h4>Creatividad</h4>
-                      <p>
-                        Colaboración en procesos creativos para arte, música y
-                        diseño.
-                      </p>
+                      <p>Colaboración en procesos creativos para arte, música y diseño.</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="know-more-footer">
                   <p>
-                    ALPHA representa nuestro compromiso con un futuro donde la
-                    inteligencia artificial potencia el potencial humano en
-                    lugar de reemplazarlo.
+                    ALPHA representa nuestro compromiso con un futuro donde la inteligencia artificial potencia el
+                    potencial humano en lugar de reemplazarlo.
                   </p>
-                  <button className="know-more-cta">
+                  <button className="know-more-cta" onClick={() => window.open("https://iamex.io/", "_blank")}>
                     Únete al programa ALPHA
                   </button>
                 </div>
@@ -514,7 +492,6 @@ const Labels: React.FC = () => {
           </div>
         )}
 
-        
         {/* Modal de Comparativa de Tecnologías */}
         {isComparisonModalOpen && (
           <div className="fullscreen-modal">
@@ -712,33 +689,25 @@ const Labels: React.FC = () => {
 
         {/* Modal de Suscripción */}
         {isSubscriptionModalOpen && (
-          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>   
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
             <div className="modal-overlay" onClick={closeSubscriptionModal}></div>
             <div className="modal-content subscription-modal-content">
               <button className="modal-close-button" onClick={closeSubscriptionModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
-                <div className="plans-selector">
-                  <button
-                    className={`plan-selector-btn ${activePlan === "free" ? "active" : ""}`}
-                    onClick={() => setActivePlan("free")}
+                {/* Selector de periodo (mensual/anual) */}
+                <div className="billing-toggle">
+                  <span className={!isPriceAnnual ? "active" : ""}>Mensual</span>
+                  <div
+                    className={`toggle-switch ${isPriceAnnual ? "annual" : "monthly"}`}
+                    onClick={() => setIsPriceAnnual(!isPriceAnnual)}
                   >
-                    Free
-                  </button>
-                  <button
-                    className={`plan-selector-btn ${activePlan === "alpha" ? "active" : ""}`}
-                    onClick={() => setActivePlan("alpha")}
-                  >
-                    Alpha
-                  </button>
-                  <button
-                    className={`plan-selector-btn ${activePlan === "pro" ? "active" : ""}`}
-                    onClick={() => setActivePlan("pro")}
-                  >
-                    Pro
-                  </button>
-                  
+                    <div className="toggle-knob"></div>
+                  </div>
+                  <span className={isPriceAnnual ? "active" : ""}>
+                    
+                  </span>
                 </div>
 
                 <div className="plans-container">
@@ -748,7 +717,16 @@ const Labels: React.FC = () => {
                       <Globe className="plan-icon" size={32} />
                       <h3 className="plan-name">Plan Básico</h3>
                       <div className="plan-price">
-                        $19 <span>/mes</span>
+                      {isPriceAnnual ? (
+                          <>
+                            $190<span>/anual</span>
+                            
+                          </>
+                        ) : (
+                          <>
+                            $19 <span>/mes</span>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="plan-features">
@@ -773,13 +751,22 @@ const Labels: React.FC = () => {
                   </div>
 
                   {/* Plan Pro */}
-                  <div className={`plan-card ${activePlan === "alpha" ? "active" : ""}`}>
+                  <div className={`plan-card ${activePlan === "pro" ? "active" : ""}`}>
                     <div className="plan-badge">Recomendado</div>
                     <div className="plan-header">
-                      <Star className="plan-icon" size={32} />  
+                      <Star className="plan-icon" size={32} />
                       <h3 className="plan-name">Plan Pro</h3>
                       <div className="plan-price">
-                        $49<span>/mes</span>
+                      {isPriceAnnual ? (
+                          <>
+                            $490<span>/anual</span>
+                            
+                          </>
+                        ) : (
+                          <>
+                            $49<span>/mes</span>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="plan-features">
@@ -793,7 +780,9 @@ const Labels: React.FC = () => {
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Integración avanzada con Google Drive (guardar, listar, enviar y resumir documentos)</span>
+                        <span>
+                          Integración avanzada con Google Drive (guardar, listar, enviar y resumir documentos)
+                        </span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
@@ -807,20 +796,31 @@ const Labels: React.FC = () => {
                   <div className={`plan-card ${activePlan === "pro" ? "active" : ""}`}>
                     <div className="plan-header">
                       <Zap className="plan-icon" size={32} />
-                      <h3 className="plan-name">Pro</h3>
+                      <h3 className="plan-name">Enterprise</h3>
                       <div className="plan-price">
-                        $99<span>/mes</span>
+                      {isPriceAnnual ? (
+                          <>
+                            $990<span>/anual</span>
+                            
+                          </>
+                        ) : (
+                          <>
+                            $99<span>/mes</span>
+                          </>
+                        )}
                       </div>
                     </div>
                     <div className="plan-features">
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                        Gestión estratégica completa de comunicaciones corporativas</span>
+                        <span>Gestión estratégica completa de comunicaciones corporativas</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>Automatización integral de atención vía WhatsApp (videollamadas, transcripciones y resúmenes automáticos)</span>
+                        <span>
+                          Automatización integral de atención vía WhatsApp (videollamadas, transcripciones y resúmenes
+                          automáticos)
+                        </span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
@@ -832,20 +832,17 @@ const Labels: React.FC = () => {
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                        Análisis de sentimientos avanzado y flujo optimizado de ventas</span>
+                        <span>Análisis de sentimientos avanzado y flujo optimizado de ventas</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                        Soporte personalizado y dedicado 24/7</span>
+                        <span>Soporte personalizado y dedicado 24/7</span>
                       </div>
                     </div>
                     <button className="plan-cta">Suscríbete ahora</button>
                   </div>
 
                   {/* Plan Enterprise */}
-                  
                 </div>
 
                 <div className="subscription-form-container">
@@ -942,13 +939,44 @@ const Labels: React.FC = () => {
 
         {/* Modal para Marketplace */}
         {isMarketplaceModalOpen && (
-          <div className="fullscreen-modal">
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
             <div className="modal-overlay" onClick={closeMarketplaceModal}></div>
             <div className="modal-content marketplace-modal-content">
               <button className="modal-close-button" onClick={closeMarketplaceModal} title="Cerrar">
                 <X size={24} />
               </button>
-              <div className="modal-body">
+              <div
+                ref={marketplaceModalContentRef}
+                className="modal-body draggable-content"
+                style={{
+                  maxHeight: "80vh",
+                  overflowY: "auto",
+                  cursor: "grab",
+                  padding: "30px",
+                }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUpOrLeave}
+                onMouseLeave={handleMouseUpOrLeave}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleMouseUpOrLeave}
+              >
+                <div className="drag-scroll-indicator">
+                  <div className="drag-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 5V19M12 5L6 11M12 5L18 11"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <span>Arrastra para desplazarte</span>
+                </div>
+
                 <h2>Ecosistema de Agentes Inteligentes</h2>
 
                 <div className="marketplace-features">
@@ -1005,11 +1033,9 @@ const Labels: React.FC = () => {
             </div>
           </div>
         )}
-
       </div>
     </div>
-  );
+  )
 }
 
 export default Labels
-

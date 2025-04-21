@@ -14,12 +14,12 @@ function App() {
       <div className='scene_container' >
       
         <Suspense fallback={null}>
-       
+        <Labels />
           <Scene />
         </Suspense>
-          <Labels />
+          
           <Navbar  />
-        <ScrollIndicator />
+      
  
       </div>
       

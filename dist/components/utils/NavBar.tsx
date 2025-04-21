@@ -45,7 +45,6 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
 
         <div className="navbar-about">
           <a
-            href="/marketplace"
             className="primary-button"
             style={{ 
               margin: 0, 
@@ -53,9 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrollToSection }) => {
               padding: '0 30px',
               fontSize: '14px'
             }}
-            onClick={(e) => {
-              
-            }}
+            onClick={() => window.open("https://iamex.io/marketplace", "_blank")}
           >
             MARKETPLACE
           </a>

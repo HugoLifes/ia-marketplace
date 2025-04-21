@@ -6,9 +6,9 @@
   --color-primary: rgba(41, 98, 255, 0.25);
   --color-secondary: rgba(2, 255, 196, 0.2);
   --color-text: #fff;
-  --font-primary: 'Space Grotesk', sans-serif;
-  --font-secondary: 'ZCOOL KuaiLe', sans-serif;
-  
+  --font-primary: "Space Grotesk", sans-serif;
+  --font-secondary: "ZCOOL KuaiLe", sans-serif;
+
   /* Variables responsivas para tamaños */
   --header-height: 70px;
   --header-height-tablet: 65px;
@@ -82,7 +82,7 @@ body,
   animation: bounce 1.8s infinite;
   font-size: clamp(14px, 2vw, 18px);
   color: white;
-  text-shadow: 0 0 5px rgba(2,255,196,0.4);
+  text-shadow: 0 0 5px rgba(2, 255, 196, 0.4);
 }
 
 .alpha-guide {
@@ -144,7 +144,7 @@ body,
   left: 0;
   width: 100%;
   height: var(--header-height);
-  
+
   background-color: transparent;
   transition: background-color 0.3s ease;
   padding: clamp(6px, 1.5vh, 10px) 0;
@@ -201,9 +201,15 @@ body,
 }
 
 @keyframes navLogoFloat {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .navbar-about {
@@ -264,9 +270,15 @@ body,
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Indicador de scroll - Versión responsiva */
@@ -288,6 +300,11 @@ body,
   filter: invert(1) brightness(100);
 }
 
+.scrollLogo2 {
+  max-width: clamp(20px, 3vw, 30px);
+  height: auto;
+}
+
 .scroll-text {
   color: white;
   font-family: var(--font-primary);
@@ -296,8 +313,13 @@ body,
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
 }
 
 /* Contenedores de página - Versión responsiva */
@@ -387,7 +409,8 @@ body,
   font-size: clamp(14px, 1.5vw, 18px);
   color: #333;
   margin-bottom: clamp(15px, 3vh, 20px);
-  font-family: var(--font-primary);;
+  font-family: var(--font-primary);
+  ;
 }
 
 /* Formularios - Versión responsiva */
@@ -519,7 +542,8 @@ body,
 }
 
 /* Textos - Versión responsiva */
-.message, .message1 {
+.message,
+.message1 {
   color: #f9ff02cf;
   font-family: var(--font-primary);
   font-size: clamp(48px, 8vw, 110px);
@@ -529,7 +553,8 @@ body,
 }
 
 .message--sub {
-  font-family: var(--font-primary);;
+  font-family: var(--font-primary);
+  ;
   color: #8c8c8c;
   font-size: clamp(14px, 2vw, 24px);
   margin-top: clamp(5px, 1vh, 10px);
@@ -539,7 +564,7 @@ body,
 .welcome-button-container {
   position: absolute;
   bottom: 20px;
-  
+
   width: auto;
   display: flex;
   justify-content: flex-start;
@@ -569,7 +594,7 @@ body,
 /* Textos de bienvenida - Versión responsiva */
 .welcome-text-title {
   position: absolute;
-  bottom: clamp(50%, 60%, 60%);
+
   font-size: clamp(21px, 3vw, 35px);
   width: min(90%, 50%);
   font-family: var(--font-primary);
@@ -608,7 +633,7 @@ body,
 .alpha-subtitle {
   font-family: var(--font-primary);
   color: #aaa;
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-size: clamp(1.1em, 1.5vw, 1.2rem);
   margin: 0;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   position: relative;
@@ -739,6 +764,8 @@ body,
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  padding: clamp(10px, 2vw, 20px);
+  box-sizing: border-box;
 }
 
 .modal-overlay {
@@ -749,33 +776,36 @@ body,
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   z-index: 10000;
 }
 
 .modal-content {
   position: relative;
-  width: min(95%, 90%);
-  height: min(95%, 90%);
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
-  padding: clamp(20px, 3vw, 30px);
+  padding: clamp(15px, 3vw, 30px);
   color: white;
   z-index: 10001;
   overflow-y: auto;
   box-shadow: 0 8px 32px rgba(2, 255, 196, 0.2);
   backdrop-filter: blur(10px);
   animation: modalFadeIn 0.3s ease;
+  -webkit-backdrop-filter: blur(10px);
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  flex-direction: column;
 }
 
 .modal-close-button {
   position: absolute;
-  top: clamp(15px, 2vh, 20px);
-  right: clamp(15px, 2vw, 20px);
-  background: transparent;
-  border: none;
+  top: clamp(10px, 2vh, 20px);
+  right: clamp(10px, 2vw, 20px);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
-  font-size: clamp(20px, 2vw, 24px);
+  font-size: clamp(18px, 2vw, 24px);
   cursor: pointer;
   width: clamp(35px, 5vw, 40px);
   height: clamp(35px, 5vh, 40px);
@@ -786,6 +816,7 @@ body,
   transition: all 0.3s ease;
   pointer-events: auto;
   z-index: 10002;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .modal-close-button:hover {
@@ -794,21 +825,33 @@ body,
 }
 
 .modal-body {
-  padding: clamp(15px, 2vw, 20px);
+  padding: clamp(10px, 2vw, 20px);
   font-family: var(--font-primary);
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-body h2 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  margin-bottom: clamp(15px, 2vh, 20px);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  margin-bottom: clamp(15px, 3vh, 25px);
   color: var(--color-text);
   text-shadow: 0 0 15px rgba(2, 255, 196, 0.5);
+  text-align: center;
+  width: 100%;
 }
 
 .modal-body p {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.8);
+  margin-bottom: clamp(15px, 2vh, 25px);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
 }
 
 @keyframes modalFadeIn {
@@ -826,6 +869,8 @@ body,
 .alpha-modal-content {
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(41, 98, 255, 0.2));
   border: 1px solid rgba(2, 255, 196, 0.2);
+  max-width: 95%;
+  width: min(1200px, 95%);
 }
 
 .alpha-modal-title {
@@ -842,6 +887,7 @@ body,
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: clamp(15px, 2vw, 20px);
   margin: clamp(20px, 3vh, 30px) 0;
+  width: 100%;
 }
 
 .alpha-agent-card {
@@ -905,21 +951,21 @@ body,
     --header-height: var(--header-height-tablet);
     --container-padding: var(--container-padding-tablet);
   }
-  
+
   .navbar-container {
     padding: 0 var(--container-padding-tablet);
   }
-  
+
   .form-row {
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .welcome-button-container,
   .clickable-text {
     bottom: 15px;
   }
-  
+
   /* Ajustar posición de elementos en pantallas medianas */
   .welcome-text-title,
   .welcome-text-subTitle {
@@ -932,7 +978,7 @@ body,
     flex-direction: column;
     gap: 8px;
   }
-  
+
   .email-form-container {
     bottom: 10%;
   }
@@ -943,42 +989,65 @@ body,
     --header-height: var(--header-height-mobile);
     --container-padding: var(--container-padding-mobile);
   }
-  
+  .marketplace-subtitle.clickable {
+    bottom: 20px;
+  }
+
   .navbar-container {
     padding: 0 var(--container-padding-mobile);
   }
-  
+
   /* En pantallas muy pequeñas, apilar los elementos */
   .welcome-button-container {
-    bottom: 75px; /* Dar espacio para el texto debajo */
+    bottom: 134px; /* Dar espacio para el texto debajo */
     left: 50%;
     transform: translateX(-50%);
     width: 80%; /* Limitar el ancho en pantallas pequeñas */
   }
-  
+
   .welcome-button-container .primary-button {
     width: 100%;
   }
-  
+
   .clickable-text {
-    bottom: 20px;
+    bottom: 65px;
     right: 50%;
     transform: translateX(50%);
     text-align: center;
   }
-  
-  .welcome-text-title,
+
+  .welcome-text-title {
+    width: 90%;
+    top: 16%;
+  }
   .welcome-text-subTitle {
     width: 90%;
-    top: 20%;
+    top: 14%;
   }
 
-  .logo-container{
+  .logo-container {
     top: 40%;
   }
 
-  .imageLogo2{
+  .imageLogo2 {
     width: 47%;
+  }
+
+  .scroll-indicator {
+    bottom: 80px;
+  }
+
+  .alpha-button-container {
+    bottom: 20%;
+  }
+  .alpha-subtitle-container {
+    bottom: 11%;
+  }
+  .marketplace-button-container {
+    bottom: 8%;
+  }
+  .marketplace-subtitle-container {
+    left: 0%;
   }
 }
 
@@ -995,7 +1064,7 @@ body,
 
 /* Utilidades para accesibilidad táctil en dispositivos móviles */
 @media (max-width: 768px) {
-  button, 
+  button,
   .primary-button,
   .submit-button,
   a.clickable-text,
@@ -1007,7 +1076,7 @@ body,
 
 /* Estilos para la sección MarketPlace */
 .page--marketplace {
-  position: absolute;
+  position: relative;
   top: clamp(10%, 3%, 30%);
   left: 50%;
   transform: translateX(-50%);
@@ -1024,18 +1093,11 @@ body,
   padding: 2rem;
   text-align: center;
   position: relative;
+  bottom: 50px;
 }
-
-
 
 .marketplace-button-container {
-  
-  position: relative;
-  z-index: 2;
-}
-
-.marketplace-subtitle-container {
-  margin-top: 30px;
+  top: 22%;
   position: relative;
   z-index: 2;
 }
@@ -1091,7 +1153,7 @@ body,
   gap: clamp(12px, 1.5vw, 20px); /* Reducido aún más */
   width: 100%;
   max-width: 900px; /* Reducido de 1000px a 900px */
-  
+
   margin-top: 50px;
 }
 
@@ -1424,7 +1486,10 @@ body,
 .know-more-modal {
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(41, 98, 255, 0.3));
   border: 1px solid rgba(2, 255, 196, 0.2);
-  max-width: 900px;
+  max-width: 95%;
+  width: min(1000px, 95%);
+  max-height: 95vh;
+  overflow-y: auto;
 }
 
 .know-more-title {
@@ -1476,9 +1541,10 @@ body,
 
 .applications-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: clamp(10px, 2vw, 15px);
+  margin-top: clamp(15px, 2vh, 20px);
+  width: 100%;
 }
 
 .application-card {
@@ -1579,12 +1645,11 @@ body,
 
 /* Estilos para la sección de Comparativa de Tecnologías */
 .page--comparison {
-    position: relative  ;
-    max-width: min(90%, 750px);
-    top: 1%;
-    left: 50%;
-    transform: translateX(-50%);
-    
+  position: relative;
+  max-width: min(90%, 750px);
+  top: 1%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .comparison-content {
@@ -1604,37 +1669,11 @@ body,
   pointer-events: auto; /* Asegurar que los eventos de puntero funcionen */
 }
 
-/* Regla específica para cuando estos elementos están ocultos */
-.page--hidden.page--comparison {
-
-  
-}
-
-.page--hidden .comparison-content {
- 
-
-}
-
-
-.comparison-title {
-  font-family: var(--font-primary);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
-  margin-bottom: clamp(10px, 2vh, 20px);
-  letter-spacing: 2px;
-  text-align: center;
-  padding-bottom: 60%;
-}
-
-
-
 /* Tabla comparativa */
 .comparison-table-container {
-  
   max-width: 900px;
   margin-bottom: clamp(30px, 5vh, 50px);
-  
+
   background: rgba(0, 0, 0, 0.3);
   border-radius: 16px;
   backdrop-filter: blur(10px);
@@ -1974,27 +2013,36 @@ body,
 @media (max-width: 480px) {
   .comparison-title {
     font-size: 2rem;
+    bottom: 16%;
   }
 
   .comparison-subtitle {
     font-size: 0.9rem;
+    top: 9%;
   }
 
+  .comparison-button-container {
+    top: 11%;
+  }
+
+  .comparison-table-container {
+    max-width: 100%;
+  }
   .header-cell,
   .row-cell,
   .row-label {
-    padding: 10px;
+    padding: 5px;
     font-size: 0.8rem;
   }
 
   .header-icon {
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
   }
 
   .case-icon {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
   }
 
   .training-button {
@@ -2164,8 +2212,9 @@ body,
   text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
   margin-bottom: clamp(10px, 1.5vh, 15px);
   text-align: center;
+  position: relative;
   letter-spacing: 2px;
-  padding-bottom: 30%;
+  padding-bottom: 40%;
 }
 
 .subscription-subtitle {
@@ -2537,7 +2586,7 @@ body,
   }
 
   .subscription-title {
-    font-size: 2rem;
+    font-size: 1.7rem;
     padding-bottom: 110%;
   }
 
@@ -2554,7 +2603,6 @@ body,
     padding: 20px;
   }
 }
-
 
 /* Estilos para la página de suscripción simplificada */
 .subscription-page-content {
@@ -2674,19 +2722,25 @@ body,
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: #00ffc4;
   text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
-  margin-bottom: clamp(10px, 1.5vh, 15px);
+  position: relative;
   text-align: center;
   letter-spacing: 2px;
+  padding-bottom: 55%;
 }
 
 .comparison-subtitle {
   font-family: var(--font-primary);
-  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-size: clamp(1.3rem, 1.5vw, 1.3rem);
   color: #fff;
-   /* Espacio aumentado entre subtítulo y botón */
+  /* Espacio aumentado entre subtítulo y botón */
   text-align: center;
   max-width: 800px;
+  position: relative;
   text-shadow: 0 0 10px rgba(2, 255, 196, 0.5);
+}
+
+.comparison-button-container {
+  position: relative;
 }
 
 .comparison-open-modal-btn {
@@ -2779,8 +2833,6 @@ body,
   .comparison-modal-content .modal-body {
     padding: 20px 15px;
   }
-
-  
 }
 
 /* Estilos para el indicador de arrastre en todos los modales */
@@ -2836,7 +2888,7 @@ body,
 
 /* Estilos para el modal con video */
 .video-modal-content {
-  max-width: 90%;
+  max-width: 95%;
   width: 900px;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(41, 98, 255, 0.3));
   border: 1px solid rgba(2, 255, 196, 0.2);
@@ -2961,34 +3013,24 @@ body,
 }
 
 /* Añadir estos estilos para la página de Marketplace */
-.marketplace-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100%;
-  padding: 2rem;
-  text-align: center;
-}
 
 .marketplace-title {
   font-family: var(--font-primary);
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(2.8rem, 7vw, 5rem);
   color: #00ffc4;
   text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
   margin-bottom: clamp(20px, 3vh, 40px);
   text-align: center;
   letter-spacing: 2px;
-  padding-bottom: 290px;
-}
-
-.marketplace-button-container {
- 
+  position: relative;
+  bottom: 25%;
 }
 
 .marketplace-subtitle-container {
-  margin-top: 30px;
+  top: 30%;
+
+  position: relative;
+  z-index: 2;
 }
 
 .marketplace-subtitle.clickable {
@@ -3026,10 +3068,47 @@ body,
 
 /* Estilos para el modal de Marketplace */
 .marketplace-modal-content {
-  max-width: 90%;
+  max-width: 95%;
   width: 900px;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(41, 98, 255, 0.3));
   border: 1px solid rgba(2, 255, 196, 0.2);
+}
+
+/* Estilos mejorados para el modal de Marketplace */
+.marketplace-modal-content {
+  max-width: 95%;
+  width: 900px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(41, 98, 255, 0.3));
+  border: 1px solid rgba(2, 255, 196, 0.2);
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.marketplace-modal-content .modal-body {
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(2, 255, 196, 0.5) rgba(0, 0, 0, 0.2);
+}
+
+.marketplace-modal-content .modal-body::-webkit-scrollbar {
+  width: 8px;
+  display: block !important;
+}
+
+.marketplace-modal-content .modal-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.marketplace-modal-content .modal-body::-webkit-scrollbar-thumb {
+  background: rgba(2, 255, 196, 0.3);
+  border-radius: 10px;
+}
+
+.marketplace-modal-content .modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(2, 255, 196, 0.5);
 }
 
 .marketplace-modal-content .modal-body {
@@ -3222,4 +3301,128 @@ body,
     height: 40px;
   }
 }
+
+/* Añade estas clases específicas para los iconos: */
+.icon-mobile {
+  color: #02ffc4;
+  filter: drop-shadow(0 0 5px rgba(2, 255, 196, 0.7));
+}
+
+.icon-desktop {
+  color: #ffffff;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+}
+
+.value-label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.high-value {
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Estilos para el selector de periodo (mensual/anual) */
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0 30px;
+}
+
+.billing-toggle span {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+}
+
+.billing-toggle span.active {
+  color: #fff;
+  font-weight: 600;
+}
+
+.toggle-switch {
+  width: 50px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toggle-switch.annual {
+  background: rgba(2, 255, 196, 0.3);
+  border-color: rgba(2, 255, 196, 0.5);
+}
+
+.toggle-knob {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-switch.annual .toggle-knob {
+  left: 27px;
+  background: #02ffc4;
+}
+
+.discount-badge {
+  background: rgba(2, 255, 196, 0.2);
+  color: #02ffc4;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 5px;
+  font-weight: bold;
+  border: 1px solid rgba(2, 255, 196, 0.4);
+}
+
+.annual-price {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 5px;
+}
+
+/* Ajustes responsivos para el selector de periodo */
+@media (max-width: 480px) {
+  .billing-toggle {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .billing-toggle span {
+    font-size: 0.85rem;
+  }
+
+  .toggle-switch {
+    width: 44px;
+    height: 24px;
+  }
+
+  .toggle-knob {
+    width: 18px;
+    height: 18px;
+  }
+
+  .toggle-switch.annual .toggle-knob {
+    left: 23px;
+  }
+
+  .discount-badge {
+    font-size: 0.65rem;
+    padding: 1px 4px;
+  }
+}
+
 
