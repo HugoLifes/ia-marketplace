@@ -1,42 +1,46 @@
-// hooks/useSplitTextLoader.ts
-import { useEffect } from 'react'
-import gsap from 'gsap'
+// src/hooks/useSplitTextLoader.ts
+import { useEffect, useState } from "react";
+import gsap from "gsap";
 
-export const SplitText = () => {
+export function SplitText() {
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
-    const loadSplitText = () => {
-      return new Promise((resolve, reject) => {
-        if ((window as any).SplitText) {
-          resolve((window as any).SplitText)
-          return
-        }
-
-        const script = document.createElement('script')
-        script.src = '../../libs/SplitText.min.js'
-        script.async = true
-        script.onload = () => {
-          const SplitText =
-            (window as any).SplitText?.default ??
-            (window as any).SplitText ??
-            (window as any).gsap?.SplitText
-
-          if (SplitText) {
-            gsap.registerPlugin(SplitText)
-            console.log('✅ SplitText loaded and registered')
-            resolve(SplitText)
-          } else {
-            console.warn('⚠️ SplitText no disponible en window')
-            reject(new Error('SplitText no disponible'))
-          }
-        }
-        script.onerror = () => reject(new Error('Error al cargar SplitText'))
-
-        document.body.appendChild(script)
-      })
+    // Si ya lo cargamos antes, no volvemos a hacerlo
+    if ((window as any).SplitText) {
+      setReady(true);
+      return;
     }
 
-    loadSplitText().catch((error) => {
-      console.error('Error al cargar SplitText:', error)
-    })
-  }, [])
+    const script = document.createElement("script");
+    // Ruta absoluta: /libs/SplitText.min.js
+    script.src = `${window.location.origin}/libs/SplitText.min.js`;
+    script.async = true;
+
+    script.onload = () => {
+      const ST =
+        (window as any).SplitText?.default ??
+        (window as any).SplitText ??
+        (window as any).gsap?.SplitText;
+      if (ST) {
+        gsap.registerPlugin(ST);
+        console.log("✅ SplitText cargado y registrado");
+        setReady(true);
+      } else {
+        console.error("⚠️ SplitText no estuvo disponible en window");
+      }
+    };
+    script.onerror = () => {
+      console.error("❌ Error cargando SplitText.min.js");
+    };
+
+    document.body.appendChild(script);
+
+    // cleanup si desmontan antes de cargar
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  return ready;
 }

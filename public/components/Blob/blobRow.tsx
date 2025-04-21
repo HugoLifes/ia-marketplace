@@ -38,7 +38,7 @@ const BlobRow = () => {
       'lava',
       'lava2',
       'ghostFlame',
-      'ice',
+      'lightning',
     ];
     const scaleMap: Record<DeviceType, number[]> = {
       mobile: [0.4, 0.2, 0.2, 0.2, 0.2],

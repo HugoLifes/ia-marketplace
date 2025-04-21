@@ -158,7 +158,7 @@ ice: {
 
 lightning: {
   distortion: 0.5,
-  speed: 0.5,
+  speed: 0.2,
   phase: 1.0,
   r: 0.3,
   g: 0.9,

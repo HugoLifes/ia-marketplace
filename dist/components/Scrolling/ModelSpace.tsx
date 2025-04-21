@@ -12,11 +12,15 @@ import * as THREE from 'three';
 import { timelinePoints } from './animationspoint'
 import {useMorphSVG} from "../hooks/useMorphSVG"
 import { getSplitText } from '../utils/getSplitText'
+import{ useClubSplitText } from '../hooks/useSplitText'
+import { SplitText } from "../hooks/SplitText";
 
 //import SplitText from "gsap/SplitText"
 
 
 export function Model(props: any) {
+  const SplitTxt = getSplitText()
+ 
   // acceso a uso de los controles de la camara
   const controls = useRef<any>(null)
   //carga de modelo y variables
@@ -56,14 +60,10 @@ export function Model(props: any) {
     page4.current = document.getElementById('page-4') 
     page5.current = document.getElementById('page-5') 
     body.current = document.getElementById('canvas')
+
+    
    
   })
-
-
-  useMorphSVG()
-  
-  const SplitText = getSplitText()
-
 
   
 
@@ -79,21 +79,26 @@ export function Model(props: any) {
   const elementSubcriptionTitle = document.querySelector('.subscription-title')
   const elementSubcriptionSubtitle = document.querySelector('.subscription-subtitle')
 
-  const alpha = new SplitText(elementAlpha, { type: 'chars' })
-  const market = new SplitText(elementMarket, { type: 'chars' })
+  const ST = (window as any).SplitText;
 
-  const comparisionTitle = new SplitText(elementComparisionTitle, { type: 'words' })
-  const comparisionSubtitle = new SplitText(elementComparisionSubtitle, { type: 'words' })
+  const alpha = new ST(elementAlpha, { type: 'chars' })
+  const market = new SplitTxt(elementMarket, { type: 'chars' })
+
+  const comparisionTitle = new SplitTxt(elementComparisionTitle, { type: 'words' })
+  const comparisionSubtitle = new SplitTxt(elementComparisionSubtitle, { type: 'words' })
 
 
-  const subcriptionTitle = new SplitText(elementSubcriptionTitle, { type: 'chars' })
-  const subcriptionSubtitle = new SplitText(elementSubcriptionSubtitle, { type: 'words' })
+  const subcriptionTitle = new SplitTxt(elementSubcriptionTitle, { type: 'chars' })
+  const subcriptionSubtitle = new SplitTxt(elementSubcriptionSubtitle, { type: 'words' })
 
-  const wtitle = new SplitText( elementWtitle, { type: 'words' })
-  const wsubtitle = new SplitText(elementWSubtitle, { type: 'words' })
+  const wtitle = new SplitTxt( elementWtitle, { type: 'words' })
+  const wsubtitle = new SplitTxt(elementWSubtitle, { type: 'words' })
+
   
- 
-  
+  const alphaInst = new ST(elementAlpha, { type: "chars" });
+  const marketInst = new ST(elementMarket, { type: "chars" });
+  const compInst = new ST(elementWtitle, { type: "words" });
+
 
   useLayoutEffect(() => {
         
