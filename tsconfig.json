@@ -1,7 +1,9 @@
 {
     "include": [
         "./src/**/*",
-        "./public/**/*"
+        "./public/**/*",
+        "./src/vite-env.d.ts",
+        "./src/**/*.js",
     ],
     "compilerOptions": {
         "strict": true,
@@ -15,5 +17,7 @@
         "outDir": "./dist",
         "allowJs": true,
         "skipLibCheck": true,
+        "moduleResolution": "node",
+        "module": "esnext",
     }
 }

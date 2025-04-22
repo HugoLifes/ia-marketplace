@@ -239,7 +239,7 @@ const Labels: React.FC = () => {
         {/* Page 1: Welcome/Intro */}
         <div id="page-1" className="page page--welcome page--intro">
           <h1 id="wTitle" className="welcome-text-title">
-            Bienvenido a I'AM: Revoluciona tu vida con Inteligencia Artificial
+            Bienvenido: Revoluciona tu vida con Inteligencia Artificial
           </h1>
 
           <div className="twister1">
@@ -249,7 +249,7 @@ const Labels: React.FC = () => {
           </div>
 
           <h1 id="wSubTitle" className="welcome-text-subTitle">
-            Creamos agentes inteligentes que entienden tu negocio, aprenden de ti y actúan como tu digital
+            Creamos agentes inteligentes para ti que entienden tu negocio y actúan como tu digital
           </h1>
 
           <div className="welcome-button-container">
@@ -407,7 +407,7 @@ const Labels: React.FC = () => {
                     Los Alpha Agents representan la próxima generación de asistentes virtuales, diseñados
                     específicamente para tu negocio.
                   </p>
-                  <button className="primary-button">Solicitar acceso anticipado</button>
+                  <button className="primary-button" onClick={() => window.open("https://iamex.io/alpha", "_blank")} >Solicitar acceso anticipado</button>
                 </div>
               </div>
             </div>
@@ -483,7 +483,7 @@ const Labels: React.FC = () => {
                     ALPHA representa nuestro compromiso con un futuro donde la inteligencia artificial potencia el
                     potencial humano en lugar de reemplazarlo.
                   </p>
-                  <button className="know-more-cta" onClick={() => window.open("https://iamex.io/", "_blank")}>
+                  <button className="know-more-cta" onClick={() => window.open("https://iamex.io/register", "_blank")}>
                     Únete al programa ALPHA
                   </button>
                 </div>
@@ -678,7 +678,7 @@ const Labels: React.FC = () => {
 
                   {/* CTA */}
                   <div className="training-cta">
-                    <button className="training-button">Solicita tu entrenamiento especializado</button>
+                    <button className="training-button" onClick={() => window.open("https://iamex.io/marketplace", "_blank")}>Solicita tu entrenamiento especializado</button>
                     <div className="training-button-glow"></div>
                   </div>
                 </div>
@@ -747,7 +747,7 @@ const Labels: React.FC = () => {
                         <span>Soporte básico vía email</span>
                       </div>
                     </div>
-                    <button className="plan-cta">Suscribete ahora</button>
+                    <button className="plan-cta" onClick={() => window.open("https://iamex.io/plans", "_blank")} >Suscribete ahora</button>
                   </div>
 
                   {/* Plan Pro */}
@@ -789,7 +789,7 @@ const Labels: React.FC = () => {
                         <span>Resúmenes inteligentes de contenidos y videos (YouTube)</span>
                       </div>
                     </div>
-                    <button className="plan-cta highlight">Suscríbete ahora</button>
+                    <button className="plan-cta highlight" onClick={() => window.open("https://iamex.io/plans", "_blank")}>Suscríbete ahora</button>
                   </div>
 
                   {/* Plan Pro */}
@@ -839,7 +839,7 @@ const Labels: React.FC = () => {
                         <span>Soporte personalizado y dedicado 24/7</span>
                       </div>
                     </div>
-                    <button className="plan-cta">Suscríbete ahora</button>
+                    <button className="plan-cta" onClick={() => window.open("https://iamex.io/plans", "_blank")}>Suscríbete ahora</button>
                   </div>
 
                   {/* Plan Enterprise */}
@@ -1026,9 +1026,7 @@ const Labels: React.FC = () => {
                   perfectamente para potenciar tu negocio con inteligencia artificial avanzada.
                 </p>
 
-                <button className="primary-button" onClick={() => window.open("/marketplace", "_blank")}>
-                  Explorar el Marketplace
-                </button>
+                
               </div>
             </div>
           </div>

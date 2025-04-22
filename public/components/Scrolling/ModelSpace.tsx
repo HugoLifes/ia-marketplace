@@ -13,9 +13,6 @@ import { timelinePoints } from './animationspoint'
 import {useMorphSVG} from "../hooks/useMorphSVG"
 import { getSplitText } from '../utils/getSplitText'
 import{ useClubSplitText } from '../hooks/useSplitText'
-import { SplitText } from "../hooks/SplitText";
-
-//import SplitText from "gsap/SplitText"
 
 
 export function Model(props: any) {
@@ -81,7 +78,7 @@ export function Model(props: any) {
 
   const ST = (window as any).SplitText;
 
-  const alpha = new ST(elementAlpha, { type: 'chars' })
+  const alpha = new SplitTxt(elementAlpha, { type: 'chars' })
   const market = new SplitTxt(elementMarket, { type: 'chars' })
 
   const comparisionTitle = new SplitTxt(elementComparisionTitle, { type: 'words' })

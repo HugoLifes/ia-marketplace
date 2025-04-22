@@ -1,6 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=ZCOOL+KuaiLe&display=swap");
 
+
+/* Import modular CSS files */
+ /*@import "variables.css";
+@import "reset.css";
+@import "layout.css";
+@import "navbar.css";
+@import "components.css";
+@import "forms.css";
+@import "buttons.css";
+@import "typography.css";
+@import "modals.css";
+@import "responsive.css";
+
+/* Import page-specific styles */
+/*@import "pages/welcome.css";
+@import "pages/alpha.css";
+@import "pages/marketplace.css"; */
+
 /* Variables CSS para colores y fuentes */
 :root {
   --color-primary: rgba(41, 98, 255, 0.25);

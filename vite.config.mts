@@ -8,7 +8,7 @@ import glsl from 'vite-plugin-glsl'
       build: {
         outDir: 'dist',
         // esto debería ser 'dist' o cualquier otra carpeta donde quieras que se genere el build
-        chunkSizeWarningLimit: 1000,
+        chunkSizeWarningLimit: 1500,
       },
       base: './',
       server: {
