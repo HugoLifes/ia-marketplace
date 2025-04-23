@@ -13,6 +13,7 @@ import { ParticlesMorph } from './Particles/particles2'
 import { Stats } from '@react-three/drei'
 import TouchScrollHandler   from './hooks/scroll'
 import BlobRow from './Blob/blobRow'
+import { SplitText } from './hooks/SplitText'
 
 
 const Scene: React.FC = () => {

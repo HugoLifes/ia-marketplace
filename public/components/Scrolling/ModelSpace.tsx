@@ -16,7 +16,7 @@ import{ useClubSplitText } from '../hooks/useSplitText'
 
 
 export function Model(props: any) {
-  const SplitTxt = getSplitText()
+  //const SplitTxt = getSplitText()
  
   // acceso a uso de los controles de la camara
   const controls = useRef<any>(null)
@@ -78,18 +78,18 @@ export function Model(props: any) {
 
   const ST = (window as any).SplitText;
 
-  const alpha = new SplitTxt(elementAlpha, { type: 'chars' })
-  const market = new SplitTxt(elementMarket, { type: 'chars' })
+ // const alpha = new SplitTxt(elementAlpha, { type: 'chars' })
+ // const market = new SplitTxt(elementMarket, { type: 'chars' })
 
-  const comparisionTitle = new SplitTxt(elementComparisionTitle, { type: 'chars' })
-  const comparisionSubtitle = new SplitTxt(elementComparisionSubtitle, { type: 'words' })
+ // const comparisionTitle = new SplitTxt(elementComparisionTitle, { type: 'chars' })
+ // const comparisionSubtitle = new SplitTxt(elementComparisionSubtitle, { type: 'words' })
 
 
-  const subcriptionTitle = new SplitTxt(elementSubcriptionTitle, { type: 'chars' })
-  const subcriptionSubtitle = new SplitTxt(elementSubcriptionSubtitle, { type: 'words' })
+ // const subcriptionTitle = new SplitTxt(elementSubcriptionTitle, { type: 'chars' })
+ // const subcriptionSubtitle = new SplitTxt(elementSubcriptionSubtitle, { type: 'words' })
 
-  const wtitle = new SplitTxt( elementWtitle, { type: 'words' })
-  const wsubtitle = new SplitTxt(elementWSubtitle, { type: 'words' })
+ // const wtitle = new SplitTxt( elementWtitle, { type: 'words' })
+ // const wsubtitle = new SplitTxt(elementWSubtitle, { type: 'words' })
 
 
   useLayoutEffect(() => {
@@ -154,8 +154,8 @@ export function Model(props: any) {
             },
             timelinePoint: 0.0
           },
-          {
-            objectToAnimate: alpha.chars,
+          /* {
+            objectToAnimate: "",
             splitType: 'chars',
             properties: {
               color:"#00FFF5",
@@ -170,7 +170,7 @@ export function Model(props: any) {
             timelinePoint: 0.4,
           },
           {
-            objectToAnimate: wtitle.words,
+            objectToAnimate: "",
             splitType: 'words',
             properties: {
               opacity: 0,
@@ -184,7 +184,7 @@ export function Model(props: any) {
             timelinePoint: 0.2,
           },
           {
-            objectToAnimate: wsubtitle.words,
+            objectToAnimate: ,
             splitType: 'words',
             properties: {
               opacity: 0,
@@ -196,7 +196,7 @@ export function Model(props: any) {
               stagger: 0.07 ,
             },
             timelinePoint: 0.2,
-          },
+          }, */
 
           
          
@@ -256,8 +256,8 @@ export function Model(props: any) {
             timelinePoint: 1.2
           },
 
-          {
-            objectToAnimate: alpha.chars,
+        /*   {
+            objectToAnimate: "",
             properties: {
               opacity: 0,
               y: -40,
@@ -270,7 +270,7 @@ export function Model(props: any) {
           },
 
           {
-            objectToAnimate: market.chars,
+            objectToAnimate: "",
             splitType: 'chars',
             properties: {
               color:"#FAFAFA",
@@ -283,7 +283,7 @@ export function Model(props: any) {
               stagger: 0.05,
             },
             timelinePoint: 1.2,
-          },
+          }, */
 
           
 
@@ -344,9 +344,9 @@ export function Model(props: any) {
             },
             timelinePoint: 2.1
           },
-          {
+         /*  {
           
-            objectToAnimate: market.chars,
+            objectToAnimate: "",
             properties: {
               opacity: 0,
               y: -40,
@@ -358,7 +358,7 @@ export function Model(props: any) {
             timelinePoint: 2.2,
           },
           {
-            objectToAnimate: comparisionTitle.chars,
+            objectToAnimate: "",
             splitType: 'chars',
             properties: {
               color:"#130067",
@@ -373,7 +373,7 @@ export function Model(props: any) {
             timelinePoint: 2.4,
           },
           {
-            objectToAnimate: comparisionSubtitle.words,
+            objectToAnimate: "",
             splitType: 'chars',
             properties: {
               opacity: 1,
@@ -385,7 +385,7 @@ export function Model(props: any) {
               stagger: 0.04,
             },
             timelinePoint: 2.5,
-          },
+          }, */
 
         ]
         AnimationsData = [...AnimationsData, ...MarketPlaceAnimation]
@@ -441,9 +441,9 @@ export function Model(props: any) {
             },
             timelinePoint: 3.1
           },
-          {
+        /*   {
           
-            objectToAnimate: comparisionTitle.words,
+            objectToAnimate: "",
             properties: {
               opacity: 0,
               y: -40,
@@ -456,7 +456,7 @@ export function Model(props: any) {
           },
           {
           
-            objectToAnimate: comparisionSubtitle.words,
+            objectToAnimate:"",
             properties: {
               opacity: 0,
               y: -40,
@@ -468,7 +468,7 @@ export function Model(props: any) {
             timelinePoint: 3.3,
           },
           {
-            objectToAnimate: subcriptionTitle.chars,
+            objectToAnimate: "",
             splitType: 'chars',
             properties: {
               color:"#01d3ef",
@@ -483,7 +483,7 @@ export function Model(props: any) {
             timelinePoint: 3.5,
           },
           {
-            objectToAnimate: subcriptionSubtitle.words,
+            objectToAnimate: "",
             splitType: 'chars',
             properties: {
               opacity: 1,
@@ -495,7 +495,7 @@ export function Model(props: any) {
               stagger: 0.04,
             },
             timelinePoint: 3.5,
-          },
+          }, */
 
         ]
        AnimationsData = [...AnimationsData, ...SpecialModelsAnimation]

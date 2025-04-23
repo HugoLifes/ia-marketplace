@@ -7,8 +7,8 @@ import ScrollIndicator from "../public/components/utils/ScrollIndicator";
 import { SplitText } from "../public/components/hooks/SplitText";
 
 
-function App() {
-  SplitText()
+function App() {  
+  
   return (
     
       <div className='scene_container' >
