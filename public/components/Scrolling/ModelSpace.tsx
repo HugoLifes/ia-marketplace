@@ -81,7 +81,7 @@ export function Model(props: any) {
   const alpha = new SplitTxt(elementAlpha, { type: 'chars' })
   const market = new SplitTxt(elementMarket, { type: 'chars' })
 
-  const comparisionTitle = new SplitTxt(elementComparisionTitle, { type: 'words' })
+  const comparisionTitle = new SplitTxt(elementComparisionTitle, { type: 'chars' })
   const comparisionSubtitle = new SplitTxt(elementComparisionSubtitle, { type: 'words' })
 
 
@@ -150,7 +150,7 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#114d69"
+              backgroundColor: "#101D42"
             },
             timelinePoint: 0.0
           },
@@ -158,13 +158,14 @@ export function Model(props: any) {
             objectToAnimate: alpha.chars,
             splitType: 'chars',
             properties: {
+              color:"#00FFF5",
               opacity: 1,
               rotationX: 360,
               y: 20,
-              duration: 0.5,
+              duration: 0.4,
               ease: 'power2.out',
               transformPerspective: 800,
-              stagger: 0.07 ,
+              stagger: 0.05 ,
             },
             timelinePoint: 0.4,
           },
@@ -210,7 +211,7 @@ export function Model(props: any) {
               opacity: 0,
               duration: 0.3,
             },
-            timelinePoint: 1.3,
+            timelinePoint: 1.2,
           },
     
           //html div
@@ -222,7 +223,7 @@ export function Model(props: any) {
               position: "absolute",
               
             },
-            timelinePoint: 1.5
+            timelinePoint: 1.4
           },
           {
             objectToAnimate: controls.current.target,
@@ -250,7 +251,7 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#536c9b"
+              backgroundColor: "#101D42"
             },
             timelinePoint: 1.2
           },
@@ -262,7 +263,7 @@ export function Model(props: any) {
               y: -40,
               rotationX: 180,
               duration: 0.6,
-              ease: 'power2.inOut',
+              ease: 'power2.in',
               stagger: 0.04,
             },
             timelinePoint: 1.15,
@@ -272,13 +273,14 @@ export function Model(props: any) {
             objectToAnimate: market.chars,
             splitType: 'chars',
             properties: {
+              color:"#FAFAFA",
               opacity: 1,
               rotationX: 360,
               y: 20,
-              duration: 0.7,
+              duration: 0.5,
               ease: 'power2.out',
               transformPerspective: 800,
-              stagger: 0.04,
+              stagger: 0.05,
             },
             timelinePoint: 1.2,
           },
@@ -310,7 +312,7 @@ export function Model(props: any) {
               duration: 0.5,
               position: "absolute",
             },
-            timelinePoint:2.5,
+            timelinePoint:2.4,
           }
           ,
           {
@@ -338,7 +340,7 @@ export function Model(props: any) {
             objectToAnimate: body.current,
             properties:{
               duration: 1,
-              backgroundColor: "#100c5c"
+              backgroundColor: "#5c65ce"
             },
             timelinePoint: 2.1
           },
@@ -349,25 +351,26 @@ export function Model(props: any) {
               opacity: 0,
               y: -40,
               rotationX: 180,
-              duration: 0.6,
+              duration: 0.7,
               ease: 'power2.inOut',
               stagger: 0.04,
             },
             timelinePoint: 2.2,
           },
           {
-            objectToAnimate: comparisionTitle.words,
+            objectToAnimate: comparisionTitle.chars,
             splitType: 'chars',
             properties: {
+              color:"#130067",
               opacity: 1,
               rotationX: 360,
               y: 20,
-              duration: 0.7,
+              duration: 0.5,
               ease: 'power2.out',
               transformPerspective: 800,
               stagger: 0.04,
             },
-            timelinePoint: 2.5,
+            timelinePoint: 2.4,
           },
           {
             objectToAnimate: comparisionSubtitle.words,
@@ -376,7 +379,7 @@ export function Model(props: any) {
               opacity: 1,
               rotationX: 360,
               y: 20,
-              duration: 0.7,
+              duration: 0.5,
               ease: 'power2.out',
               transformPerspective: 800,
               stagger: 0.04,
@@ -394,7 +397,7 @@ export function Model(props: any) {
             objectToAnimate: page4.current,
             properties: {
               opacity: 0,
-              duration: 0.3,
+              duration: 0.5,
               //position: "relative",
             },
             timelinePoint: 3.2,
@@ -407,7 +410,7 @@ export function Model(props: any) {
               duration: 0.8,
               position: "absolute",
             },
-            timelinePoint: 3.6,
+            timelinePoint: 3.4,
           },
           {
             objectToAnimate: controls.current.target,
@@ -445,11 +448,11 @@ export function Model(props: any) {
               opacity: 0,
               y: -40,
               rotationX: 180,
-              duration: 0.6,
+              duration: 0.7,
               ease: 'power2.inOut',
               stagger: 0.04,
             },
-            timelinePoint: 3.2,
+            timelinePoint: 3.3,
           },
           {
           
@@ -458,16 +461,17 @@ export function Model(props: any) {
               opacity: 0,
               y: -40,
               rotationX: 180,
-              duration: 0.6,
+              duration: 0.7,
               ease: 'power2.inOut',
               stagger: 0.04,
             },
-            timelinePoint: 3.2,
+            timelinePoint: 3.3,
           },
           {
             objectToAnimate: subcriptionTitle.chars,
             splitType: 'chars',
             properties: {
+              color:"#01d3ef",
               opacity: 1,
               rotationX: 360,
               y: 20,

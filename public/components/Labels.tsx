@@ -239,7 +239,7 @@ const Labels: React.FC = () => {
         {/* Page 1: Welcome/Intro */}
         <div id="page-1" className="page page--welcome page--intro">
           <h1 id="wTitle" className="welcome-text-title">
-            Bienvenido: Revoluciona tu vida con Inteligencia Artificial
+            AGENTES ESPECIALIZADOS DE INTELIGENCIA ARTIFICIAL
           </h1>
 
           <div className="twister1">
@@ -249,7 +249,7 @@ const Labels: React.FC = () => {
           </div>
 
           <h1 id="wSubTitle" className="welcome-text-subTitle">
-            Creamos agentes inteligentes para ti que entienden tu negocio y actúan como tu digital
+            Experimenta un nuevo potencial para ti y tu negocio.
           </h1>
 
           <div className="welcome-button-container">
@@ -284,7 +284,7 @@ const Labels: React.FC = () => {
               </span>
             </div>*/}
             <h1 id="alphaT" className="alpha-title">
-              Alpha
+              Alpha Agent
             </h1>
 
             <div className="alpha-button-container">
@@ -305,7 +305,7 @@ const Labels: React.FC = () => {
         <div id="page-3" className="page page--marketplace page--hidden">
           <div className="marketplace-content">
             <h1 id="marketplaceT" className="marketplace-title">
-              MarketPlace
+              MarketAgent
             </h1>
 
             <div className="marketplace-button-container">
@@ -338,7 +338,7 @@ const Labels: React.FC = () => {
         {/* Page 5: Suscripción */}
         <div id="page-5" className="page page--subscription">
           <div className="subscription-page-content">
-            <h1 className="subscription-title">Planes y Beneficios</h1>
+            <h1 className="subscription-title">Membresias y Planes</h1>
             <p className="subscription-subtitle">Elige el plan perfecto para potenciar tu negocio con IA</p>
 
             <button className="primary-button" onClick={openSubscriptionModal}>
@@ -913,7 +913,7 @@ const Labels: React.FC = () => {
                 <X size={24} />
               </button>
               <div className="modal-body">
-                <h2>Modelo Alpha: La nueva generación de IA</h2>
+                <h2>ALPHA NUESTRO PRIMER AGENT ESPECIALIZADO</h2>
                 <div className="video-container">
                   <video
                     className="modal-video"
@@ -929,8 +929,7 @@ const Labels: React.FC = () => {
                   </video>
                 </div>
                 <p>
-                  Alpha representa el futuro de la inteligencia artificial, con capacidades cognitivas avanzadas y
-                  comprensión contextual sin precedentes.
+                 Sorprendete con ALPHA AGENT, el primer modelo especializado de I'AM. Conoce su potencial y cómo puede transformar tu negocio.
                 </p>
               </div>
             </div>

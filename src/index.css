@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=ZCOOL+KuaiLe&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap');
 
 /* Import modular CSS files */
  /*@import "variables.css";
@@ -24,8 +24,8 @@
   --color-primary: rgba(41, 98, 255, 0.25);
   --color-secondary: rgba(2, 255, 196, 0.2);
   --color-text: #fff;
-  --font-primary: "Space Grotesk", sans-serif;
-  --font-secondary: "ZCOOL KuaiLe", sans-serif;
+  --font-primary: "DM Sans", sans-serif;
+  --font-secondary: "Quicksand", sans-serif;
 
   /* Variables responsivas para tamaños */
   --header-height: 70px;
@@ -638,9 +638,9 @@ body,
 /* Título Alpha - Versión responsiva */
 .alpha-title {
   font-family: var(--font-primary);
-  font-size: clamp(3.5rem, 10vw, 9rem);
-  color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  color: transparent;
+
   margin-bottom: 0;
   letter-spacing: clamp(2px, 0.5vw, 5px);
   position: fixed;
@@ -2226,8 +2226,8 @@ body,
 .subscription-title {
   font-family: var(--font-primary);
   font-size: clamp(4rem, 5vw, 3.5rem);
-  color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
+  color: transparent;
+
   margin-bottom: clamp(10px, 1.5vh, 15px);
   text-align: center;
   position: relative;
@@ -2738,8 +2738,8 @@ body,
 .comparison-title {
   font-family: var(--font-primary);
   font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
+  color: transparent;
+  
   position: relative;
   text-align: center;
   letter-spacing: 2px;
@@ -3035,8 +3035,8 @@ body,
 .marketplace-title {
   font-family: var(--font-primary);
   font-size: clamp(2.8rem, 7vw, 5rem);
-  color: #00ffc4;
-  text-shadow: 0 0 20px rgba(0, 255, 196, 0.6);
+  color: transparent;
+  
   margin-bottom: clamp(20px, 3vh, 40px);
   text-align: center;
   letter-spacing: 2px;
@@ -3064,7 +3064,7 @@ body,
 }
 
 .marketplace-subtitle.clickable:hover {
-  color: #02ffc4;
+  color: #FF6F00;
   text-shadow: 0 0 10px rgba(2, 255, 196, 0.6);
   transform: translateY(-2px);
 }
@@ -3076,7 +3076,7 @@ body,
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, rgba(2, 255, 196, 0.7), transparent);
+  background: linear-gradient(90deg, rgba(255, 111, 0, 1), transparent);
   transition: width 0.3s ease;
 }
 
