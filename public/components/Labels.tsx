@@ -254,7 +254,7 @@ const Labels: React.FC = () => {
 
           <div className="welcome-button-container">
             <button className="primary-button" onClick={openModal}>
-              Despierta a I'AM
+              Que es I'AM?
             </button>
           </div>
 
@@ -269,7 +269,7 @@ const Labels: React.FC = () => {
 
           {/* Texto clickeable 'Explora a los Alpha Agents' con efecto hover */}
 
-          <a className="clickable-text" onClick={openAlphaModal}>
+          <a className="clickable-text"  onClick={() => window.open("https://iamex.io/marketplace", "_blank")}>
             Explora a los Alpha Agents{" >"}
           </a>
         </div>
