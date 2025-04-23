@@ -305,7 +305,7 @@ const Labels: React.FC = () => {
         <div id="page-3" className="page page--marketplace page--hidden">
           <div className="marketplace-content">
             <h1 id="marketplaceT" className="marketplace-title">
-              MarketAgent
+              Market Agent
             </h1>
 
             <div className="marketplace-button-container">
