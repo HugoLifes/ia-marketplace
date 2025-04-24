@@ -639,7 +639,7 @@ body,
 .alpha-title {
   font-family: var(--font-primary);
   font-size: clamp(3.5rem, 10vw, 7rem);
-  color: transparent;
+  color: white;
 
   margin-bottom: 0;
   letter-spacing: clamp(2px, 0.5vw, 5px);
@@ -2226,7 +2226,7 @@ body,
 .subscription-title {
   font-family: var(--font-primary);
   font-size: clamp(4rem, 5vw, 3.5rem);
-  color: transparent;
+  color: white;
 
   margin-bottom: clamp(10px, 1.5vh, 15px);
   text-align: center;
@@ -2738,7 +2738,7 @@ body,
 .comparison-title {
   font-family: var(--font-primary);
   font-size: clamp(2.5rem, 6vw, 4rem);
-  color: transparent;
+  color: white;
   
   position: relative;
   text-align: center;
@@ -3035,7 +3035,7 @@ body,
 .marketplace-title {
   font-family: var(--font-primary);
   font-size: clamp(2.8rem, 7vw, 5rem);
-  color: transparent;
+  color: white;
   
   margin-bottom: clamp(20px, 3vh, 40px);
   text-align: center;

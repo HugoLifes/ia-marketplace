@@ -41,7 +41,7 @@ const BlobRow = () => {
       'lightning',
     ];
     const scaleMap: Record<DeviceType, number[]> = {
-      mobile: [0.4, 0.2, 0.2, 0.2, 0.2],
+      mobile: [0.45, 0.2, 0.2, 0.2, 0.2],
       tablet: [0.35, 0.25, 0.25, 0.25, 0.25],
       desktop: [0.4, 0.3, 0.3, 0.3, 0.3],
     }
