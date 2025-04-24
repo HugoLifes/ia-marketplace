@@ -961,20 +961,7 @@ const Labels: React.FC = () => {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleMouseUpOrLeave}
               >
-                <div className="drag-scroll-indicator">
-                  <div className="drag-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 5V19M12 5L6 11M12 5L18 11"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
-                  <span>Arrastra para desplazarte</span>
-                </div>
+                
 
                 <h2>Ecosistema de Agentes Inteligentes</h2>
 
