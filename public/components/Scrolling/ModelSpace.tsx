@@ -9,10 +9,7 @@ import gsap from 'gsap'
 import { BufferGeometry, Material, Mesh, NormalBufferAttributes, Object3DEventMap } from 'three'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from 'three';
-import { timelinePoints } from './animationspoint'
-import {useMorphSVG} from "../hooks/useMorphSVG"
-import { getSplitText } from '../utils/getSplitText'
-import{ useClubSplitText } from '../hooks/useSplitText'
+
 
 
 export function Model(props: any) {
