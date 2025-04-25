@@ -3,6 +3,11 @@ import { blobPersonalities} from './blobLibrary'
 import  Blob  from './Blob'
 import { isMobile, isTablet, isBrowser } from 'react-device-detect'
 
+
+// en esta seccion se encuentra el array de colores y las posiciones de cada blob
+// cada blob tiene su propio color y posicion
+
+
 type DeviceType = 'mobile' | 'tablet' | 'desktop'
 
 const getDeviceType = (): DeviceType => {
@@ -25,14 +30,31 @@ const BlobRow = () => {
       return device
     })()
     
-    const positions: [number, number, number][] = [
-      [0, 0, 0],
-      [15, 0, 0],
-      [30, 0, 0],
-      [50, 0, 0],
-      [70, 0, 0],
     
-    ]
+
+    const positonsMap: Record<DeviceType, [number, number, number][]> = {
+      mobile: [
+        [0, 1.5, 0],
+        [5, 0, 0],
+        [10, 0, 0],
+        [15, 0, 0],
+        [20, 0, 0],
+      ],
+      tablet: [
+        [0, 0.1, 0],
+        [10, 0, 0],
+        [20, 0, 0],
+        [30, 0, 0],
+        [40, 0, 0],
+      ],
+      desktop: [  
+        [0, 0.11, 0],
+        [15, 0, 0],
+        [30, 0, 0],
+        [50, 0, 0],
+        [70, 0, 0],
+      ],
+    }
     const personalities: (keyof typeof blobPersonalities)[] = [
       'alien',
       'lava',
@@ -45,8 +67,9 @@ const BlobRow = () => {
       tablet: [0.35, 0.25, 0.25, 0.25, 0.25],
       desktop: [0.4, 0.3, 0.3, 0.3, 0.3],
     }
-  
+    
     const scales = scaleMap[effectiveDevice]
+    const positions = positonsMap[effectiveDevice]
     return (
       <>
       {[...Array(5)].map((_, i) => {
