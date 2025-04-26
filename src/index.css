@@ -1024,7 +1024,7 @@ body,
 
   /* En pantallas muy pequeñas, apilar los elementos */
   .welcome-button-container {
-    bottom: 134px; /* Dar espacio para el texto debajo */
+    bottom: 146px; /* Dar espacio para el texto debajo */
     left: 50%;
     transform: translateX(-50%);
     width: 80%; /* Limitar el ancho en pantallas pequeñas */
@@ -1035,15 +1035,16 @@ body,
   }
 
   .clickable-text {
-    bottom: 65px;
-    right: 50%;
+    bottom: 11%;
+   /* right: 50%;*/
+   left: 0%;
     transform: translateX(50%);
     text-align: center;
   }
 
   .welcome-text-title {
     width: 90%;
-    top: 16%;
+    top: 12%;
   }
   .welcome-text-subTitle {
     width: 90%;
@@ -1051,7 +1052,7 @@ body,
   }
 
   .logo-container {
-    top: 40%;
+    top: 3%;
   }
 
   .imageLogo2 {
@@ -3489,7 +3490,7 @@ body,
 /* Estilos responsivos para dispositivos móviles */
 @media (max-width: 768px) {
   .features-container {
-    flex-direction: column;
+    flex-direction: row;
     gap: 15px;
   }
 
@@ -3505,9 +3506,10 @@ body,
     gap: 25px;
     padding: 0;
     width: 90%;
+    height: 20%;
     max-width: 300px;
     margin: 0 auto;
-    top: 15% !important; /* Ajustar posición vertical */
+    top: 13% !important; /* Ajustar posición vertical */
   }
 
   .feature-item {

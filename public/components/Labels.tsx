@@ -271,7 +271,7 @@ const Labels: React.FC = () => {
           <h3 style={{ color: "white", fontSize: "clamp(1.2rem, 2vw, 1.8rem)", marginBottom: "8px" }}>
             IA Avanzada
           </h3>
-          <p style={{ color: "#ccc", fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}>Entrenada en tiempo real con tech propia</p>
+          <p style={{ color: "#ccc", fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}>Entrenamiento en tiempo real</p>
         </div>
         <div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
           <h3 style={{ color: "white", fontSize: "clamp(1.2rem, 2vw, 1.8rem)", marginBottom: "8px" }}>
