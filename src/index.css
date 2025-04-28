@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=ZCOOL+KuaiLe&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 /* Import modular CSS files */
- /*@import "variables.css";
+/*@import "variables.css";
 @import "reset.css";
 @import "layout.css";
 @import "navbar.css";
@@ -34,6 +34,7 @@
   --container-padding: 2rem;
   --container-padding-tablet: 1rem;
   --container-padding-mobile: 0.75rem;
+  --vh: 1vh;
 }
 
 /* Reset y configuración base */
@@ -313,20 +314,20 @@ body,
 }
 
 .scrollLogo {
-  max-width: clamp(20px, 3vw, 30px);
+  max-width: clamp(20px, 3vw, 40px);
   height: auto;
   filter: invert(1) brightness(100);
 }
 
 .scrollLogo2 {
-  max-width: clamp(20px, 3vw, 30px);
+  max-width: clamp(40px, 3vw, 45px);
   height: auto;
 }
 
 .scroll-text {
   color: white;
   font-family: var(--font-primary);
-  font-size: clamp(12px, 1vw, 15px);
+  font-size: clamp(15px, 1vw, 20px);
   margin-top: 0.5rem;
 }
 
@@ -337,6 +338,9 @@ body,
   }
   50% {
     transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }
 
@@ -648,7 +652,7 @@ body,
   top: clamp(40px, 1vh, 160px);
 }
 
-@media (max-width: 480px){
+@media (max-width: 480px) {
   .alpha-title {
     font-size: clamp(3.5rem, 8vw, 5rem);
     top: 20%;
@@ -1024,7 +1028,7 @@ body,
 
   /* En pantallas muy pequeñas, apilar los elementos */
   .welcome-button-container {
-    bottom: 146px; /* Dar espacio para el texto debajo */
+    bottom: 17%; /* Dar espacio para el texto debajo */
     left: 50%;
     transform: translateX(-50%);
     width: 80%; /* Limitar el ancho en pantallas pequeñas */
@@ -1036,8 +1040,8 @@ body,
 
   .clickable-text {
     bottom: 11%;
-   /* right: 50%;*/
-   left: 0%;
+    /* right: 50%;*/
+
     transform: translateX(50%);
     text-align: center;
   }
@@ -1060,7 +1064,7 @@ body,
   }
 
   .scroll-indicator {
-    bottom: 80px;
+    bottom: 50%;
   }
 
   .alpha-button-container {
@@ -2747,7 +2751,7 @@ body,
   font-family: var(--font-primary);
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: white;
-  
+
   position: relative;
   text-align: center;
   letter-spacing: 2px;
@@ -3044,7 +3048,7 @@ body,
   font-family: var(--font-primary);
   font-size: clamp(2.8rem, 7vw, 5rem);
   color: white;
-  
+
   margin-bottom: clamp(20px, 3vh, 40px);
   text-align: center;
   letter-spacing: 2px;
@@ -3072,7 +3076,7 @@ body,
 }
 
 .marketplace-subtitle.clickable:hover {
-  color: #FF6F00;
+  color: #ff6f00;
   text-shadow: 0 0 10px rgba(2, 255, 196, 0.6);
   transform: translateY(-2px);
 }
@@ -3451,7 +3455,6 @@ body,
   }
 }
 
-
 /* Estilos para los elementos de características en la página de bienvenida */
 .features-container {
   display: flex;
@@ -3522,7 +3525,7 @@ body,
   }
 
   .feature-item h3 {
-    font-size: 1.3rem !important; /* Reducir tamaño para mejor centrado */
+    font-size: 1.2rem !important; /* Reducir tamaño para mejor centrado */
     margin-bottom: 3px !important;
     letter-spacing: 0.5px;
     width: 100%;
@@ -3530,7 +3533,7 @@ body,
   }
 
   .feature-item p {
-    font-size: 0.9rem !important; /* Reducir tamaño para mejor centrado */
+    font-size: 0.84rem !important; /* Reducir tamaño para mejor centrado */
     opacity: 0.9;
     line-height: 1.3;
     width: 100%;
@@ -3551,6 +3554,267 @@ body,
     text-align: center;
   }
 }
+.subscription-button-container{}
+
+/* Device-specific fixes */
+.ios-device .features-container {
+  top: 15% !important;
+}
+
+.android-device .features-container {
+  top: 15% !important;
+}
+
+/* Fix for iOS Safari viewport height issues */
+@supports (-webkit-touch-callout: none) {
+  .page {
+    height: -webkit-fill-available;
+  }
+
+  .page--welcome,
+  .page--alpha,
+  .page--marketplace,
+  .page--comparison,
+  .page--subscription {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Fix for position: fixed issues on mobile */
+@media (max-width: 480px) {
+  .welcome-text-title {
+    width: 90%;
+    top: 12%;
+    font-size: clamp(18px, 3vw, 28px);
+  }
+
+  .logo-container {
+    top: 3%;
+  }
+
+  .imageLogo2 {
+    width: 40%;
+  }
+
+  .scroll-indicator {
+    bottom: 10%;
+    right: 10px;
+    transform: none;
+  }
+
+  .clickable-text {
+    bottom: 10%;
+    left: 10px;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  /* Fix for modal scrolling on mobile */
+  .fullscreen-modal {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-content {
+    max-height: 85vh;
+    width: 95%;
+  }
+
+  /* Fix for touch targets */
+  .primary-button,
+  .submit-button,
+  .clickable-text,
+  .navbar-about a {
+    padding: 12px 20px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Fix for feature items on small screens */
+  .feature-item h3 {
+    font-size: 1rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .feature-item p {
+    font-size: 0.8rem !important;
+    line-height: 1.2;
+  }
+}
+
+/* Fix for iOS Safari 100vh issue */
+.pages,
+.page {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Fix for overflow issues */
+body,
+html {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for touch events */
+.draggable-content {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Device-specific fixes */
+.ios-device .features-container {
+  top: 23% !important;
+}
+
+.ios-device .marketplace-title{
+  bottom: 18% !important;
+}
+
+.ios-device .marketplace-button-container{
+    padding-top: 16% !important;
+}
+
+/* Welcome button container ios en page 1*/
+.ios-device .welcome-button-container{
+  bottom: 3% !important;
+}
+
+.ios-device .scroll-indicator{
+  top: 20% !important;
+  right: 5% !important;
+}
+
+.ios-device .alpha-button-container {
+  bottom: 15% !important;
+}
+
+.ios-device .alpha-subtitle-container{
+  bottom: 5% !important;
+}
+
+/*android section*/
+/* Marketplace title android en page 3*/
+.android-device .marketplace-title{
+  bottom: 24% !important;
+}
 
 
 
+.android-device .scroll-indicator{
+  top: 20% !important;
+  right: 5% !important;
+}
+
+.android-device .clickable-text{
+  left: -5% !important;
+}
+
+.android-device .features-container {
+  top: 20% !important;
+}
+
+/* Fix for iOS Safari viewport height issues */
+@supports (-webkit-touch-callout: none) {
+  .page {
+    height: -webkit-fill-available;
+  }
+
+  .page--welcome,
+  .page--alpha,
+  .page--marketplace,
+  .page--comparison,
+  .page--subscription {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Fix for position: fixed issues on mobile */
+@media (max-width: 480px) {
+  .welcome-text-title {
+    width: 90%;
+    top: 12%;
+    font-size: clamp(18px, 3vw, 28px);
+  }
+
+  .logo-container {
+    top: 3%;
+  }
+
+  .imageLogo2 {
+    width: 40%;
+  }
+
+  .scroll-indicator {
+    bottom: 10%;
+    right: 10px;
+    transform: none;
+  }
+
+  .clickable-text {
+    bottom: 10%;
+    left: 10px;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  /* Fix for modal scrolling on mobile */
+  .fullscreen-modal {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-content {
+    max-height: 85vh;
+    width: 95%;
+  }
+
+  /* Fix for touch targets */
+  .primary-button,
+  .submit-button,
+  .clickable-text,
+  .navbar-about a {
+    padding: 12px 20px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Fix for feature items on small screens */
+  .feature-item h3 {
+    font-size: 1rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .feature-item p {
+    font-size: 0.8rem !important;
+    line-height: 1.2;
+  }
+}
+
+/* Fix for iOS Safari 100vh issue */
+.pages,
+.page {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Fix for overflow issues */
+body,
+html {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fix for touch events */
+.draggable-content {
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}

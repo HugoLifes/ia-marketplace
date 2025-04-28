@@ -34,11 +34,11 @@ const BlobRow = () => {
 
     const positonsMap: Record<DeviceType, [number, number, number][]> = {
       mobile: [
-        [0, 2.1, 0],
+        [0, 2.4, 0],
         [15, 0, 0],
-        [30, 0, 0],
-        [50, 0, 0],
-        [70, 0, 0],
+        [30, 0.1, 0],
+        [50, 0.1, 0],
+        [70, 0.1, 0],
       ],
       tablet: [
         [0, 0, 0],
@@ -63,7 +63,7 @@ const BlobRow = () => {
       'lightning',
     ];
     const scaleMap: Record<DeviceType, number[]> = {
-      mobile: [0.39, 0.2, 0.2, 0.2, 0.2],
+      mobile: [0.39, 0.18, 0.2, 0.2, 0.2],
       tablet: [0.35, 0.25, 0.25, 0.25, 0.25],
       desktop: [0.4, 0.3, 0.3, 0.3, 0.3],
     }

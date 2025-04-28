@@ -209,8 +209,38 @@ const Labels: React.FC = () => {
     }
   }
 
+  // Función para detectar el tipo de dispositivo y aplicar la clase correspondiente
+  useEffect(() => {
+    const detectDevice = () => {
+      const userAgent = navigator.userAgent.toLowerCase()
+      console.log(userAgent)
+      const isIOS = /iphone|ipad|ipod/.test(userAgent)
+      const isAndroid = /android/.test(userAgent)
+
+      if (isIOS) {
+        document.body.classList.add("ios-device")
+        document.body.classList.remove("android-device")
+      } else if (isAndroid) {
+        document.body.classList.add("android-device")
+        document.body.classList.remove("ios-device")
+      }
+    }
+
+    detectDevice()
+  }, [])
+
   // Efecto para añadir/eliminar event listeners globales
   useEffect(() => {
+    // Solución para el problema de 100vh en iOS
+  const setVh = () => {
+    const vh = window.innerHeight * 0.01
+    document.documentElement.style.setProperty("--vh", `${vh}px`)
+  }
+
+  setVh()
+  window.addEventListener("resize", setVh)
+  window.addEventListener("orientationchange", setVh)
+
     const handleGlobalMouseUp = () => {
       if (isDragging) {
         setIsDragging(false)
@@ -227,6 +257,8 @@ const Labels: React.FC = () => {
     return () => {
       document.removeEventListener("mouseup", handleGlobalMouseUp)
       document.removeEventListener("touchend", handleGlobalMouseUp)
+      window.removeEventListener("resize", setVh)
+      window.removeEventListener("orientationchange", setVh)
     }
   }, [isDragging])
 
@@ -260,28 +292,73 @@ const Labels: React.FC = () => {
               padding: "0 20px",
             }}
           >
-
-<div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
-          <h3 style={{ color: "white", fontSize: "clamp(1.2rem, 2vw, 1.8rem)", marginBottom: "8px" }}>
-            Creamos tu modelo
-          </h3>
-          <p style={{ color: "#ccc", fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}>Entrenamiento y alojamiento</p>
-        </div>
-        <div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
-          <h3 style={{ color: "white", fontSize: "clamp(1.2rem, 2vw, 1.8rem)", marginBottom: "8px" }}>
-            IA Avanzada
-          </h3>
-          <p style={{ color: "#ccc", fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}>Entrenamiento en tiempo real</p>
-        </div>
-        <div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
-          <h3 style={{ color: "white", fontSize: "clamp(1.2rem, 2vw, 1.8rem)", marginBottom: "8px" }}>
-            Nuestra IA
-          </h3>
-          <p style={{ color: "#ccc", fontSize: "clamp(0.8rem, 1.5vw, 1rem)" }}>Aprende, se adapta y evoluciona</p>
-        </div>
+            <div
+              className="feature-item"
+              style={{ textAlign: "center", flex: "1" }}
+            >
+              <h3
+                style={{
+                  color: "white",
+                  fontSize: "clamp(1.2rem, 2vw, 1.8rem)",
+                  marginBottom: "8px",
+                }}
+              >
+                Creamos tu modelo
+              </h3>
+              <p
+                style={{
+                  color: "#ccc",
+                  fontSize: "clamp(0.8rem, 1.5vw, 1rem)",
+                }}
+              >
+                Lo entrenamos diario y lo alojamos nosotros
+              </p>
+            </div>
+            <div
+              className="feature-item"
+              style={{ textAlign: "center", flex: "1" }}
+            >
+              <h3
+                style={{
+                  color: "white",
+                  fontSize: "clamp(1.2rem, 2vw, 1.8rem)",
+                  marginBottom: "8px",
+                }}
+              >
+                IA Avanzada
+              </h3>
+              <p
+                style={{
+                  color: "#ccc",
+                  fontSize: "clamp(0.8rem, 1.5vw, 1rem)",
+                }}
+              >
+                Entrenamiento en tiempo real con tecnologia propia
+              </p>
+            </div>
+            <div
+              className="feature-item"
+              style={{ textAlign: "center", flex: "1" }}
+            >
+              <h3
+                style={{
+                  color: "white",
+                  fontSize: "clamp(1.2rem, 2vw, 1.8rem)",
+                  marginBottom: "8px",
+                }}
+              >
+                Nuestra IA
+              </h3>
+              <p
+                style={{
+                  color: "#ccc",
+                  fontSize: "clamp(0.8rem, 1.5vw, 1rem)",
+                }}
+              >
+               No solo responde, Aprende, se adapta y evoluciona
+              </p>
+            </div>
           </div>
-
-          
 
           <div className="welcome-button-container">
             <button className="primary-button" onClick={openModal}>
@@ -298,13 +375,13 @@ const Labels: React.FC = () => {
               />
             ) : (
               <img
-                src="/Images/mouse-cursor.png"
+                src="/Images/scrolls.png"
                 alt="Desliza!"
                 className="scrollLogo"
               />
             )}
             <span className="scroll-text">
-              {isMobile ? "Desliza" : "Scroll inmersivo"}
+              {isMobile ? "Desliza" : "Scrollea"}
             </span>
           </div>
 
@@ -316,7 +393,7 @@ const Labels: React.FC = () => {
               window.open("https://iamex.io/marketplace", "_blank")
             }
           >
-            Explora a los Alpha Agents{" >"}
+            Explora  los Alpha Agents{" >"}
           </a>
         </div>
 
@@ -329,7 +406,7 @@ const Labels: React.FC = () => {
                 Haz clic para activar a Alpha
               </span>
             </div>*/}
-            <div className="alpha-title-container" ></div>
+            <div className="alpha-title-container"></div>
             <h1 id="alphaT" className="alpha-title">
               Alpha Agent
             </h1>
@@ -407,10 +484,11 @@ const Labels: React.FC = () => {
             <p className="subscription-subtitle">
               Elige el plan perfecto para potenciar tu negocio con IA
             </p>
-
+            <div className="subscription-button-container">     
             <button className="primary-button" onClick={openSubscriptionModal}>
               Ver planes disponibles
             </button>
+            </div> 
           </div>
         </div>
 
