@@ -3,6 +3,17 @@ import { useFrame, useThree } from '@react-three/fiber'
 import { MeshSurfaceSampler } from 'three/examples/jsm/math/MeshSurfaceSampler'
 import * as THREE from 'three'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { isMobile, isTablet, isBrowser } from 'react-device-detect'
+
+
+type DeviceType = 'mobile' | 'tablet' | 'desktop'
+
+const getDeviceType = (): DeviceType => {
+  if (isMobile && !isTablet) return 'mobile'
+  if (isTablet) return 'tablet'
+  return 'desktop'
+}
+
 
 interface Props {
     size?: number
@@ -14,13 +25,37 @@ export const ParticlesMorph = ({  size = 0.015,
     duration = 0.01,
     baseCount = 6000, }: Props) => {
     const { size: viewportSize } = useThree()
+    const { viewport } = useThree()
     const isMobile = viewportSize.width < 768
     const count = isMobile ? baseCount / 3 : baseCount
+
+    const device = getDeviceType()
+    // Detectamos si hay poco espacio visible (por ejemplo, navegador reducido)
+    const isSmallScreen = viewport.width < 6
   
     const { scene } = useGLTF('../../model/humanoid.glb')
     const pointsRef = useRef<THREE.Points>(null)
     const [morph, setMorph] = useState(false)
     const progress = useRef(0)
+
+    const effectiveDevice: DeviceType = (() => {
+      // Si el dispositivo es desktop pero la pantalla es pequeña, lo tratamos como tablet
+      if (device === 'desktop' && isSmallScreen) return 'tablet'
+      return device
+    })()
+
+    const positionsMap: Record<DeviceType, [number, number, number]> = {
+      mobile: [15.4, 0, 0.40],
+      tablet: [16.4, 0, 0],
+      desktop: [16.4, 0, 0],
+    }
+
+    const scaleMap: Record<DeviceType, number> = {
+      mobile: 0.3,
+      tablet: 0.25,
+      desktop: 0.7,
+    }
+      
   
     const [randomPositions, targetPositions] = useMemo(() => {
       const rand = new Float32Array(count * 3)
@@ -88,15 +123,17 @@ export const ParticlesMorph = ({  size = 0.015,
       progress.current = morph ? 1 : 0
       setMorph(!morph)
     }
+    const positionsAdaptive = positionsMap[effectiveDevice]
+    const scaleAdaptive = scaleMap[effectiveDevice]
   
   return (
     <points
       ref={pointsRef}
       geometry={geometry}
       material={material}
-      position={[16.4, 0, 0]} // enfrente del modelo z = 1
+      position={positionsAdaptive} // enfrente del modelo z = 1
       rotation={[0, 80, 0]}
-      scale={0.7} 
+      scale={scaleAdaptive} 
       onClick={toggle} // click para que se pueda ver el modelo
     />
   )

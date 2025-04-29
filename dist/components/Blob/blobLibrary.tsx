@@ -25,6 +25,9 @@ import lightningFragment from '../../shaders/f9/fragmentShaderR.glsl'
 import ghostVertex from '../../shaders/f10/vertexShaderF.glsl'
 import ghostFragment from '../../shaders/f10/fragmentShaderF.glsl'
 
+
+// aqui se encuentran los shaders de cada personalidad y sus propiedades
+// cada personalidad tiene un vertex shader y un fragment shader
 export const blobPersonalities = {
   alien: {
       distortion: 0.8,

@@ -27,10 +27,10 @@ const Scene: React.FC = () => {
           <ambientLight intensity={1.6} />
           <pointLight position={[-1 ,-0.11 , -10]} intensity={1999} />
           <pointLight position={[2 ,-0.11 , 5.5]} intensity={500} />
-          {/* Carga tu modelo .glb en la ruta que tengas <Stats />   <Particles /> <ParticlesMorph />  */}
+          {/* Carga tu modelo .glb en la ruta que tengas <Stats />   <Particles />   */}
          
           <Suspense fallback={null}>
-          
+          <ParticlesMorph />
           </Suspense>
           <AdjustCamera />
           

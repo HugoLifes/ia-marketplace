@@ -541,7 +541,7 @@ export function Model(props: any) {
         scale={0.128}
       />
       */}
-      <group name="Cube001" scale={100}>
+      <group name="Cube001" scale={150}>
         <mesh
           name="Icosphere_1"
           castShadow
