@@ -1,86 +1,81 @@
-import { Canvas, useThree, useFrame } from '@react-three/fiber'
-import { blobPersonalities} from './blobLibrary'
-import  Blob  from './Blob'
-import { isMobile, isTablet, isBrowser } from 'react-device-detect'
+import { useThree } from '@react-three/fiber';
+import { useState, useEffect } from 'react';
+import { isMobile, isTablet } from 'react-device-detect';
+import { blobPersonalities } from './blobLibrary';
+import Blob from './Blob';
 
-
-// en esta seccion se encuentra el array de colores y las posiciones de cada blob
-// cada blob tiene su propio color y posicion
-
-
-type DeviceType = 'mobile' | 'tablet' | 'desktop'
+type DeviceType = 'mobile' | 'tablet' | 'desktop';
 
 const getDeviceType = (): DeviceType => {
-  if (isMobile && !isTablet) return 'mobile'
-  if (isTablet) return 'tablet'
-  return 'desktop'
-}
+  if (isMobile && !isTablet) return 'mobile';
+  if (isTablet) return 'tablet';
+  return 'desktop';
+};
 
 const BlobRow = () => {
-    const { viewport } = useThree()
+  const { viewport } = useThree();
+  const [effectiveDevice, setEffectiveDevice] = useState<DeviceType>(() => getDeviceType());
 
-    const device = getDeviceType()
+  useEffect(() => {
+    const device = getDeviceType();
+    const isSmallScreen = viewport.width < 6;
 
-    // Detectamos si hay poco espacio visible (por ejemplo, navegador reducido)
-    const isSmallScreen = viewport.width < 6
-
-    const effectiveDevice: DeviceType = (() => {
-      // Si el dispositivo es desktop pero la pantalla es pequeña, lo tratamos como tablet
-      if (device === 'desktop' && isSmallScreen) return 'tablet'
-      return device
-    })()
-    
-    
-
-    const positonsMap: Record<DeviceType, [number, number, number][]> = {
-      mobile: [
-        [0, 2.4, 0],
-        [15, 0, 0],
-        [30, 0.1, 0],
-        [50, 0.1, 0],
-        [70, 0.1, 0],
-      ],
-      tablet: [
-        [0, 0, 0],
-        [15, 0, 0],
-        [30, 0, 0],
-        [50, 0, 0],
-        [70, 0, 0],
-      ],
-      desktop: [  
-        [0, 0, 0],
-        [15, 0, 0],
-        [30, 0, 0],
-        [50, 0, 0],
-        [70, 0, 0],
-      ],
+    if (device === 'desktop' && isSmallScreen) {
+      setEffectiveDevice('tablet');
+    } else {
+      setEffectiveDevice(device);
     }
-    const personalities: (keyof typeof blobPersonalities)[] = [
-      'alien',
-      'lava',
-      'lava2',
-      'ghostFlame',
-      'lightning',
-    ];
-    const scaleMap: Record<DeviceType, number[]> = {
-      mobile: [0.39, 0.18, 0.2, 0.2, 0.2],
-      tablet: [0.35, 0.25, 0.25, 0.25, 0.25],
-      desktop: [0.4, 0.3, 0.3, 0.3, 0.3],
-    }
-    
-    const scales = scaleMap[effectiveDevice]
-    const positions = positonsMap[effectiveDevice]
-    return (
-      <>
+  }, []); // ❗ Only run once on mount
+
+  const positonsMap: Record<DeviceType, [number, number, number][]> = {
+    mobile: [
+      [0, 2.4, 0],
+      [15, 0, 0],
+      [30, 0.1, 0],
+      [50, 0.1, 0],
+      [70, 0.1, 0],
+    ],
+    tablet: [
+      [0, 0, 0],
+      [15, 0, 0],
+      [30, 0, 0],
+      [50, 0, 0],
+      [70, 0, 0],
+    ],
+    desktop: [
+      [0, 0, 0],
+      [15, 0, 0],
+      [30, 0, 0],
+      [50, 0, 0],
+      [70, 0, 0],
+    ],
+  };
+
+  const scaleMap: Record<DeviceType, number[]> = {
+    mobile: [0.39, 0.18, 0.2, 0.2, 0.2],
+    tablet: [0.35, 0.25, 0.25, 0.25, 0.25],
+    desktop: [0.4, 0.3, 0.3, 0.3, 0.3],
+  };
+
+  const personalities: (keyof typeof blobPersonalities)[] = [
+    'alien',
+    'lava',
+    'lava2',
+    'ghostFlame',
+    'lightning',
+  ];
+
+  const scales = scaleMap[effectiveDevice];
+  const positions = positonsMap[effectiveDevice];
+
+  return (
+    <>
       {[...Array(5)].map((_, i) => {
-       // const [r, g, b] = colors[i]
-       // const position = positions[i]
-       // const personality = personalities[i];
         const personalityKey = personalities[i];
         const config = blobPersonalities[personalityKey];
         const position = positions[i];
         const scale = scales[i];
-  
+
         return (
           <Blob
             key={i}
@@ -101,12 +96,10 @@ const BlobRow = () => {
             pulseSpeed={config.pulseSpeed.value}
             iTime={config.iTime}
           />
-        )
+        );
       })}
     </>
-    )
-  }
+  );
+};
 
-export default BlobRow
-
-
+export default BlobRow;
