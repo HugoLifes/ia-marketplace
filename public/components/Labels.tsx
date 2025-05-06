@@ -315,7 +315,7 @@ const Labels: React.FC = () => {
               <img src="/Images/logo2.png" alt="logo" className="imageLogo2" />
             </div>
           </div>
-          <div
+         {/*  <div
             className="features-container"
             style={{
               display: "flex",
@@ -385,7 +385,7 @@ const Labels: React.FC = () => {
                 No solo responde, Aprende, se adapta y evoluciona
               </p>
             </div>
-          </div>
+          </div> */}
 
           <div className="welcome-button-container">
             <button className="primary-button" onClick={openModal}>
@@ -397,7 +397,7 @@ const Labels: React.FC = () => {
             {isMobile ? (
               <img src="/Images/mobil2.png" alt="Desliza!" className="scrollLogo2" />
             ) : (
-              <img src="/Images/scrolls.png" alt="Desliza!" className="scrollLogo" />
+              <img src="/Images/right_ico.png" alt="Desliza!" className="scrollLogo" />
             )}
             <span className="scroll-text">{isMobile ? "Desliza" : "Scrollea"}</span>
           </div>
@@ -405,7 +405,7 @@ const Labels: React.FC = () => {
           {/* Texto clickeable 'Explora a los Alpha Agents' con efecto hover */}
 
           <a className="clickable-text" onClick={() => window.open("https://iamex.io/marketplace", "_blank")}>
-            Explora los Alpha Agents{" >"}
+            Explora los Alpha Agents
           </a>
         </div>
 
@@ -440,11 +440,7 @@ const Labels: React.FC = () => {
               <p
                 className="alpha-subtitle clickable"
                 onClick={() => {
-                  toast.info("Nuevo modelo Alpha", {
-                    description: "Conoce nuestro primer modelo especializado de I'AM",
-                    icon: <Zap size={18} />,
-                    duration: 3000,
-                  })
+                 
                   openNewModelModal()
                 }}
               >

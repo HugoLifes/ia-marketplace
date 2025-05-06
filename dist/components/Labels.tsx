@@ -22,9 +22,8 @@ import {
   MessageCircle,
   TrendingUp,
   Settings,
-  Smartphone,
-  MousePointer,
 } from "lucide-react"
+import { Toaster, toast } from "sonner"
 
 // Note: Add SplitText script to your HTML file or load it dynamically
 
@@ -232,14 +231,14 @@ const Labels: React.FC = () => {
   // Efecto para añadir/eliminar event listeners globales
   useEffect(() => {
     // Solución para el problema de 100vh en iOS
-  const setVh = () => {
-    const vh = window.innerHeight * 0.01
-    document.documentElement.style.setProperty("--vh", `${vh}px`)
-  }
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01
+      document.documentElement.style.setProperty("--vh", `${vh}px`)
+    }
 
-  setVh()
-  window.addEventListener("resize", setVh)
-  window.addEventListener("orientationchange", setVh)
+    setVh()
+    window.addEventListener("resize", setVh)
+    window.addEventListener("orientationchange", setVh)
 
     const handleGlobalMouseUp = () => {
       if (isDragging) {
@@ -265,6 +264,43 @@ const Labels: React.FC = () => {
   // Añadir un nuevo estado para controlar si se muestran precios mensuales o anuales
   const [isPriceAnnual, setIsPriceAnnual] = useState<boolean>(false)
 
+  // Add a new state variable to track if the Alpha page is visible:
+  // Eliminar estas líneas:
+  //const [alphaPageVisible, setAlphaPageVisible] = useState(false);
+  //const alphaPageRef = useRef<HTMLDivElement>(null);
+
+  // Add a new state variable to track if the Alpha page is visible:
+  const [toastsShown, setToastsShown] = useState(false)
+
+ 
+
+  // Y añadir este nuevo useEffect:
+  useEffect(() => {
+    const alphaPage = document.getElementById("page-2")
+    if (!alphaPage || toastsShown) return
+   
+    const rect = alphaPage.getBoundingClientRect()
+    
+    if (alphaPage && !toastsShown) {
+      setToastsShown(true)
+      console.log("Alpha page is visible")
+      // Mostrar el primer toast inmediatamente
+      /* toast.success("¡Bienvenido a Alpha Agent!", {
+        description: "Descubre las capacidades avanzadas de nuestro agente especializado",
+        duration: 4000,
+      }) */
+
+      // Mostrar el segundo toast después de un retraso
+      setTimeout(() => {
+        toast.info("Zona interactiva!", {
+          description: "Haz click en pantalla para activar con el alpha",
+          icon: <Zap size={18} />,
+          duration: 5000,
+        })
+      }, 1500)
+    }
+  }, [toastsShown])
+
   return (
     <div className="pages">
       <div className="pages_wrapper">
@@ -279,7 +315,7 @@ const Labels: React.FC = () => {
               <img src="/Images/logo2.png" alt="logo" className="imageLogo2" />
             </div>
           </div>
-          <div
+         {/*  <div
             className="features-container"
             style={{
               display: "flex",
@@ -292,10 +328,7 @@ const Labels: React.FC = () => {
               padding: "0 20px",
             }}
           >
-            <div
-              className="feature-item"
-              style={{ textAlign: "center", flex: "1" }}
-            >
+            <div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
               <h3
                 style={{
                   color: "white",
@@ -314,10 +347,7 @@ const Labels: React.FC = () => {
                 Lo entrenamos diario y lo alojamos nosotros
               </p>
             </div>
-            <div
-              className="feature-item"
-              style={{ textAlign: "center", flex: "1" }}
-            >
+            <div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
               <h3
                 style={{
                   color: "white",
@@ -336,10 +366,7 @@ const Labels: React.FC = () => {
                 Entrenamiento en tiempo real con tecnologia propia
               </p>
             </div>
-            <div
-              className="feature-item"
-              style={{ textAlign: "center", flex: "1" }}
-            >
+            <div className="feature-item" style={{ textAlign: "center", flex: "1" }}>
               <h3
                 style={{
                   color: "white",
@@ -355,10 +382,10 @@ const Labels: React.FC = () => {
                   fontSize: "clamp(0.8rem, 1.5vw, 1rem)",
                 }}
               >
-               No solo responde, Aprende, se adapta y evoluciona
+                No solo responde, Aprende, se adapta y evoluciona
               </p>
             </div>
-          </div>
+          </div> */}
 
           <div className="welcome-button-container">
             <button className="primary-button" onClick={openModal}>
@@ -368,32 +395,17 @@ const Labels: React.FC = () => {
 
           <div className="scroll-indicator">
             {isMobile ? (
-              <img
-                src="/Images/mobil2.png"
-                alt="Desliza!"
-                className="scrollLogo2"
-              />
+              <img src="/Images/mobil2.png" alt="Desliza!" className="scrollLogo2" />
             ) : (
-              <img
-                src="/Images/scrolls.png"
-                alt="Desliza!"
-                className="scrollLogo"
-              />
+              <img src="/Images/right_ico.png" alt="Desliza!" className="scrollLogo" />
             )}
-            <span className="scroll-text">
-              {isMobile ? "Desliza" : "Scrollea"}
-            </span>
+            <span className="scroll-text">{isMobile ? "Desliza" : "Scrollea"}</span>
           </div>
 
           {/* Texto clickeable 'Explora a los Alpha Agents' con efecto hover */}
 
-          <a
-            className="clickable-text"
-            onClick={() =>
-              window.open("https://iamex.io/marketplace", "_blank")
-            }
-          >
-            Explora  los Alpha Agents{" >"}
+          <a className="clickable-text" onClick={() => window.open("https://iamex.io/marketplace", "_blank")}>
+            Explora los Alpha Agents
           </a>
         </div>
 
@@ -410,9 +422,16 @@ const Labels: React.FC = () => {
             <h1 id="alphaT" className="alpha-title">
               Alpha Agent
             </h1>
-
+              {/* Sonner Toast Container */}
+            <Toaster position="top-left" richColors closeButton />
             <div className="alpha-button-container">
-              <button className="primary-button" onClick={openKnowMoreModal}>
+              <button
+                className="primary-button"
+                onClick={() => {
+
+                  openKnowMoreModal()
+                }}
+              >
                 Conoce más
               </button>
             </div>
@@ -420,7 +439,10 @@ const Labels: React.FC = () => {
             <div className="alpha-subtitle-container">
               <p
                 className="alpha-subtitle clickable"
-                onClick={openNewModelModal}
+                onClick={() => {
+                 
+                  openNewModelModal()
+                }}
               >
                 Nuevo modelo by IAM <span className="click-indicator"></span>
               </p>
@@ -436,39 +458,24 @@ const Labels: React.FC = () => {
             </h1>
 
             <div className="marketplace-button-container">
-              <button
-                className="primary-button"
-                onClick={() =>
-                  window.open("https://iamex.io/marketplace", "_blank")
-                }
-              >
+              <button className="primary-button" onClick={() => window.open("https://iamex.io/marketplace", "_blank")}>
                 Visitar el Marketplace
               </button>
             </div>
 
             <div className="marketplace-subtitle-container">
-              <p
-                className="marketplace-subtitle clickable"
-                onClick={openMarketplaceModal}
-              >
-                Descubre el ecosistema de agentes inteligentes{" "}
-                <span className="click-indicator"></span>
+              <p className="marketplace-subtitle clickable" onClick={openMarketplaceModal}>
+                Descubre el ecosistema de agentes inteligentes <span className="click-indicator"></span>
               </p>
             </div>
           </div>
         </div>
 
         {/* Page 4: Comparativa */}
-        <div
-          id="page-4"
-          className="page page--comparison page--hidden"
-          style={{ overflow: "hidden", height: "100vh" }}
-        >
+        <div id="page-4" className="page page--comparison page--hidden" style={{ overflow: "hidden", height: "100vh" }}>
           <div className="comparison-page-content">
             <h1 className="comparison-title">Tecnologías de IA</h1>
-            <p className="comparison-subtitle">
-              Elige la solución perfecta para tu negocio
-            </p>
+            <p className="comparison-subtitle">Elige la solución perfecta para tu negocio</p>
             <div className="comparison-button-container">
               <button className="primary-button" onClick={openComparisonModal}>
                 Comparar tecnologías
@@ -481,14 +488,12 @@ const Labels: React.FC = () => {
         <div id="page-5" className="page page--subscription">
           <div className="subscription-page-content">
             <h1 className="subscription-title">Membresias y Planes</h1>
-            <p className="subscription-subtitle">
-              Elige el plan perfecto para potenciar tu negocio con IA
-            </p>
-            <div className="subscription-button-container">     
-            <button className="primary-button" onClick={openSubscriptionModal}>
-              Ver planes disponibles
-            </button>
-            </div> 
+            <p className="subscription-subtitle">Elige el plan perfecto para potenciar tu negocio con IA</p>
+            <div className="subscription-button-container">
+              <button className="primary-button" onClick={openSubscriptionModal}>
+                Ver planes disponibles
+              </button>
+            </div>
           </div>
         </div>
 
@@ -497,24 +502,13 @@ const Labels: React.FC = () => {
           <div className="fullscreen-modal">
             <div className="modal-overlay" onClick={closeModal}></div>
             <div className="modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
                 <h2>I'AM está despertando...</h2>
                 <div className="video-container video-modal-content">
-                  <video
-                    className="modal-video"
-                    autoPlay
-                    controls
-                    loop
-                    playsInline
-                    controlsList="nodownload"
-                  >
+                  <video className="modal-video" autoPlay controls loop playsInline controlsList="nodownload">
                     <source src="/videos/descubre.mp4" type="video/mp4" />
                     Tu navegador no soporta videos HTML5.
                   </video>
@@ -526,17 +520,10 @@ const Labels: React.FC = () => {
 
         {/* Modal de Alpha Agents */}
         {isAlphaModalOpen && (
-          <div
-            className="fullscreen-modal"
-            style={{ overflow: "hidden", pointerEvents: "auto" }}
-          >
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
             <div className="modal-overlay" onClick={closeAlphaModal}></div>
             <div className="modal-content alpha-modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeAlphaModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeAlphaModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -546,47 +533,31 @@ const Labels: React.FC = () => {
                     <div className="alpha-agent-icon">🤖</div>
                     <h3>Asistente de Ventas</h3>
                     <p>
-                      Un agente inteligente que puede gestionar consultas de
-                      clientes y cerrar ventas automáticamente.
+                      Un agente inteligente que puede gestionar consultas de clientes y cerrar ventas automáticamente.
                     </p>
                   </div>
                   <div className="alpha-agent-card">
                     <div className="alpha-agent-icon">📊</div>
                     <h3>Analista de Datos</h3>
-                    <p>
-                      Procesa grandes volúmenes de datos y genera informes
-                      detallados con insights valiosos.
-                    </p>
+                    <p>Procesa grandes volúmenes de datos y genera informes detallados con insights valiosos.</p>
                   </div>
                   <div className="alpha-agent-card">
                     <div className="alpha-agent-icon">📅</div>
                     <h3>Gestor de Agenda</h3>
-                    <p>
-                      Organiza tu calendario, programa reuniones y envía
-                      recordatorios automáticos.
-                    </p>
+                    <p>Organiza tu calendario, programa reuniones y envía recordatorios automáticos.</p>
                   </div>
                   <div className="alpha-agent-card">
                     <div className="alpha-agent-icon">💬</div>
                     <h3>Soporte 24/7</h3>
-                    <p>
-                      Proporciona atención al cliente instantánea en cualquier
-                      momento del día.
-                    </p>
+                    <p>Proporciona atención al cliente instantánea en cualquier momento del día.</p>
                   </div>
                 </div>
                 <div className="alpha-modal-footer">
                   <p>
-                    Los Alpha Agents representan la próxima generación de
-                    asistentes virtuales, diseñados específicamente para tu
-                    negocio.
+                    Los Alpha Agents representan la próxima generación de asistentes virtuales, diseñados
+                    específicamente para tu negocio.
                   </p>
-                  <button
-                    className="primary-button"
-                    onClick={() =>
-                      window.open("https://iamex.io/alpha", "_blank")
-                    }
-                  >
+                  <button className="primary-button" onClick={() => window.open("https://iamex.io/alpha", "_blank")}>
                     Solicitar acceso anticipado
                   </button>
                 </div>
@@ -597,17 +568,10 @@ const Labels: React.FC = () => {
 
         {/* Modal de Conoce Más */}
         {isKnowMoreModalOpen && (
-          <div
-            className="fullscreen-modal"
-            style={{ overflow: "hidden", pointerEvents: "auto" }}
-          >
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
             <div className="modal-overlay" onClick={closeKnowMoreModal}></div>
             <div className="modal-content know-more-modal">
-              <button
-                className="modal-close-button"
-                onClick={closeKnowMoreModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeKnowMoreModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -616,11 +580,9 @@ const Labels: React.FC = () => {
                 <div className="know-more-section">
                   <h3>¿Qué es ALPHA?</h3>
                   <p>
-                    ALPHA es nuestra iniciativa más ambiciosa en el campo de la
-                    inteligencia artificial. Representa un salto evolutivo en la
-                    forma en que las máquinas comprenden y procesan la
-                    información, acercándonos a una IA con capacidades
-                    cognitivas similares a las humanas.
+                    ALPHA es nuestra iniciativa más ambiciosa en el campo de la inteligencia artificial. Representa un
+                    salto evolutivo en la forma en que las máquinas comprenden y procesan la información, acercándonos a
+                    una IA con capacidades cognitivas similares a las humanas.
                   </p>
                 </div>
 
@@ -628,24 +590,20 @@ const Labels: React.FC = () => {
                   <h3>Características principales</h3>
                   <ul className="know-more-list">
                     <li>
-                      <strong>Aprendizaje continuo:</strong> ALPHA mejora
-                      constantemente a través de cada interacción, adaptándose a
-                      nuevos contextos y desafíos.
+                      <strong>Aprendizaje continuo:</strong> ALPHA mejora constantemente a través de cada interacción,
+                      adaptándose a nuevos contextos y desafíos.
                     </li>
                     <li>
-                      <strong>Razonamiento abstracto:</strong> Capacidad para
-                      entender conceptos complejos y establecer conexiones entre
-                      ideas aparentemente no relacionadas.
+                      <strong>Razonamiento abstracto:</strong> Capacidad para entender conceptos complejos y establecer
+                      conexiones entre ideas aparentemente no relacionadas.
                     </li>
                     <li>
-                      <strong>Procesamiento multimodal:</strong> Integración
-                      perfecta de texto, imágenes, audio y datos estructurados
-                      en un único sistema de comprensión.
+                      <strong>Procesamiento multimodal:</strong> Integración perfecta de texto, imágenes, audio y datos
+                      estructurados en un único sistema de comprensión.
                     </li>
                     <li>
-                      <strong>Conciencia contextual:</strong> Entiende no solo
-                      el contenido de la información, sino también su contexto
-                      cultural, histórico y social.
+                      <strong>Conciencia contextual:</strong> Entiende no solo el contenido de la información, sino
+                      también su contexto cultural, histórico y social.
                     </li>
                   </ul>
                 </div>
@@ -655,47 +613,29 @@ const Labels: React.FC = () => {
                   <div className="applications-grid">
                     <div className="application-card">
                       <h4>Medicina</h4>
-                      <p>
-                        Diagnóstico avanzado y desarrollo de tratamientos
-                        personalizados.
-                      </p>
+                      <p>Diagnóstico avanzado y desarrollo de tratamientos personalizados.</p>
                     </div>
                     <div className="application-card">
                       <h4>Investigación científica</h4>
-                      <p>
-                        Aceleración de descubrimientos mediante análisis de
-                        datos complejos.
-                      </p>
+                      <p>Aceleración de descubrimientos mediante análisis de datos complejos.</p>
                     </div>
                     <div className="application-card">
                       <h4>Educación</h4>
-                      <p>
-                        Sistemas de aprendizaje adaptativo que se ajustan a cada
-                        estudiante.
-                      </p>
+                      <p>Sistemas de aprendizaje adaptativo que se ajustan a cada estudiante.</p>
                     </div>
                     <div className="application-card">
                       <h4>Creatividad</h4>
-                      <p>
-                        Colaboración en procesos creativos para arte, música y
-                        diseño.
-                      </p>
+                      <p>Colaboración en procesos creativos para arte, música y diseño.</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="know-more-footer">
                   <p>
-                    ALPHA representa nuestro compromiso con un futuro donde la
-                    inteligencia artificial potencia el potencial humano en
-                    lugar de reemplazarlo.
+                    ALPHA representa nuestro compromiso con un futuro donde la inteligencia artificial potencia el
+                    potencial humano en lugar de reemplazarlo.
                   </p>
-                  <button
-                    className="know-more-cta"
-                    onClick={() =>
-                      window.open("https://iamex.io/register", "_blank")
-                    }
-                  >
+                  <button className="know-more-cta" onClick={() => window.open("https://iamex.io/register", "_blank")}>
                     Únete al programa ALPHA
                   </button>
                 </div>
@@ -709,11 +649,7 @@ const Labels: React.FC = () => {
           <div className="fullscreen-modal">
             <div className="modal-overlay" onClick={closeComparisonModal}></div>
             <div className="modal-content comparison-modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeComparisonModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeComparisonModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -734,13 +670,7 @@ const Labels: React.FC = () => {
                 >
                   <div className="drag-scroll-indicator">
                     <div className="drag-icon">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                           d="M12 5V19M12 5L6 11M12 5L18 11"
                           stroke="white"
@@ -775,25 +705,15 @@ const Labels: React.FC = () => {
                       <div className="table-row">
                         <div className="row-label">Personalización</div>
                         <div className="row-cell">
-                          <span className="value-label high-value">
-                            Muy alta
-                          </span>
+                          <span className="value-label high-value">Muy alta</span>
                           <div className="value-bar">
-                            <div
-                              className="value-fill"
-                              style={{ width: "90%" }}
-                            ></div>
+                            <div className="value-fill" style={{ width: "90%" }}></div>
                           </div>
                         </div>
                         <div className="row-cell">
-                          <span className="value-label medium-value">
-                            Media
-                          </span>
+                          <span className="value-label medium-value">Media</span>
                           <div className="value-bar">
-                            <div
-                              className="value-fill"
-                              style={{ width: "50%" }}
-                            ></div>
+                            <div className="value-fill" style={{ width: "50%" }}></div>
                           </div>
                         </div>
                       </div>
@@ -837,9 +757,7 @@ const Labels: React.FC = () => {
                     <h2 className="section-title">Casos reales destacados</h2>
                     <div className="cases-container">
                       <div
-                        className={`case-card ${
-                          activeCase === "influencer" ? "active" : ""
-                        }`}
+                        className={`case-card ${activeCase === "influencer" ? "active" : ""}`}
                         onClick={() => showCaseDetails("influencer")}
                       >
                         <div className="case-icon">
@@ -849,19 +767,15 @@ const Labels: React.FC = () => {
                         {activeCase === "influencer" && (
                           <div className="case-details">
                             <p>
-                              Un influencer con 500K seguidores implementó un
-                              asistente IA personalizado que responde preguntas
-                              sobre sus productos y contenido, aumentando su
-                              engagement en un 35%.
+                              Un influencer con 500K seguidores implementó un asistente IA personalizado que responde
+                              preguntas sobre sus productos y contenido, aumentando su engagement en un 35%.
                             </p>
                           </div>
                         )}
                       </div>
 
                       <div
-                        className={`case-card ${
-                          activeCase === "legal" ? "active" : ""
-                        }`}
+                        className={`case-card ${activeCase === "legal" ? "active" : ""}`}
                         onClick={() => showCaseDetails("legal")}
                       >
                         <div className="case-icon">
@@ -871,19 +785,15 @@ const Labels: React.FC = () => {
                         {activeCase === "legal" && (
                           <div className="case-details">
                             <p>
-                              Un bufete de abogados redujo en un 60% el tiempo
-                              de investigación de casos al implementar un
-                              sistema de IA entrenado con su biblioteca de
-                              precedentes legales.
+                              Un bufete de abogados redujo en un 60% el tiempo de investigación de casos al implementar
+                              un sistema de IA entrenado con su biblioteca de precedentes legales.
                             </p>
                           </div>
                         )}
                       </div>
 
                       <div
-                        className={`case-card ${
-                          activeCase === "medical" ? "active" : ""
-                        }`}
+                        className={`case-card ${activeCase === "medical" ? "active" : ""}`}
                         onClick={() => showCaseDetails("medical")}
                       >
                         <div className="case-icon">
@@ -909,10 +819,8 @@ const Labels: React.FC = () => {
                         {activeCase === "medical" && (
                           <div className="case-details">
                             <p>
-                              Una clínica especializada implementó un asistente
-                              IA para pre-diagnóstico y seguimiento de
-                              pacientes, mejorando la satisfacción del paciente
-                              en un 42%.
+                              Una clínica especializada implementó un asistente IA para pre-diagnóstico y seguimiento de
+                              pacientes, mejorando la satisfacción del paciente en un 42%.
                             </p>
                           </div>
                         )}
@@ -924,9 +832,7 @@ const Labels: React.FC = () => {
                   <div className="training-cta">
                     <button
                       className="training-button"
-                      onClick={() =>
-                        window.open("https://iamex.io/marketplace", "_blank")
-                      }
+                      onClick={() => window.open("https://iamex.io/marketplace", "_blank")}
                     >
                       Solicita tu entrenamiento especializado
                     </button>
@@ -940,32 +846,18 @@ const Labels: React.FC = () => {
 
         {/* Modal de Suscripción */}
         {isSubscriptionModalOpen && (
-          <div
-            className="fullscreen-modal"
-            style={{ overflow: "hidden", pointerEvents: "auto" }}
-          >
-            <div
-              className="modal-overlay"
-              onClick={closeSubscriptionModal}
-            ></div>
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
+            <div className="modal-overlay" onClick={closeSubscriptionModal}></div>
             <div className="modal-content subscription-modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeSubscriptionModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeSubscriptionModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
                 {/* Selector de periodo (mensual/anual) */}
                 <div className="billing-toggle">
-                  <span className={!isPriceAnnual ? "active" : ""}>
-                    Mensual
-                  </span>
+                  <span className={!isPriceAnnual ? "active" : ""}>Mensual</span>
                   <div
-                    className={`toggle-switch ${
-                      isPriceAnnual ? "annual" : "monthly"
-                    }`}
+                    className={`toggle-switch ${isPriceAnnual ? "annual" : "monthly"}`}
                     onClick={() => setIsPriceAnnual(!isPriceAnnual)}
                   >
                     <div className="toggle-knob"></div>
@@ -975,11 +867,7 @@ const Labels: React.FC = () => {
 
                 <div className="plans-container">
                   {/* Plan Free */}
-                  <div
-                    className={`plan-card ${
-                      activePlan === "free" ? "active" : ""
-                    }`}
-                  >
+                  <div className={`plan-card ${activePlan === "free" ? "active" : ""}`}>
                     <div className="plan-header">
                       <Globe className="plan-icon" size={32} />
                       <h3 className="plan-name">Plan Básico</h3>
@@ -1002,38 +890,24 @@ const Labels: React.FC = () => {
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Clasificación automática de documentos adjuntos (PDF,
-                          Word, Excel)
-                        </span>
+                        <span>Clasificación automática de documentos adjuntos (PDF, Word, Excel)</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Almacenamiento y listado básico en Google Drive
-                        </span>
+                        <span>Almacenamiento y listado básico en Google Drive</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
                         <span>Soporte básico vía email</span>
                       </div>
                     </div>
-                    <button
-                      className="plan-cta"
-                      onClick={() =>
-                        window.open("https://iamex.io/plans", "_blank")
-                      }
-                    >
+                    <button className="plan-cta" onClick={() => window.open("https://iamex.io/plans", "_blank")}>
                       Suscribete ahora
                     </button>
                   </div>
 
                   {/* Plan Pro */}
-                  <div
-                    className={`plan-card ${
-                      activePlan === "pro" ? "active" : ""
-                    }`}
-                  >
+                  <div className={`plan-card ${activePlan === "pro" ? "active" : ""}`}>
                     <div className="plan-badge">Recomendado</div>
                     <div className="plan-header">
                       <Star className="plan-icon" size={32} />
@@ -1053,48 +927,33 @@ const Labels: React.FC = () => {
                     <div className="plan-features">
                       <div className="plan-feature highlight">
                         <Sparkles size={18} className="feature-sparkle" />
-                        <span>
-                          Gestión y automatización avanzada de correos
-                        </span>
+                        <span>Gestión y automatización avanzada de correos</span>
+                      </div>
+                      <div className="plan-feature">
+                        <Check size={18} className="feature-check" />
+                        <span>Generación automática y personalizada de reportes y documentos</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
                         <span>
-                          Generación automática y personalizada de reportes y
-                          documentos
+                          Integración avanzada con Google Drive (guardar, listar, enviar y resumir documentos)
                         </span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Integración avanzada con Google Drive (guardar,
-                          listar, enviar y resumir documentos)
-                        </span>
-                      </div>
-                      <div className="plan-feature">
-                        <Check size={18} className="feature-check" />
-                        <span>
-                          Resúmenes inteligentes de contenidos y videos
-                          (YouTube)
-                        </span>
+                        <span>Resúmenes inteligentes de contenidos y videos (YouTube)</span>
                       </div>
                     </div>
                     <button
                       className="plan-cta highlight"
-                      onClick={() =>
-                        window.open("https://iamex.io/plans", "_blank")
-                      }
+                      onClick={() => window.open("https://iamex.io/plans", "_blank")}
                     >
                       Suscríbete ahora
                     </button>
                   </div>
 
                   {/* Plan Pro */}
-                  <div
-                    className={`plan-card ${
-                      activePlan === "pro" ? "active" : ""
-                    }`}
-                  >
+                  <div className={`plan-card ${activePlan === "pro" ? "active" : ""}`}>
                     <div className="plan-header">
                       <Zap className="plan-icon" size={32} />
                       <h3 className="plan-name">Enterprise</h3>
@@ -1113,51 +972,33 @@ const Labels: React.FC = () => {
                     <div className="plan-features">
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Gestión estratégica completa de comunicaciones
-                          corporativas
-                        </span>
+                        <span>Gestión estratégica completa de comunicaciones corporativas</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
                         <span>
-                          Automatización integral de atención vía WhatsApp
-                          (videollamadas, transcripciones y resúmenes
+                          Automatización integral de atención vía WhatsApp (videollamadas, transcripciones y resúmenes
                           automáticos)
                         </span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Funcionalidades legales avanzadas (generación y
-                          revisión automática de contratos)
-                        </span>
+                        <span>Funcionalidades legales avanzadas (generación y revisión automática de contratos)</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Acceso a dashboard avanzado para control y monitoreo
-                          en tiempo real
-                        </span>
+                        <span>Acceso a dashboard avanzado para control y monitoreo en tiempo real</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
-                        <span>
-                          Análisis de sentimientos avanzado y flujo optimizado
-                          de ventas
-                        </span>
+                        <span>Análisis de sentimientos avanzado y flujo optimizado de ventas</span>
                       </div>
                       <div className="plan-feature">
                         <Check size={18} className="feature-check" />
                         <span>Soporte personalizado y dedicado 24/7</span>
                       </div>
                     </div>
-                    <button
-                      className="plan-cta"
-                      onClick={() =>
-                        window.open("https://iamex.io/plans", "_blank")
-                      }
-                    >
+                    <button className="plan-cta" onClick={() => window.open("https://iamex.io/plans", "_blank")}>
                       Suscríbete ahora
                     </button>
                   </div>
@@ -1166,13 +1007,8 @@ const Labels: React.FC = () => {
                 </div>
 
                 <div className="subscription-form-container">
-                  <h2 className="form-title">
-                    ¿Interesado en nuestros planes?
-                  </h2>
-                  <p className="form-subtitle">
-                    Déjanos tus datos y te contactaremos para ofrecerte la mejor
-                    solución
-                  </p>
+                  <h2 className="form-title">¿Interesado en nuestros planes?</h2>
+                  <p className="form-subtitle">Déjanos tus datos y te contactaremos para ofrecerte la mejor solución</p>
 
                   {!isFormSubmitted ? (
                     <form className="subscription-form" onSubmit={handleSubmit}>
@@ -1200,9 +1036,7 @@ const Labels: React.FC = () => {
                         />
                       </div>
                       <div className="form-group">
-                        <label htmlFor="purpose">
-                          ¿Cómo usarías nuestra IA?
-                        </label>
+                        <label htmlFor="purpose">¿Cómo usarías nuestra IA?</label>
                         <textarea
                           id="purpose"
                           name="purpose"
@@ -1212,11 +1046,7 @@ const Labels: React.FC = () => {
                           rows={3}
                         ></textarea>
                       </div>
-                      <button
-                        type="submit"
-                        className="subscription-submit-btn"
-                        disabled={isLoading}
-                      >
+                      <button type="submit" className="subscription-submit-btn" disabled={isLoading}>
                         {isLoading ? "Enviando..." : "Suscríbete ahora"}
                       </button>
                     </form>
@@ -1226,10 +1056,7 @@ const Labels: React.FC = () => {
                         <Check size={48} />
                       </div>
                       <h3>¡Gracias por tu interés!</h3>
-                      <p>
-                        Hemos recibido tu información y nos pondremos en
-                        contacto contigo pronto.
-                      </p>
+                      <p>Hemos recibido tu información y nos pondremos en contacto contigo pronto.</p>
                     </div>
                   )}
                 </div>
@@ -1243,11 +1070,7 @@ const Labels: React.FC = () => {
           <div className="fullscreen-modal">
             <div className="modal-overlay" onClick={closeNewModelModal}></div>
             <div className="modal-content video-modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeNewModelModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeNewModelModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div className="modal-body">
@@ -1262,16 +1085,13 @@ const Labels: React.FC = () => {
                     controlsList="nodownload"
                     disablePictureInPicture
                   >
-                    <source
-                      src="/videos/Intro.Alpha.V.1.4.mp4"
-                      type="video/mp4"
-                    />
+                    <source src="/videos/Intro.Alpha.V.1.4.mp4" type="video/mp4" />
                     Tu navegador no soporta videos HTML5.
                   </video>
                 </div>
                 <p>
-                  Sorprendete con ALPHA AGENT, el primer modelo especializado de
-                  I'AM. Conoce su potencial y cómo puede transformar tu negocio.
+                  Sorprendete con ALPHA AGENT, el primer modelo especializado de I'AM. Conoce su potencial y cómo puede
+                  transformar tu negocio.
                 </p>
               </div>
             </div>
@@ -1280,20 +1100,10 @@ const Labels: React.FC = () => {
 
         {/* Modal para Marketplace */}
         {isMarketplaceModalOpen && (
-          <div
-            className="fullscreen-modal"
-            style={{ overflow: "hidden", pointerEvents: "auto" }}
-          >
-            <div
-              className="modal-overlay"
-              onClick={closeMarketplaceModal}
-            ></div>
+          <div className="fullscreen-modal" style={{ overflow: "hidden", pointerEvents: "auto" }}>
+            <div className="modal-overlay" onClick={closeMarketplaceModal}></div>
             <div className="modal-content marketplace-modal-content">
-              <button
-                className="modal-close-button"
-                onClick={closeMarketplaceModal}
-                title="Cerrar"
-              >
+              <button className="modal-close-button" onClick={closeMarketplaceModal} title="Cerrar">
                 <X size={24} />
               </button>
               <div
@@ -1328,9 +1138,7 @@ const Labels: React.FC = () => {
                       <RefreshCw size={28} className="marketplace-icon" />
                     </div>
                     <h3>Integra</h3>
-                    <p>
-                      Conecta múltiples agentes para crear flujos de trabajo
-                    </p>
+                    <p>Conecta múltiples agentes para crear flujos de trabajo</p>
                   </div>
                   <div className="marketplace-feature">
                     <div className="feature-icon">
@@ -1360,17 +1168,17 @@ const Labels: React.FC = () => {
                 </div>
 
                 <p className="marketplace-description">
-                  Nuestro marketplace ofrece una amplia gama de agentes
-                  especializados que pueden integrarse perfectamente para
-                  potenciar tu negocio con inteligencia artificial avanzada.
+                  Nuestro marketplace ofrece una amplia gama de agentes especializados que pueden integrarse
+                  perfectamente para potenciar tu negocio con inteligencia artificial avanzada.
                 </p>
               </div>
             </div>
           </div>
         )}
       </div>
+      
     </div>
-  );
+  )
 }
 
 export default Labels

@@ -255,7 +255,7 @@ body,
 
 /* Logo styling - Versión responsiva */
 .logo-container {
-  top: 20%;
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -264,7 +264,7 @@ body,
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  bottom: clamp(30px, 10vh, 90px); /* Posición responsiva */
+  /* bottom: clamp(30px, 10vh, 90px); /* Posición responsiva */  
 }
 
 .imageLogo {
@@ -306,7 +306,7 @@ body,
   flex-direction: column;
   align-items: center;
   position: absolute;
-  bottom: clamp(15px, 3vh, 30px);
+  bottom: clamp(350px, 3vh, 30px);
   right: clamp(15px, 3vw, 30px);
   left: auto;
   transform: none;
@@ -607,7 +607,7 @@ body,
 
 .alpha-subtitle-container {
   position: absolute;
-  bottom: 5%;
+  bottom: 10%;
   left: clamp(5%, 5%, 5%);
   text-align: left;
   z-index: 10;
@@ -770,7 +770,7 @@ body,
   left: 20px;
   pointer-events: all;
   font-family: var(--font-primary);
-  font-size: clamp(14px, 1vw, 16px);
+  font-size: clamp(17px, 1vw, 16px);
   transition: color 0.3s ease, transform 0.3s ease;
   padding: 10px 15px;
   border-radius: 8px;
@@ -1055,14 +1055,7 @@ body,
     top: 14%;
   }
 
-  .logo-container {
-    top: 3%;
-  }
-
-  .imageLogo2 {
-    width: 47%;
-  }
-
+  
   .scroll-indicator {
     bottom: 50%;
   }
@@ -3554,7 +3547,7 @@ body,
     text-align: center;
   }
 }
-.subscription-button-container{}
+
 
 /* Device-specific fixes */
 .ios-device .features-container {
@@ -3564,6 +3557,8 @@ body,
 .android-device .features-container {
   top: 15% !important;
 }
+
+
 
 /* Fix for iOS Safari viewport height issues */
 @supports (-webkit-touch-callout: none) {
@@ -3588,13 +3583,7 @@ body,
     font-size: clamp(18px, 3vw, 28px);
   }
 
-  .logo-container {
-    top: 3%;
-  }
-
-  .imageLogo2 {
-    width: 40%;
-  }
+ 
 
   .scroll-indicator {
     bottom: 10%;
@@ -3704,7 +3693,6 @@ html {
 }
 
 
-
 .android-device .scroll-indicator{
   top: 20% !important;
   right: 5% !important;
@@ -3717,6 +3705,13 @@ html {
 .android-device .features-container {
   top: 20% !important;
 }
+
+.android-device .logo-container {
+  
+  bottom: 30% !important;
+}	
+
+
 
 /* Fix for iOS Safari viewport height issues */
 @supports (-webkit-touch-callout: none) {
@@ -3741,12 +3736,10 @@ html {
     font-size: clamp(18px, 3vw, 28px);
   }
 
-  .logo-container {
-    top: 3%;
-  }
+  
 
   .imageLogo2 {
-    width: 40%;
+    width: 50%;
   }
 
   .scroll-indicator {

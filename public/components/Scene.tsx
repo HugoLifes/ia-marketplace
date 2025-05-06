@@ -35,7 +35,7 @@ const Scene: React.FC = () => {
           <AdjustCamera />
           
           <ScrollControls pages={4} horizontal damping={0.24}  > 
-            <TouchScrollHandler/>
+            <TouchScrollHandler sensitivity={2.5} minDelta={1}/>
             <BlobRow />
             {/* Add your scrollable content here */}
             <Model />
